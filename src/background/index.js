@@ -69,7 +69,7 @@ chrome.runtime.onInstalled.addListener(details => {
 })
 
 chrome.runtime.onMessage.addListener(
-  function(data) {
+  function callback(data) {
     console.log(`Content script received a message: ${data.type}`);
     if (data.type === 'SUBMIT_DOMAINS') {
       scrapeDomains(data.domains)

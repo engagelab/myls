@@ -2,20 +2,36 @@
   <div>
     <h1>Domain Selection</h1>
     <div v-if="!submitStatus">
-      <div v-for="group in domains" :key="group.id">
+      <div 
+        v-for="group in domains" 
+        :key="group.id"
+      >
         <p>{{ group.title }}</p>
         <p>{{ group.description }}</p>
         <ul class="todo-list">
-          <li v-for="d in group.urls" class="todo" :key="d.id">
+          <li 
+            v-for="d in group.urls" 
+            :key="d.id"
+            class="todo" 
+          >
             <div class="view">
-              <input class="toggle" type="checkbox" v-model="d.checked">
+              <input
+                v-model="d.checked" 
+                class="toggle"               
+                type="checkbox"
+              >
               <label class="viewTitle">{{ d.title }}</label>
             </div>
           </li>
         </ul>
       </div>
       <p>By clicking 'Submit' you agree to share browser history for the selected URLs with the University of Oslo MyLS Project</p>
-      <button class="submitButton" @click="submitChoices()">Submit</button>
+      <button 
+        class="submitButton" 
+        @click="submitChoices()"
+      >
+        Submit
+      </button>
     </div>
     <div v-else>
       <p>Thank you for your submission!</p>
@@ -26,19 +42,25 @@
 <script>
 import jsonData from '../data.json'
 
-export default { 
+export default {
   data() {
     return {
       submitStatus: false,
       domains: [],
-      domainDescriptions: jsonData
+      domainDescriptions: jsonData,
     }
   },
   created() {
     // this.submitStatus = window.localStorage.getItem('submitStatus') // TODO: Uncomment when debugging is done!
     this.domains = this.domainDescriptions.map((group, index1) => {
       const urls = group.urls.map((u, index2) => {
-        return { id: index2, title: u, group: group.title, checked: false, visitData: { count: 0 } }
+        return {
+          id: index2,
+          title: u,
+          group: group.title,
+          checked: false,
+          visitData: { count: 0 },
+        }
       })
       return {
         id: index1,
