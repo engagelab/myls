@@ -1,12 +1,19 @@
 {
   "author": {
-    "email": "mubaidr@gmail.com",
-    "name": "Muhammad Ubaid Raza",
-    "url": "https://mubaidr.github.io/"
+    "email": "richarne@uv.uio.no",
+    "name": "Richard Nesnass"
   },
   "dependencies": {
+    "babel-eslint": "^10.1.0",
     "bulma-fluent": "^0.3.20",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "mongoose": "^5.4.19",
+    "path": "^0.12.7"
   },
   "description": "vue-chrome-extension-boilerplate",
   "devDependencies": {
@@ -44,10 +51,10 @@
     "webpack-extension-reloader": "^1.1.4"
   },
   "license": "MIT",
-  "name": "vue-chrome-extension-boilerplate",
+  "name": "myls",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mubaidr/vue-chrome-extension-boilerplate.git"
+    "url": "git+https://bitbucket.usit.uio.no/scm/engagelab/myls.git"
   },
   "scripts": {
     "build": "npm run pack && npm run remove-evals && npm run zip",
