@@ -6,7 +6,8 @@ Upon submission the user's history is scanned for the selected URLS, and the res
 
 # Build and run
 
-* Run `npm run build`
+* `yarn`
+* Run `yarn run build`
 * Go to URL: `chrome://extensions/`
 * Set Chrome extensions to developer mode
 * Use 'load Unpacked' to select the /dist folder
