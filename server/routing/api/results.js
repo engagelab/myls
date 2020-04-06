@@ -5,32 +5,11 @@
 const router = require('express').Router();
 const utilities = require('../utilities');
 const Result = require('../../models/Result');
-
-
-// Get existing results for a given user and session
-/* router.get('/results', utilities.checkAuthentication, (request, response) => {
-  Result.find(
-    {
-      sessionId: request.query.sessionId,
-      userId: request.query.userId,
-    },
-    (error, foundResults) => {
-      if (error) {
-        utilities.errorResponse(
-          { status: 400, message: 'Error finding results' },
-          response
-        );
-      } else {
-        console.log(`GET ${foundResults.length} results`);
-        utilities.successResponse(foundResults, response);
-      }
-    }
-  );
-}); */
+const dataFile = require('../../data.json')
 
 router.post('/result', (request, response) => {
-  const data = { items: request.body }
-  Result.create(data, function(error, newResult) {
+  const result = { items: request.body }
+  Result.create(result, function callback(error, newResult) {
     if (error) {
       utilities.errorResponse(
         { status: 400, message: 'Error finding results' },
@@ -41,6 +20,10 @@ router.post('/result', (request, response) => {
       utilities.successResponse(newResult, response);
     }
   });
+});
+
+router.get('/data', (request, response) => {
+  utilities.successResponse(dataFile, response);
 });
 
 module.exports = router;

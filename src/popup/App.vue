@@ -40,35 +40,17 @@
 </template>
 
 <script>
-import jsonData from '../data.json'
 
 export default {
   data() {
     return {
       submitStatus: false,
       domains: [],
-      domainDescriptions: jsonData,
+      domainDescriptions: {},
     }
   },
   created() {
-    // this.submitStatus = window.localStorage.getItem('submitStatus') // TODO: Uncomment when debugging is done!
-    this.domains = this.domainDescriptions.map((group, index1) => {
-      const urls = group.urls.map((u, index2) => {
-        return {
-          id: index2,
-          title: u,
-          group: group.title,
-          checked: false,
-          visitData: { count: 0 },
-        }
-      })
-      return {
-        id: index1,
-        title: group.title,
-        description: group.description,
-        urls,
-      }
-    })
+    this.getData();
   },
   methods: {
     submitChoices() {
@@ -77,6 +59,50 @@ export default {
       this.submitStatus = true
       window.localStorage.setItem('submitStatus', true)
     },
+    getData() {
+      const xhr = new XMLHttpRequest();
+      const headers = {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      }
+      // Event listener must be added before calling open()
+      xhr.addEventListener('loadend', () =>
+      {
+        this.domainDescriptions = xhr.response;
+        this.configureData()
+      })
+
+      xhr.open('GET', 'https://localhost:8080/api/data');
+      xhr.responseType = 'json';
+      xhr.withCredentials = false;
+      const headerKeys = Object.keys(headers)
+      headerKeys.forEach(k => xhr.setRequestHeader(k, headers[k]));
+      try {
+        xhr.send();
+      } catch(error) {
+        console.log(error)
+      }
+    },
+    configureData() {
+      // this.submitStatus = window.localStorage.getItem('submitStatus') // TODO: Uncomment when debugging is done!
+      this.domains = this.domainDescriptions.map((group, index1) => {
+        const urls = group.urls.map((u, index2) => {
+          return {
+            id: index2,
+            title: u,
+            group: group.title,
+            checked: false,
+            visitData: { count: 0 },
+          }
+        })
+        return {
+          id: index1,
+          title: group.title,
+          description: group.description,
+          urls,
+        }
+      })
+    }
   },
 }
 </script>
