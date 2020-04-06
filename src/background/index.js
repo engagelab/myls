@@ -28,7 +28,7 @@ function scrapeDomains(domains) {
       console.log(data)
     })
 
-    xhr.open('POST', 'https://localhost:8080/api/result');
+    xhr.open('POST', 'https://engagelab.uio.no/myls/api/result');
     xhr.responseType = 'json';
     xhr.withCredentials = false;
     const headerKeys = Object.keys(headers)

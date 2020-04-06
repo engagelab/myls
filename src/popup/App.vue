@@ -72,7 +72,7 @@ export default {
         this.configureData()
       })
 
-      xhr.open('GET', 'https://localhost:8080/api/data');
+      xhr.open('GET', 'https://engagelab.uio.no/myls/api/data');
       xhr.responseType = 'json';
       xhr.withCredentials = false;
       const headerKeys = Object.keys(headers)
