@@ -44,6 +44,7 @@ function scrapeDomains(domains) {
     const ui = urlItem
     chrome.history.search({
       text: ui.title,
+      maxResults: 10000,
       startTime: 0  // that was accessed since this time - ms since the epoch
     },
     historyItems => {
