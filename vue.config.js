@@ -13,6 +13,14 @@ module.exports = {
   configureWebpack: config => {
     config.entry = './src-www/main.js'
   },
+  chainWebpack: config => {
+    config.plugin('html').tap(args => {
+      const tmp = args[0]
+      tmp.template = 'src-www/index.html'
+      // tmp.favicon = 'src-www/assets/icons/favicon.png'
+      return args
+    })
+  },
   devServer: {
     https: useSSL
       ? {

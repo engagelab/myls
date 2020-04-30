@@ -554,20 +554,3 @@ input {
   width: 0.25rem;
 }
 
-.btn-myls {
-  background-color: #4299e1;
-  color: #fff;
-  font-size: 0.875rem;
-  font-weight: 700;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  margin-top: 1rem;
-  border-radius: 0.25rem;
-}
-.btn-disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
