@@ -22,10 +22,10 @@
     "128": "assets/icons/icon_128.png"
   },
   "manifest_version": 2,
-  "name": "URL History Reporter",
+  "name": "Learning Practices Survey",
   "permissions": [
-    "http://*/*",
-    "https://*/*",
+    "https://192.168.1.11/*",
+    "https://engagelab.uio.no/*",
     "history"
   ],
   "version": "1.0.0",
