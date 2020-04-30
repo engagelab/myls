@@ -8,9 +8,8 @@ const hotPort = process.env.VUE_APP_HOTRELOAD_SERVER_PORT
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/myls/' : '/',
-  outputDir: '../www',
+  outputDir: './www',
   assetsDir: 'assets',
-  indexPath: '/',
   configureWebpack: config => {
     config.entry = './src-www/main.js'
   },

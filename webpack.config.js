@@ -20,10 +20,10 @@ function configFunc(env, argv) {
     devtool: isDevMode ? 'eval-source-map' : false,
     context: path.resolve(__dirname, './src-ext'),
     entry: {
-      // options: './options/index.js',
-      // popup: './popup/index.js',
-      background: './background/index.js' // < ------------ We only need the background script
-      // contentScripts: './contentScripts/index.js'
+      options: './options/index.js',
+      popup: './popup/index.js',
+      background: './background/index.js', // < ------------ We only need the background script
+      contentScripts: './contentScripts/index.js'
     },
     output: {
       path: path.resolve(__dirname, './ext'),
@@ -105,7 +105,7 @@ function configFunc(env, argv) {
         { from: 'assets', to: 'assets' },
         { from: 'manifest.json', to: 'manifest.json', flatten: true }
       ]),
-      /* new HtmlWebpackPlugin({
+      new HtmlWebpackPlugin({
         title: 'Options',
         template: './index.html',
         filename: 'options.html',
@@ -116,7 +116,7 @@ function configFunc(env, argv) {
         template: './index.html',
         filename: 'popup.html',
         chunks: ['popup']
-      }), */
+      }),
       new Dotenv()
     ]
   }

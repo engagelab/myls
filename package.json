@@ -67,9 +67,10 @@
     "url": "git+https://bitbucket.usit.uio.no/scm/engagelab/myls.git"
   },
   "scripts": {
-    "build": "npm run pack && npm run remove-evals && npm run zip",
-    "dev": "webpack --mode=development --env.NODE_ENV=development --progress --hide-modules --hot --watch",
-    "serve": "vue-cli-service serve --mode development",
+    "build:ext": "npm run pack && npm run remove-evals && npm run zip",
+    "dev:ext": "webpack --mode=development --env.NODE_ENV=development --progress --hide-modules --hot --watch",
+    "dev:www": "vue-cli-service serve --mode development",
+    "build:www": "vue-cli-service build",
     "lint": "eslint --ext .js,.vue --fix ./src-ext",
     "pack": "webpack --mode=production --env.NODE_ENV=production --progress --hide-modules",
     "remove-evals": "node scripts/remove-evals.js",
