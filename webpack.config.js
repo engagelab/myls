@@ -9,6 +9,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const PurgecssPlugin = require('purgecss-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 // eslint-disable-next-line
 function configFunc(env, argv) {
@@ -20,12 +21,12 @@ function configFunc(env, argv) {
       options: './options/index.js',
       popup: './popup/index.js',
       background: './background/index.js',
-      contentScripts: './contentScripts/index.js',
+      contentScripts: './contentScripts/index.js'
     },
     output: {
       path: path.resolve(__dirname, './dist'),
       publicPath: '.',
-      filename: '[name].js',
+      filename: '[name].js'
     },
     module: {
       rules: [
@@ -33,21 +34,21 @@ function configFunc(env, argv) {
           test: /\.vue$/,
           loader: 'vue-loader',
           options: {
-            extractCSS: !isDevMode,
-          },
+            extractCSS: !isDevMode
+          }
         },
         {
           test: /\.js$/,
           loader: 'babel-loader',
-          exclude: /(node_modules|bower_components)/,
+          exclude: /(node_modules|bower_components)/
         },
         {
           test: /\.scss$/,
           use: [
             isDevMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
             'css-loader',
-            'sass-loader',
-          ],
+            'sass-loader'
+          ]
         },
         {
           test: /\.sass$/,
@@ -57,63 +58,71 @@ function configFunc(env, argv) {
             {
               loader: 'sass-loader',
               // eslint-disable-next-line
-              options: { implementation: require('sass') },
-            },
-          ],
+              options: { implementation: require("sass") }
+            }
+          ]
         },
         {
           test: /\.styl$/,
           use: [
             isDevMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
             'css-loader',
-            'stylus-loader',
-          ],
+            'stylus-loader'
+          ]
         },
         {
           test: /\.css$/,
           use: [
             isDevMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
             'css-loader',
-          ],
+            'postcss-loader'
+          ]
         },
         {
           test: /\.(png|jpg|gif|svg)$/,
           loader: 'file-loader',
           options: {
-            name: '[name].[ext]?[hash]',
-          },
-        },
-      ],
+            name: '[name].[ext]?[hash]'
+          }
+        }
+      ]
     },
     resolve: {
       alias: {
         vue$: 'vue/dist/vue.runtime.esm.js',
-        bulma$: 'bulma/css/bulma.css',
-      },
+        bulma$: 'bulma/css/bulma.css'
+      }
       // extensions: ['.js'],
     },
     plugins: [
       new VueLoaderPlugin(),
       new CleanWebpackPlugin({
-        cleanStaleWebpackAssets: false,
+        cleanStaleWebpackAssets: false
       }),
       new CopyWebpackPlugin([
         { from: 'assets', to: 'assets' },
-        { from: 'manifest.json', to: 'manifest.json', flatten: true },
+        { from: 'manifest.json', to: 'manifest.json', flatten: true }
       ]),
       new HtmlWebpackPlugin({
         title: 'Options',
         template: './index.html',
         filename: 'options.html',
-        chunks: ['options'],
+        chunks: ['options']
       }),
       new HtmlWebpackPlugin({
         title: 'Popup',
         template: './index.html',
         filename: 'popup.html',
-        chunks: ['popup'],
+        chunks: ['popup']
       }),
-    ],
+      new HtmlWebpackPlugin({
+        title: 'index',
+        template: './index.html',
+        filename: 'index.html',
+        chunks: ['popup']
+      }),
+      new Dotenv()
+    ]
   }
 
   /**
@@ -126,23 +135,23 @@ function configFunc(env, argv) {
         contentScript: 'contentScripts',
         background: 'background',
         extensionPage: 'popup',
-        options: 'options',
+        options: 'options'
       })
     )
   } else {
     config.plugins.push(
       new ScriptExtHtmlWebpackPlugin({
         async: [/runtime/],
-        defaultAttribute: 'defer',
+        defaultAttribute: 'defer'
       }),
       new MiniCssExtractPlugin({
-        filename: '[name].css',
+        filename: '[name].css'
       }),
       new PurgecssPlugin({
         paths: fg.sync([`./src/**/*`], {
           onlyFiles: true,
-          absolute: true,
-        }),
+          absolute: true
+        })
       })
       // new CopyWebpackPlugin([
       //   {
