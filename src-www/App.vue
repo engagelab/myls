@@ -52,7 +52,8 @@
 
       <!-- Final template confirms submission of results -->
       <template v-if="mode == 'submit'">
-        <p>By clicking 'Submit' you agree to share browser history for the selected URLs with the University of Oslo MyLS Project</p>
+        <p>We will now scan your browser history to count URLs matching only those you selected in the survey</p>
+        <p>By clicking 'Submit' you agree to share both your survey answers and selective browser history for the selected URLs with the University of Oslo MyLS Project</p>
         <button class="btn-myls" @click="submitChoices()">Submit</button>
       </template>
 
