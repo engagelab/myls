@@ -8,19 +8,12 @@
     "default_icon": "assets/icons/icon_64.png",
     "default_popup": "./popup.html"
   },
-  "content_scripts": [
-    {
-      "all_frames": false,
-      "js": [
-        "./contentScripts.js"
-      ],
-      "matches": [
-        "https://192.168.1.*/*",
-        "https://engagelab.uio.no/*"
-      ],
-      "run_at": "document_start"
-    }
-  ],
+  "externally_connectable": {
+    "matches": [
+      "*://192.168.1.11/*",
+      "*://engagelab.uio.no/myls/*"
+    ]
+  },
   "description": "URL History Reporter",
   "icons": {
     "16": "assets/icons/icon_16.png",
@@ -30,10 +23,6 @@
   },
   "manifest_version": 2,
   "name": "URL History Reporter",
-  "options_ui": {
-    "chrome_style": false,
-    "page": "./options.html"
-  },
   "permissions": [
     "http://*/*",
     "https://*/*",

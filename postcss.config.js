@@ -9,7 +9,12 @@ module.exports = {
     // Only add purgecss in production
     process.env.NODE_ENV === 'production'
       ? purgecss({
-        content: ['./src/**/*.html', './src/**/*.vue']
+        content: [
+          './src-ext/**/*.html',
+          './src-ext/**/*.vue',
+          './src-www/**/*.html',
+          './src-www/**/*.vue'
+        ]
       })
       : ''
   ]

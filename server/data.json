@@ -83,6 +83,26 @@
             "type": "quaternary"
           }
         ]
+      },
+      {
+        "title": "Other",
+        "description": "Please describe the other activity(ies) that you carry out when solving problems during programming task and the main website/platform you use, and the time used in that website/platform for that activity",
+        "urls": [],
+        "entrytype": "text",
+        "columns": [
+          {
+            "name": "URL",
+            "type": "url"
+          },
+          {
+            "name": "Activity",
+            "type": "text"
+          },
+          {
+            "name": "Time Spent",
+            "type": "quaternary"
+          }
+        ]
       }
     ]
   },

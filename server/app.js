@@ -12,18 +12,11 @@ const app = express()
 app.locals.pretty = true
 
 db.connect('MyLS Sever')
-app.use('/', express.static(path.join(__dirname, '../dist')))
+app.use('/', express.static(path.join(__dirname, '../www')))
 // Can remove this after testing is over. Since we will not encounter CORS issues if the server is serving the webpage
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.use((req, res, next) => {
-  const allowedOrigins = [
-    '*',
-    'http://127.0.0.1:8080',
-    'http://localhost:8080',
-    'http://localhost:8081',
-    'http://127.0.0.1:8000',
-    'http://192.168.1.102:8080'
-  ]
+  const allowedOrigins = ['*', 'https://192.168.1.11:8090']
   const { origin } = req.headers
   if (allowedOrigins.indexOf(origin) > -1) {
     res.setHeader('Access-Control-Allow-Origin', origin)
