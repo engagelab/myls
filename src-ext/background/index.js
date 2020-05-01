@@ -1,8 +1,5 @@
-const port = process.env.VUE_APP_SERVER_PORT
-const host = process.env.VUE_APP_SERVER_HOST
-const protocol = process.env.VUE_APP_USE_SSL === 'true' ? 'https' : 'http'
 const resultRoute = process.env.VUE_APP_RESULT_ROUTE
-const serverURL = `${protocol}://${host}:${port}`
+const serverURL = process.env.VUE_APP_FULL_SERVER
 
 function scrapeDomains (data, sendResponse) {
   // For each domain in data, search history for all entries matching

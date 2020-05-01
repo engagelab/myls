@@ -14,12 +14,14 @@ module.exports = {
     config.entry = './src-www/main.js'
   },
   chainWebpack: config => {
-    config.plugin('html').tap(args => {
-      const tmp = args[0]
-      tmp.template = 'src-www/index.html'
-      // tmp.favicon = 'src-www/assets/icons/favicon.png'
-      return args
-    })
+    if (process.env.NODE_ENV === 'production') {
+      config.plugin('html').tap(args => {
+        const tmp = args[0]
+        tmp.template = 'src-www/index.html'
+        tmp.favicon = 'src-www/assets/icons/favicon.ico'
+        return args
+      })
+    }
   },
   devServer: {
     https: useSSL

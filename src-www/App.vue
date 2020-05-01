@@ -160,11 +160,8 @@ export default {
         this.configureData()
       })
 
-      const port = process.env.VUE_APP_SERVER_PORT
-      const host = process.env.VUE_APP_SERVER_HOST
-      const protocol = process.env.VUE_APP_USE_SSL === 'true' ? 'https' : 'http'
       const dataRoute = process.env.VUE_APP_DATA_ROUTE
-      const serverURL = `${protocol}://${host}:${port}`
+      const serverURL = process.env.VUE_APP_FULL_SERVER
       xhr.open('GET', `${serverURL}${dataRoute}`)
       xhr.responseType = 'json'
       xhr.withCredentials = false

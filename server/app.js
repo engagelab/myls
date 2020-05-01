@@ -15,6 +15,7 @@ db.connect('MyLS Sever')
 app.use('/', express.static(path.join(__dirname, '../www')))
 // Can remove this after testing is over. Since we will not encounter CORS issues if the server is serving the webpage
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
+
 app.use((req, res, next) => {
   const allowedOrigins = [
     '*',
