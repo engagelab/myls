@@ -7,9 +7,18 @@
         "title": "Asking questions to other developers",
         "description": "Select all the websites/platforms that you use for the activity above, who you carry it out with and the time used in that website/platform for that activity",
         "urls": [
-          "www.google.com/maps",
-          "www.apple.com",
-          "developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+          {
+            "name": "Google Maps",
+            "url": "www.google.com/maps"
+          },
+          {
+            "name": "Apple",
+            "url": "www.apple.com"
+          },
+          {
+            "name": "MDN: Array",
+            "url": "developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+          }
         ],
         "columns": [
           {
@@ -38,9 +47,18 @@
         "title": "Share and/or discuss coding items, source code, specifications and/or new ideas",
         "description": "Select all the websites/platforms that you use for the activity above, who you carry it out with, and the time used in that website/platform for that activity",
         "urls": [
-          "www.samsung.com",
-          "www.google.com",
-          "yahoo.com"
+          {
+            "name": "Samsung",
+            "url": "www.samsung.com"
+          },
+          {
+            "name": "Google",
+            "url": "www.google.com"
+          },
+          {
+            "name": "Yahoo",
+            "url": "www.yahoo.com"
+          }
         ],
         "columns": [
           {
@@ -69,9 +87,18 @@
         "title": "Find and assess information on the web to solve problems during a project or task",
         "description": "Select all the websites/platforms that you use for the activity above and the time used in that website/platform for that activity",
         "urls": [
-          "www.samsung.com",
-          "www.google.com",
-          "yahoo.com"
+          {
+            "name": "Samsung",
+            "url": "www.samsung.com"
+          },
+          {
+            "name": "Google",
+            "url": "www.google.com"
+          },
+          {
+            "name": "Yahoo",
+            "url": "www.yahoo.com"
+          }
         ],
         "columns": [
           {
@@ -114,7 +141,10 @@
         "title": "Track changes in ongoing open source projects ",
         "description": "Select all the websites/platforms that you use for the activity above, who the projects belong to, and the time used in that website/platform for that activity",
         "urls": [
-          "www.microsoft.com"
+          {
+            "name": "Microsoft",
+            "url": "www.microsoft.com"
+          }
         ],
         "columns": [
           {

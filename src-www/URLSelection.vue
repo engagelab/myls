@@ -25,7 +25,9 @@
                 <span
                   v-if="cIndex === 0"
                   class="font-mono text-sm text-green-900 break-words max-w-12"
-                >{{ u.title }}</span>
+                >
+                  <a :href="u.url" rel="noopener noreferrer" target="_blank">{{ u.name }}</a>
+                </span>
                 <AnswerInput v-if="cIndex === 0" mode="binary" v-model="u.selections.selected" />
                 <AnswerInput
                   v-if="cIndex > 0 && u.selections.selected"
@@ -34,7 +36,7 @@
                 />
               </div>
               <div class="flex flex-row items-center" v-if="entrytype == 'text'">
-                <AnswerInput v-if="cIndex === 0" mode="url" v-model="u.title" />
+                <AnswerInput v-if="cIndex === 0" mode="url" v-model="u.url" />
                 <AnswerInput v-if="cIndex > 0" :mode="c.type" v-model="u.selections[c.name]" />
                 <button v-if="cIndex === 0" class="btn-myls bg-red-400" @click="removeRow(uIndex)">X</button>
               </div>
@@ -102,6 +104,7 @@ export default {
       this.urlList.push({
         id: `url-${Math.random()}`,
         title: 'other',
+        url: '',
         selections: {
           selected: true,
           URL: '',

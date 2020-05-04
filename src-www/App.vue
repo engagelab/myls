@@ -178,14 +178,15 @@ export default {
       // this.submitStatus = window.localStorage.getItem('submitStatus') // TODO: Uncomment when debugging is done!
       this.tasks = this.data.map((task, index) => {
         const details = task.details.map((detail, index2) => {
-          const urls = detail.urls.map((url, index3) => {
+          const urls = detail.urls.map((entry, index3) => {
             const selections = { selected: false }
             detail.columns.forEach(
               c => (selections[c.name] = c.type == 'binary' ? false : '')
             )
             return {
               id: `url-${index3}`,
-              title: url,
+              name: entry.name,
+              url: entry.url,
               selections,
               info: `${task.title} : ${detail.title}`,
             }

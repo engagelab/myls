@@ -19,7 +19,8 @@ const downloadCSV = function (results, response) {
       })
       return {
         ...b,
-        url: i.title,
+        url: i.url,
+        title: i.title,
         userId: curr._id.toString(),
         info: i.info,
         count: i.visitData.count
@@ -36,6 +37,7 @@ const downloadCSV = function (results, response) {
       columns: {
         userId: 'userid',
         url: 'url',
+        title: 'title',
         count: 'visits',
         OtherStudents: 'Other Students',
         DeveloperCommunity: 'Developer Community',
