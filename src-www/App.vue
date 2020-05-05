@@ -56,10 +56,8 @@
         </div>
         <button
           class="btn-myls mt-4"
-          :class="{ 'btn-disabled': detailItems.length < 1}"
           @click="selectTasks()"
-          :disabled="detailItems.length < 1"
-        >Confirm</button>
+        >{{ confirmOrNone }}</button>
       </template>
 
       <!-- The third template then displays details for one selected category at a time -->
@@ -83,7 +81,7 @@
       <template v-if="mode == 'submit'">
         <p>We will now scan your browser history to count URLs matching only those you selected in the survey</p>
         <p>By clicking 'Submit' you agree to share both your survey answers and selective browser history for the selected URLs with the University of Oslo MyLS Project</p>
-        <button class="btn-myls" @click="submitChoices()">Submit</button>
+        <button class="btn-myls mt-4" @click="submitChoices()">Submit</button>
       </template>
 
       <!-- Error template -->
@@ -93,11 +91,11 @@
         <button class="btn-myls" @click="getExtension()">Get the Chrome extension...</button>
       </template>
     </div>
-    <div v-else>
+    <div v-else class="p-2">
       <p>Thank you for your submission!</p>
       <div v-if="id">
         <p>If you wish to uninstall this extension, click here:</p>
-        <button class="btn-myls" @click="uninstall()">Uninstall Chrome extension</button>
+        <button class="btn-myls m-4" @click="uninstall()">Uninstall Chrome extension</button>
       </div>
       <div v-else>
         <p>The extension is no longer installed</p>
@@ -129,6 +127,7 @@ export default {
       data: [],
       errorMessage: '',
       consented: false,
+      noneSelected: false,
       id: '',
       email: '',
       mode: '',
@@ -146,6 +145,9 @@ export default {
     detail() {
       return this.detailItems[this.detailIndex]
     },
+    confirmOrNone() {
+      return this.detailItems.length < 1 ? 'None' : 'Confirm'
+    }
   },
   methods: {
     start() {
@@ -207,13 +209,13 @@ export default {
     submitChoices() {
       const selectedTasks = []
       this.tasks.forEach(t => {
-        t.details.filter(d => d.selected).forEach(d => selectTasks.push(d))
+        t.details.filter(d => d.selected).forEach(d => selectedTasks.push(d))
       })
-      const data = this.selectTasks
+      const data = selectedTasks
         .map(d => d.urls.filter(u => u.selections.selected))
         .reduce((acc, curr) => acc.concat(curr))
       const request = {
-        data: { urls: data, installId: this.installId, email: this.email },
+        data: { urls: data, id: this.id, email: this.email },
         type: 'SUBMIT',
       }
       chrome.runtime.sendMessage(editorExtensionId, request, response => {
@@ -267,6 +269,7 @@ export default {
               id: `url-${index3}`,
               name: entry.name,
               url: entry.url,
+              search: entry.url, // <----- TODO: Change this to entry.search with new data file
               selections,
               info: `${task.title} : ${detail.title}`,
             }
@@ -295,7 +298,15 @@ export default {
       this.mode = 'activities'
     },
     selectTasks() {
-      this.mode = 'details'
+      if (this.detailItems.length < 1) {
+        if (this.taskIndex < this.tasks.length - 1) {
+           this.taskIndex++
+        } else {
+           this.mode = 'submit'
+        }
+      } else {
+        this.mode = 'details'
+      }
     },
     getExtension() {
       window.open(process.env.VUE_APP_CHROME_STORE_EXTENSION_URL, '_blank')

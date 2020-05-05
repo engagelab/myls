@@ -2,48 +2,48 @@
  Designed and developed by Richard Nesnass & Sharanya Manivasagam
 */
 
-let TEST_MODE = false;
+let TEST_MODE = false
 
 const errorResponse = (error, response) => {
-  console.log(`Error: ${error.message}`);
-  response.status(error.statusCode).json({
-    status: error.statusCode,
-    message: error.message,
-  });
-};
+  console.log(`Error: ${error.message}`)
+  response.status(error.status).json({
+    status: error.status,
+    message: error.message
+  })
+}
 
 const successResponse = (object, response) => {
   response
     .json(object)
     .status(200)
-    .end();
-};
+    .end()
+}
 
 const shuffleArray = array => {
-  const a = array.slice();
+  const a = array.slice()
   for (let i = a.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+    [a[i], a[j]] = [a[j], a[i]]
   }
-  return a;
-};
+  return a
+}
 
 const setTestMode = mode => {
-  TEST_MODE = mode;
-};
+  TEST_MODE = mode
+}
 
-const getTestMode = () => TEST_MODE;
+const getTestMode = () => TEST_MODE
 
 const checkAuthentication = (request, response, next) => {
   if (request.isAuthenticated() || TEST_MODE) {
-    next();
+    next()
   } else {
     response
       .status(401)
       .send({ message: 'Not Authorized' })
-      .end();
+      .end()
   }
-};
+}
 
 module.exports = {
   successResponse,
@@ -51,5 +51,5 @@ module.exports = {
   shuffleArray,
   checkAuthentication,
   setTestMode,
-  getTestMode,
-};
+  getTestMode
+}

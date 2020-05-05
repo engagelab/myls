@@ -7,6 +7,11 @@ const mongoose = require('mongoose')
 const itemSchema = {
   title: { type: String },
   group: { type: String },
+  info: { type: String },
+  name: { type: String },
+  url: { type: String },
+  search: { type: String },
+  selections: { type: Object },
   historyItems: [
     {
       id: { type: String },

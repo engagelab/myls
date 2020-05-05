@@ -2,6 +2,7 @@ const resultRoute = process.env.VUE_APP_RESULT_ROUTE
 const installedRoute = process.env.VUE_APP_INSTALLED_ROUTE
 const serverURL = process.env.VUE_APP_FULL_SERVER
 
+// data should be in JSON String format
 function sendToServer (requestType, data, route, callback) {
   const xhr = new XMLHttpRequest()
   const headers = {
@@ -18,11 +19,12 @@ function sendToServer (requestType, data, route, callback) {
   xhr.withCredentials = false
   const headerKeys = Object.keys(headers)
   headerKeys.forEach(k => xhr.setRequestHeader(k, headers[k]))
-  xhr.send(JSON.stringify(data))
+  xhr.send(data)
 }
 
 function notifyInstallStatus (data, callback) {
-  sendToServer('POST', data, installedRoute, response => callback(response))
+  const d = JSON.stringify(data)
+  sendToServer('POST', d, installedRoute, response => callback(response))
 }
 
 function scrapeDomains (data, callback) {
@@ -46,7 +48,7 @@ function scrapeDomains (data, callback) {
           const JSONString = JSON.stringify({
             items: resultItems,
             consentEmail: data.email,
-            browserId: data.browserId
+            id: data.id
           })
           sendToServer('POST', JSONString, resultRoute, response =>
             callback(response)
@@ -59,7 +61,7 @@ function scrapeDomains (data, callback) {
 
     chrome.history.search(
       {
-        text: ui.url,
+        text: ui.search,
         maxResults: 10000,
         startTime: 0, // that was accessed since this time - ms since the epoch
         endTime: Date.now() - 3600000 // Exclude the latest hour
@@ -87,6 +89,8 @@ function scrapeDomains (data, callback) {
 
   if (searchItems.length > 0) {
     searchForItem(searchItems.pop())
+  } else {
+    callback({ success: true })
   }
 }
 

@@ -64,10 +64,10 @@ const downloadCSV = function (results, response) {
 router.post('/result', (request, response) => {
   const result = {
     items: request.body.items,
-    browserId: request.body.browserId,
+    installId: request.body.id,
     consentEmail: request.body.consentEmail
   }
-  if (result.items && result.browserId && result.consentEmail) {
+  if (result.items && result.installId && result.consentEmail) {
     Result.create(result, function callback (error, newResult) {
       if (error) {
         utilities.errorResponse(
