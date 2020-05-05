@@ -61,7 +61,8 @@ function scrapeDomains (data, callback) {
       {
         text: ui.url,
         maxResults: 10000,
-        startTime: 0 // that was accessed since this time - ms since the epoch
+        startTime: 0, // that was accessed since this time - ms since the epoch
+        endTime: Date.now() - 3600000 // Exclude the latest hour
       },
       historyItems => {
         const l = historyItems.length
@@ -90,15 +91,8 @@ function scrapeDomains (data, callback) {
 }
 
 // OnInstall handler
-chrome.runtime.onInstalled.addListener(details => {
+/* chrome.runtime.onInstalled.addListener(details => {
   console.log(details)
-})
-/*
-chrome.runtime.onMessage.addListener(function callback (data) {
-  console.log(`Background script received a message: ${data.type}`)
-  if (data.type === 'SUBMIT_DOMAINS') {
-    scrapeDomains(data.submission)
-  }
 }) */
 
 chrome.runtime.onMessageExternal.addListener(function (

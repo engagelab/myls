@@ -16,7 +16,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="(u, uIndex) in urlList"
+            v-for="(u, uIndex) in paginatedList[pageIndex]"
             :key="u.id"
             :class="{ 'bg-gray-100' : uIndex % 2 === 0 }"
           >
@@ -37,7 +37,12 @@
               </div>
               <div class="flex flex-row items-center" v-if="entrytype == 'text'">
                 <AnswerInput v-if="cIndex === 0" mode="url" v-model="u.url" />
-                <AnswerInput v-if="cIndex > 0" :mode="c.type" v-model="u.selections[c.name]" />
+                <AnswerInput
+                  v-if="cIndex > 0"
+                  placeholder="answer here.."
+                  :mode="c.type"
+                  v-model="u.selections[c.name]"
+                />
                 <button v-if="cIndex === 0" class="btn-myls bg-red-400" @click="removeRow(uIndex)">X</button>
               </div>
             </td>
@@ -45,10 +50,15 @@
         </tbody>
       </table>
     </div>
-    <div class="flex flex-row mt-4">
+    <button v-if="entrytype == 'text'" class="btn-myls mr-4 mt-4" @click="addRow()">+ Add URL</button>
+    <div class="flex flex-row mt-8">
       <button class="btn-myls mr-4" @click="previousDetail()">Back</button>
-      <button v-if="entrytype == 'text'" class="btn-myls mr-4" @click="addRow()">Add URL</button>
-      <button class="btn-myls" @click="nextDetail()">Next</button>
+      <button
+        class="btn-myls"
+        :class="{ 'btn-disabled': nextIsDisabled }"
+        :disabled="nextIsDisabled"
+        @click="nextDetail()"
+      >Next</button>
     </div>
   </div>
 </template>
@@ -89,23 +99,58 @@ export default {
   data() {
     return {
       urlList: [],
+      paginatedList: [], // Array of arrays - each internal array is a page of URLs
+      pageIndex: 0,
+      pageLength: 20,
     }
   },
   mounted() {
     this.urlList = [...this.urls]
+    let p = 0
+    let i = 0
+    this.paginatedList.push([])
+    this.urlList.forEach(u => {
+      if (i < this.pageLength) {
+        this.paginatedList[p].push(u)
+        i++
+      } else {
+        this.paginatedList.push([u])
+        i = 1
+        p++
+      }
+    })
+  },
+  computed: {
+    nextIsDisabled() {
+      return (
+        !this.urlList.some(u => u.selections.selected) &&
+        this.pageIndex === this.paginatedList.length - 1
+      )
+    },
   },
   methods: {
     nextDetail() {
-      this.$emit('next-detail', this.urlList)
+      if (this.pageIndex < this.paginatedList.length - 1) {
+        this.pageIndex++
+      } else {
+        this.$emit('next-detail', this.urlList)
+      }
     },
     previousDetail() {
-      this.$emit('previous-detail')
+      if (this.pageIndex > 0) {
+        this.pageIndex--
+      } else {
+        this.$emit('previous-detail')
+      }
     },
     removeRow(index) {
-      this.urlList.splice(index, 1)
+      this.paginatedList[this.pageIndex].splice(index, 1)
     },
     addRow() {
-      this.urlList.push({
+      if (this.paginatedList.length < 1) {
+        this.paginatedList.push([])
+      }
+      this.paginatedList[this.pageIndex].push({
         id: `url-${Math.random()}`,
         title: 'other',
         url: '',

@@ -47,7 +47,7 @@
       <template v-if="mode == 'activities'">
         <p class="pt-2 underline">Activities</p>
         <div class="p-2">
-          <h2 class="font-bold">{{taskIndex + 1}}. {{tasks[taskIndex].title}}</h2>
+          <h2 class="font-bold">{{tasks[taskIndex].title}}</h2>
           <p class="mb-2">{{tasks[taskIndex].description}}</p>
           <div v-for="d in tasks[taskIndex].details" :key="d.id" class="flex flex-row pl-2">
             <span class="pr-2">{{d.title}}</span>
