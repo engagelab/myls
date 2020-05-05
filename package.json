@@ -17,6 +17,7 @@
     "fs": "0.0.1-security",
     "https": "^1.0.0",
     "mongoose": "^5.4.19",
+    "nanoid": "^3.1.4",
     "path": "^0.12.7",
     "postcss-loader": "^3.0.0",
     "vue": "^2.6.11"

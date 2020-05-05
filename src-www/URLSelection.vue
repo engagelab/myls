@@ -46,6 +46,7 @@
       </table>
     </div>
     <div class="flex flex-row mt-4">
+      <button class="btn-myls mr-4" @click="previousDetail()">Back</button>
       <button v-if="entrytype == 'text'" class="btn-myls mr-4" @click="addRow()">Add URL</button>
       <button class="btn-myls" @click="nextDetail()">Next</button>
     </div>
@@ -96,6 +97,9 @@ export default {
   methods: {
     nextDetail() {
       this.$emit('next-detail', this.urlList)
+    },
+    previousDetail() {
+      this.$emit('previous-detail')
     },
     removeRow(index) {
       this.urlList.splice(index, 1)

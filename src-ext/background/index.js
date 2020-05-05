@@ -1,59 +1,89 @@
 const resultRoute = process.env.VUE_APP_RESULT_ROUTE
+const installedRoute = process.env.VUE_APP_INSTALLED_ROUTE
 const serverURL = process.env.VUE_APP_FULL_SERVER
 
-function scrapeDomains (data, sendResponse) {
+function sendToServer (requestType, data, route, callback) {
+  const xhr = new XMLHttpRequest()
+  const headers = {
+    Accept: 'application/json, text/plain, */*',
+    'Content-Type': 'application/json'
+  }
+  // Event listener must be added before calling open()
+  xhr.addEventListener('loadend', () => {
+    const data = xhr.response
+    callback({ data, success: true })
+  })
+  xhr.open(requestType, `${serverURL}${route}`)
+  xhr.responseType = 'json'
+  xhr.withCredentials = false
+  const headerKeys = Object.keys(headers)
+  headerKeys.forEach(k => xhr.setRequestHeader(k, headers[k]))
+  xhr.send(JSON.stringify(data))
+}
+
+function notifyInstallStatus (data, callback) {
+  sendToServer('POST', data, installedRoute, response => callback(response))
+}
+
+function scrapeDomains (data, callback) {
   // For each domain in data, search history for all entries matching
   // Post the result to an API at engagelab
   let totalFound = 0
-  const searchItems = [...data]
+  const searchItems = [...data.urls]
   const resultItems = []
 
-  const postResults = () => {
-    const xhr = new XMLHttpRequest()
-    const headers = {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    }
-    // Event listener must be added before calling open()
-    xhr.addEventListener('loadend', () => {
-      const data = xhr.response
-      console.log(data)
-      sendResponse({ success: true })
-    })
-    xhr.open('POST', `${serverURL}${resultRoute}`)
-    // xhr.open('POST', 'https://engagelab.uio.no/myls/api/result')
-    xhr.responseType = 'json'
-    xhr.withCredentials = false
-    const headerKeys = Object.keys(headers)
-    headerKeys.forEach(k => xhr.setRequestHeader(k, headers[k]))
-    try {
-      xhr.send(JSON.stringify(resultItems))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
+  // For each URL, do a history search
   const searchForItem = urlItem => {
     const ui = urlItem
+
+    const nextItem = () => {
+      resultItems.push(ui)
+      if (searchItems.length > 0) {
+        searchForItem(searchItems.pop())
+      } else {
+        console.log(`Total found: ${totalFound}`)
+        try {
+          const JSONString = JSON.stringify({
+            items: resultItems,
+            consentEmail: data.email,
+            browserId: data.browserId
+          })
+          sendToServer('POST', JSONString, resultRoute, response =>
+            callback(response)
+          )
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    }
+
     chrome.history.search(
       {
-        text: ui.title,
+        text: ui.url,
         maxResults: 10000,
         startTime: 0 // that was accessed since this time - ms since the epoch
       },
       historyItems => {
-        ui.visitData = { count: historyItems.length }
-        totalFound += historyItems.length
-        resultItems.push(ui)
-        if (searchItems.length > 0) {
-          searchForItem(searchItems.pop())
+        const l = historyItems.length
+        // For each history item, discover more about the visits to it
+        ui.historyItems = historyItems
+        totalFound += l
+        if (l > 0) {
+          historyItems.forEach((hi, index) => {
+            chrome.history.getVisits({ url: hi.url }, function (visitItems) {
+              hi.visitItems = visitItems
+              if (index === historyItems.length - 1) {
+                nextItem()
+              }
+            })
+          })
         } else {
-          console.log(`Total found: ${totalFound}`)
-          postResults()
+          nextItem()
         }
       }
     )
   }
+
   if (searchItems.length > 0) {
     searchForItem(searchItems.pop())
   }
@@ -74,12 +104,14 @@ chrome.runtime.onMessage.addListener(function callback (data) {
 chrome.runtime.onMessageExternal.addListener(function (
   request,
   sender,
-  sendResponse
+  callback
 ) {
   console.log(request.type)
   if (request.type == 'HELLO') {
-    sendResponse({ success: true })
+    callback({ success: true })
   } else if (request.type == 'SUBMIT') {
-    scrapeDomains(request.data, sendResponse)
+    scrapeDomains(request.data, callback)
+  } else if (request.type == 'INSTALLSTATUS') {
+    notifyInstallStatus(request.data, callback)
   }
 })

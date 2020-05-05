@@ -1,33 +1,61 @@
 <template>
-  <div class="p-2">
-    <h1 class="font-bold">Browsing Survey</h1>
-    <button v-if="mode == ''" class="btn-myls" @click="start()">Begin</button>
-    <div v-if="!submitStatus">
+  <div>
+    <div class="flex flex-row bg-gray-300 p-2">
+      <img src="./assets/icons/icon_32.png">
+      <h1 class="font-bold text-lg w-full pl-4">Learning Practices Survey</h1>
+    </div>
+    <button v-if="mode == ''" class="btn-myls m-4" @click="start()">Begin</button>
+    <div v-if="!submitStatus" class="m-4">
       <!-- The first template requests consent before proceeding-->
       <template v-if="mode == 'consent'">
-        <p class="pt-2">Do you consent to the University of Oslo collecting this information?</p>
-        <AnswerInput mode="binary" :value="consented" @input="value => consented = value" />
-        <button
-          class="btn-myls"
-          :class="{ 'btn-disabled': !consented }"
-          @click="giveConsent()"
-          :disabled="!consented"
-        >Confirm</button>
+        <h1 class="font-bold text-lg">Informed consent</h1>
+        <p
+          class="mt-4"
+        >Thank you for agreeing to participate in the project, ‘Exploring undergraduate students’ learning with non-curricular resources and digital tools’!</p>
+        <p
+          class="mt-4"
+        >Please, read about the project and how it collects, stores and processes data in the Information Letter that you can find <span class="text-blue-600 cursor-pointer" @click="mode = 'tandc'">here</span>.</p>
+
+        <p class="mt-4">
+          I have received and understood information about the project <i>exploring undergraduate students’ learning with non-curricular resources and digital tools</i> and have been given the opportunity to ask questions. I give consent:
+          <ul class="list-disc list-inside m-2">
+            <li>To participate in a survey</li>
+            <li>To provide access to the web browsing history of the websites I declare to use during the survey</li>
+            <li>To participate in an interview</li>
+          </ul>
+          </p>
+          <p class="mt-4">I give consent for my personal data to be processed until the end date of the project, approx. January 2021.
+        </p>
+        <div class="flex flex-row p-4">
+          <AnswerInput mode="text" placeholder="user@example.com" :value="email" @input="value => email = value" />
+          <AnswerInput mode="binary" :value="consented" @input="value => consented = value" />
+          <button
+            class="btn-myls"
+            :class="{ 'btn-disabled': !consented || !email }"
+            @click="giveConsent()"
+            :disabled="!consented"
+          >Confirm</button>
+        </div>
+      </template>
+
+      <template v-if="mode == 'tandc'">
+        <TandC></TandC>
+        <button class="btn-myls mt-4 ml-2" @click="mode = 'consent'">Back</button>
       </template>
 
       <!-- The second template displays general selection of category -->
-      <template v-if="mode == 'intro'">
-        <p class="pt-2">I. Activities</p>
-        <div v-for="(t, index) in tasks" :key="t.id" class="p-2">
-          <h2 class="font-bold">{{index + 1}}. {{t.title}}</h2>
-          <p class="mb-2">{{t.description}}</p>
-          <div v-for="d in t.details" :key="d.id" class="flex flex-row pl-2">
+      <template v-if="mode == 'activities'">
+        <p class="pt-2 underline">Activities</p>
+        <div class="p-2">
+          <h2 class="font-bold">{{taskIndex + 1}}. {{tasks[taskIndex].title}}</h2>
+          <p class="mb-2">{{tasks[taskIndex].description}}</p>
+          <div v-for="d in tasks[taskIndex].details" :key="d.id" class="flex flex-row pl-2">
             <span class="pr-2">{{d.title}}</span>
             <AnswerInput mode="binary" :value="d.selected" @input="value => d.selected = value" />
           </div>
         </div>
         <button
-          class="btn-myls"
+          class="btn-myls mt-4"
           :class="{ 'btn-disabled': detailItems.length < 1}"
           @click="selectTasks()"
           :disabled="detailItems.length < 1"
@@ -36,7 +64,7 @@
 
       <!-- The third template then displays details for one selected category at a time -->
       <template v-if="mode == 'details'">
-        <p class="pt-2">II. Resources</p>
+        <p class="pt-2 underline">Resources</p>
         <URLSelection
           :key="detail.id"
           :title="detail.title"
@@ -47,6 +75,7 @@
           :entrytype="detail.entrytype"
           class="p-2"
           @next-detail="updatedList => nextDetail(updatedList, detail)"
+          @previous-detail="updatedList => previousDetail()"
         />
       </template>
 
@@ -66,6 +95,13 @@
     </div>
     <div v-else>
       <p>Thank you for your submission!</p>
+      <div v-if="id">
+        <p>If you wish to uninstall this extension, click here:</p>
+        <button class="btn-myls" @click="uninstall()">Uninstall Chrome extension</button>
+      </div>
+      <div v-else>
+        <p>The extension is no longer installed</p>
+      </div>
     </div>
   </div>
 </template>
@@ -73,6 +109,7 @@
 <script>
 import URLSelection from './URLSelection.vue'
 import AnswerInput from './AnswerInput.vue'
+import TandC from './TandC'
 const editorExtensionId = process.env.VUE_APP_EXTENSION_ID
 
 export default {
@@ -80,28 +117,30 @@ export default {
   components: {
     URLSelection,
     AnswerInput,
+    TandC,
   },
   data() {
     return {
       submitStatus: false,
       domains: [],
       tasks: [],
+      taskIndex: 0,
       detailIndex: 0,
       data: [],
       errorMessage: '',
       consented: false,
+      id: '',
+      email: '',
       mode: '',
     }
   },
   created() {
-    // this.getData()
+    this.id = window.localStorage.getItem('id')
   },
   computed: {
     detailItems() {
       let details = []
-      this.tasks.forEach(t => {
-        t.details.filter(d => d.selected).forEach(d => details.push(d))
-      })
+      this.tasks[this.taskIndex].details.filter(d => d.selected).forEach(d => details.push(d))
       return details
     },
     detail() {
@@ -121,6 +160,24 @@ export default {
               this.errorMessage = 'Chrome Extension not found'
               this.mode = 'error'
             } else {
+              if (!this.id) {
+                const request = {
+                  data: {
+                    mode: 'installed',
+                  },
+                  type: 'INSTALLSTATUS',
+                }
+                chrome.runtime.sendMessage(
+                  editorExtensionId,
+                  request,
+                  response => {
+                    if (response.success) {
+                      window.localStorage.setItem('id', response.data.id)
+                      this.id = response.data.id
+                    }
+                  }
+                )
+              }
               this.getData()
             }
           }
@@ -129,13 +186,36 @@ export default {
         console.log(error)
       }
     },
+    uninstall() {
+      const request = {
+        data: {
+          mode: 'uninstalled',
+          id: this.id,
+        },
+        type: 'INSTALLSTATUS',
+      }
+      chrome.runtime.sendMessage(editorExtensionId, request, response => {
+        if (response.success) {
+          chrome.management.uninstallSelf({}, () => {
+            window.localStorage.removeItem('id')
+            this.id = ''
+          })
+        }
+      })
+    },
     // Send the result to our server via the Chrome background script
     submitChoices() {
-      const selectedTasks = this.detailItems
-      const data = this.detailItems
+      const selectedTasks = []
+      this.tasks.forEach(t => {
+        t.details.filter(d => d.selected).forEach(d => selectTasks.push(d))
+      })
+      const data = this.selectTasks
         .map(d => d.urls.filter(u => u.selections.selected))
         .reduce((acc, curr) => acc.concat(curr))
-      const request = { data, type: 'SUBMIT' }
+      const request = {
+        data: { urls: data, installId: this.installId, email: this.email },
+        type: 'SUBMIT',
+      }
       chrome.runtime.sendMessage(editorExtensionId, request, response => {
         if (!response.success) {
           console.log('Error sending data to server')
@@ -212,7 +292,7 @@ export default {
       })
     },
     giveConsent() {
-      this.mode = 'intro'
+      this.mode = 'activities'
     },
     selectTasks() {
       this.mode = 'details'
@@ -224,8 +304,27 @@ export default {
       detail.urls = updatedList
       if (this.detailIndex < this.detailItems.length - 1) {
         this.detailIndex++
+      } else if (this.taskIndex < this.tasks.length - 1) {
+        this.detailIndex = 0
+        this.taskIndex++
+        this.mode = 'activities'
       } else {
         this.mode = 'submit'
+      }
+    },
+    previousDetail() {
+      if (this.detailIndex > 0) {
+        // Previous detail
+        this.detailIndex--
+      } else if (this.mode == 'details') {
+        // Previous activity selection
+        this.mode = 'activities'
+        this.tasks[this.taskIndex].details.forEach(d => d.selected = false)
+      } else {
+        // Previous Task, final detail
+        this.taskIndex--
+        this.detailIndex = this.detailItems.length - 1
+        this.mode = 'details'
       }
     },
   },

@@ -1,7 +1,6 @@
 /*
  Designed and developed by Richard Nesnass & Sharanya Manivasagam
 */
-var fs = require('fs')
 const stringify = require('csv-stringify')
 const router = require('express').Router()
 const utilities = require('../utilities')
@@ -63,18 +62,26 @@ const downloadCSV = function (results, response) {
 }
 
 router.post('/result', (request, response) => {
-  const result = { items: request.body }
-  Result.create(result, function callback (error, newResult) {
-    if (error) {
-      utilities.errorResponse(
-        { status: 400, message: 'Error finding results' },
-        response
-      )
-    } else {
-      console.log('Received a result')
-      utilities.successResponse(newResult, response)
-    }
-  })
+  const result = {
+    items: request.body.items,
+    browserId: request.body.browserId,
+    consentEmail: request.body.consentEmail
+  }
+  if (result.items && result.browserId && result.consentEmail) {
+    Result.create(result, function callback (error, newResult) {
+      if (error) {
+        utilities.errorResponse(
+          { status: 400, message: 'Error creating results' },
+          response
+        )
+      } else {
+        console.log('Received a result')
+        utilities.successResponse(newResult, response)
+      }
+    })
+  } else {
+    utilities.errorResponse({ status: 400, message: '' }, response)
+  }
 })
 
 router.get('/data', (request, response) => {

@@ -33,7 +33,13 @@
       />
     </template>
     <template v-if="mode == 'text'">
-      <input class="mr-1 mb-1 checkValid" type="text" id="textString" @input="valueInput" />
+      <input
+        class="mr-1 mb-1 checkValid"
+        :placeholder="placeholder"
+        type="text"
+        id="textString"
+        @input="valueInput"
+      />
     </template>
     <template v-if="mode == 'quaternary'">
       <input
@@ -89,6 +95,10 @@ export default {
     mode: {
       value: String,
       default: 'binary',
+    },
+    placeholder: {
+      value: String,
+      default: '',
     },
   },
   data() {
