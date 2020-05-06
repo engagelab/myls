@@ -55,7 +55,12 @@
     <button v-if="entrytype == 'text'" class="btn-myls mr-4 mt-4" @click="addRow()">+ Add URL</button>
     <div class="flex flex-row mt-8">
       <button class="btn-myls mr-4" @click="previousDetail()">Back</button>
-      <button class="btn-myls" @click="nextDetail()">{{ nextIsDisabled ? 'None' : 'Next'}}</button>
+      <button
+        class="btn-myls"
+        :class="{ 'btn-disabled': !allTimeSpentSelected }"
+        :disabled="!allTimeSpentSelected"
+        @click="nextDetail()"
+      >{{ nextIsNone ? 'None' : 'Next'}}</button>
     </div>
   </div>
 </template>
@@ -116,11 +121,22 @@ export default {
     })
   },
   computed: {
-    nextIsDisabled() {
+    nextIsNone() {
       return (
         !this.paginatedList.flat().some(u => u.selections.selected) &&
         this.pageIndex === this.paginatedList.length - 1
       )
+    },
+    allTimeSpentSelected() {
+      const usesTimeSpentColumn = this.columns.some(c => c.name == 'Time Spent')
+      if (usesTimeSpentColumn) {
+        return this.paginatedList
+          .flat()
+          .filter(u => u.selections.selected)
+          .every(u => u.selections['Time Spent'])
+      } else {
+        return true
+      }
     },
   },
   methods: {
@@ -150,7 +166,7 @@ export default {
       if (this.pageIndex > 0) {
         this.pageIndex--
       } else {
-        this.$emit('previous-detail')
+        this.$emit('previous-detail', this.paginatedList.flat())
       }
     },
     removeRow(index) {

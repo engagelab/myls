@@ -51,9 +51,14 @@
           <p class="mb-2">{{tasks[taskIndex].description}}</p>
           <div v-for="d in tasks[taskIndex].details" :key="d.id" class="flex flex-row pl-2">
             <span class="pr-2">{{d.title}}</span>
-            <AnswerInput mode="binary" :value="d.selected" @input="value => d.selected = value" />
+            <AnswerInput mode="binary" v-model="d.selected" />
           </div>
         </div>
+        <button
+          class="btn-myls mt-4 mr-4"
+          v-if="taskIndex > 0"
+          @click="previousDetail()"
+        >Back</button>
         <button
           class="btn-myls mt-4"
           @click="selectTasks()"
@@ -73,7 +78,7 @@
           :entrytype="detail.entrytype"
           class="p-2"
           @next-detail="updatedList => nextDetail(updatedList, detail)"
-          @previous-detail="updatedList => previousDetail()"
+          @previous-detail="updatedList => previousDetail(updatedList, detail)"
         />
       </template>
 
@@ -331,19 +336,23 @@ export default {
         this.mode = 'submit'
       }
     },
-    previousDetail() {
+    previousDetail(updatedList, detail) {
+      if (detail)
+        detail.urls = updatedList
       if (this.detailIndex > 0) {
         // Previous detail
         this.detailIndex--
       } else if (this.mode == 'details') {
         // Previous activity selection
         this.mode = 'activities'
-        this.tasks[this.taskIndex].details.forEach(d => d.selected = false)
+        // this.tasks[this.taskIndex].details.forEach(d => d.selected = false)
       } else {
         // Previous Task, final detail
         this.taskIndex--
-        this.detailIndex = this.detailItems.length - 1
-        this.mode = 'details'
+        if (this.detailItems.length > 0) {
+          this.detailIndex = this.detailItems.length - 1
+          this.mode = 'details'
+        }
       }
     },
   },

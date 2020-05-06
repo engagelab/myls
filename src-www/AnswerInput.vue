@@ -29,6 +29,7 @@
         pattern="https://.*"
         size="30"
         required
+        v-model="selectedUrl"
         @input="valueInput"
       />
     </template>
@@ -38,6 +39,7 @@
         :placeholder="placeholder"
         type="text"
         id="textString"
+        v-model="selectedText"
         @input="valueInput"
       />
     </template>
@@ -105,6 +107,23 @@ export default {
     return {
       selectedBoolean: false,
       selectedQuart: '',
+      selectedText: '',
+      selectedUrl: '',
+    }
+  },
+  mounted() {
+    switch (this.mode) {
+      case 'binary':
+        this.selectedBoolean = this.value
+        break
+      case 'url':
+        this.selectedUrl = this.value
+        break
+      case 'text':
+        this.selectedText = this.value
+        break
+      case 'quaternary':
+        this.selectedQuart = this.value
     }
   },
   methods: {
