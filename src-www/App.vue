@@ -198,10 +198,8 @@ export default {
       }
       chrome.runtime.sendMessage(editorExtensionId, request, response => {
         if (response.success) {
-          chrome.management.uninstallSelf({}, () => {
-            window.localStorage.removeItem('id')
-            this.id = ''
-          })
+          window.localStorage.removeItem('id')
+          this.id = ''
         }
       })
     },
@@ -211,6 +209,10 @@ export default {
       this.tasks.forEach(t => {
         t.details.filter(d => d.selected).forEach(d => selectedTasks.push(d))
       })
+      // Nothing to submit
+      if (selectedTasks.length < 1) {
+        return this.submitStatus = true
+      }
       const data = selectedTasks
         .map(d => d.urls.filter(u => u.selections.selected))
         .reduce((acc, curr) => acc.concat(curr))
@@ -269,7 +271,7 @@ export default {
               id: `url-${index3}`,
               name: entry.name,
               url: entry.url,
-              search: entry.url, // <----- TODO: Change this to entry.search with new data file
+              search: entry.search,
               selections,
               info: `${task.title} : ${detail.title}`,
             }

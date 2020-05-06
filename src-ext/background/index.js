@@ -24,7 +24,12 @@ function sendToServer (requestType, data, route, callback) {
 
 function notifyInstallStatus (data, callback) {
   const d = JSON.stringify(data)
-  sendToServer('POST', d, installedRoute, response => callback(response))
+  sendToServer('POST', d, installedRoute, response => {
+    if (data.mode == 'uninstalled') {
+      chrome.management.uninstallSelf()
+    }
+    callback(response)
+  })
 }
 
 function scrapeDomains (data, callback) {
