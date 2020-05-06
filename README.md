@@ -19,9 +19,10 @@ Update the server address before building in these two files:
 5. Use 'load Unpacked' to select the /dist folder
 6. Run server `node server/server_myls.js`
 
-# Build for Chrome Store
+# Build extension for Chrome Store
 
 *** Remember to change .env vars VUE_APP_FULL_SERVER and VUE_APP_EXTENSION_ID !!
+*** Also remove local testing urls from manifest.json
 
 # Spec 4/2020
 
