@@ -33,7 +33,7 @@
             class="btn-myls"
             :class="{ 'btn-disabled': !consented || !email }"
             @click="giveConsent()"
-            :disabled="!consented"
+            :disabled="!consented || !email"
           >Confirm</button>
         </div>
       </template>
