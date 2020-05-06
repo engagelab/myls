@@ -151,16 +151,19 @@ export default {
   },
   methods: {
     start() {
-      this.mode = 'consent'
+      const messageError = () => {
+        console.log(chrome.runtime.lastError.message)
+        this.errorMessage = 'Chrome Extension not found'
+        this.mode = 'error'
+      }
+
       try {
         chrome.runtime.sendMessage(
           editorExtensionId,
           { type: 'HELLO' },
           response => {
             if (!response || !response.success) {
-              console.log('Error connecting to Chrome Extension')
-              this.errorMessage = 'Chrome Extension not found'
-              this.mode = 'error'
+              messageError()
             } else {
               if (!this.id) {
                 const request = {
@@ -180,12 +183,13 @@ export default {
                   }
                 )
               }
+              this.mode = 'consent'
               this.getData()
             }
           }
         )
       } catch (error) {
-        console.log(error)
+        messageError()
       }
     },
     uninstall() {
