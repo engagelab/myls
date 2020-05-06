@@ -88,7 +88,7 @@
       <template v-if="mode == 'error'">
         <p>{{errorMessage}}</p>
         <p>Ensure you are running Chrome web browser and have the Extension installed.</p>
-        <button class="btn-myls" @click="getExtension()">Get the Chrome extension...</button>
+        <button class="btn-myls mt-4" @click="getExtension()">Get the Chrome extension...</button>
       </template>
     </div>
     <div v-else class="p-2">

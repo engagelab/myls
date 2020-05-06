@@ -11,7 +11,7 @@
   "externally_connectable": {
     "matches": [
       "*://192.168.1.11/*",
-      "*://engagelab.uio.no/myls/*"
+      "https://engagelab.uio.no/myls/*"
     ]
   },
   "description": "URL History Reporter",
