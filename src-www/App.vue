@@ -152,7 +152,9 @@ export default {
   methods: {
     start() {
       const messageError = () => {
-        console.log(chrome.runtime.lastError.message)
+        if (chrome.runtime.lastError) {
+          console.log(chrome.runtime.lastError.message)
+        }
         this.errorMessage = 'Chrome Extension not found'
         this.mode = 'error'
       }
