@@ -37,6 +37,8 @@ const resultSchema = new mongoose.Schema(
   {
     installId: { type: String },
     consentEmail: { type: String },
+    consented: { type: Boolean },
+    lottery: { type: Boolean },
     items: {
       type: Array,
       default: [],

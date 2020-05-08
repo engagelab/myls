@@ -4,14 +4,31 @@
       <img src="./assets/icons/icon_32.png">
       <h1 class="font-bold text-lg w-full pl-4">Learning Practices Survey</h1>
     </div>
-    <button v-if="mode == ''" class="btn-myls m-4" @click="start()">Begin</button>
+    <template v-if="mode == ''">
+      <p class="m-4">Welcome to the Online Learning Practices Survey!</p>
+      <p class="m-4">This survey is about your use of resources from the Internet when you learn to program.
+        It asks you about how you solve problems and learn new skills when you work on a programming task,
+        how you get information about professional programming and your future programming career.
+        The survey collects data from your browsing history, <u>only</u> of the websites <u>you report to use</u> during the survey for those activities.</p>
+      <p class="m-4">The data collected from you will be anonymized and it will be stored safely, according to the regulations for data protection in Norway and Europe (GDPR).
+        You will not be recognized by others or your teachers.</p>
+      <p class="m-4">This study is part of a PhD project at the Department of Education at UiO. The project studies how computer and software engineering students use the Internet to learn programming.
+        If you have any questions and or want to know more, contact me at a.a.a.moya@iped.uio.no.</p>
+      <p class="m-4">Thank you very much for your participation!</p>
+      <p class="m-4">Andres Araos</p>
+      <div class="flex flex-row m-4">
+        <p>I would like to participate in the lottery to win a gift card of 500 kr. from Elkjøp </p>
+        <AnswerInput mode="binary" :value="lottery" @input="value => lottery = value" />
+      </div>
+      <button class="btn-myls m-4" @click="start()">Begin</button>
+    </template>
     <div v-if="!submitStatus" class="m-4">
       <!-- The first template requests consent before proceeding-->
       <template v-if="mode == 'consent'">
         <h1 class="font-bold text-lg">Informed consent</h1>
         <p
           class="mt-4"
-        >Thank you for agreeing to participate in the project, ‘Exploring undergraduate students’ learning with non-curricular resources and digital tools’!</p>
+        >Thank you for agreeing to participate in this survey study!</p>
         <p
           class="mt-4"
         >Please, read about the project and how it collects, stores and processes data in the Information Letter that you can find <span class="text-blue-600 cursor-pointer" @click="mode = 'tandc'">here</span>.</p>
@@ -27,6 +44,7 @@
           <p class="mt-4">I give consent for my personal data to be processed until the end date of the project, approx. January 2021.
         </p>
         <div class="flex flex-row p-4">
+          <span>Email address:&nbsp;</span>
           <AnswerInput mode="text" placeholder="user@example.com" :value="email" @input="value => email = value" />
           <AnswerInput mode="binary" :value="consented" @input="value => consented = value" />
           <button
@@ -84,8 +102,12 @@
 
       <!-- Final template confirms submission of results -->
       <template v-if="mode == 'submit'">
-        <p>We will now scan your browser history to count URLs matching only those you selected in the survey</p>
-        <p>By clicking 'Submit' you agree to share both your survey answers and selective browser history for the selected URLs with the University of Oslo MyLS Project</p>
+        <p>We will now scan your browser history to count URLs matching only those you selected in the survey.</p>
+        <p class="pt-2">By clicking 'Submit' you agree to share both your survey answers and selective browser history for the selected URLs with the University of Oslo MyLS Project:
+          <i>“Learning with the internet”</i>.
+        </p>
+        <p class="pt-2">The data collected from you will be anonymized and it will be stored safely, according to the regulations for data protection in Norway and Europe (GDPR).
+          You will not be recognized by others or your teachers.</p>
         <button class="btn-myls mt-4" @click="submitChoices()">Submit</button>
       </template>
 
@@ -132,6 +154,7 @@ export default {
       data: [],
       errorMessage: '',
       consented: false,
+      lottery: false,
       noneSelected: false,
       id: '',
       email: '',
@@ -228,7 +251,7 @@ export default {
         .map(d => d.urls.filter(u => u.selections.selected))
         .reduce((acc, curr) => acc.concat(curr))
       const request = {
-        data: { urls: data, id: this.id, email: this.email },
+        data: { urls: data, id: this.id, consentEmail: this.email, consented, lottery },
         type: 'SUBMIT',
       }
       chrome.runtime.sendMessage(editorExtensionId, request, response => {

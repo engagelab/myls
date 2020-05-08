@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h1 class="font-bold">{{ taskTitle }}: {{ title }}</h1>
+    <h1 class="font-bold">{{ taskTitle }}</h1>
+    <h1 class="font-bold text-2xl mt-4">{{ title }}</h1>
+    <p
+      v-if="paginatedList.length > 1"
+      class="mb-4"
+    >{{ `Page ${pageIndex + 1} of ${paginatedList.length}`}}</p>
     <p>{{ description }}</p>
     <div class="flex flex-row content-start justify-between">
       <table class="table-fixed">
