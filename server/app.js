@@ -16,8 +16,8 @@ db.connect('MyLS Sever')
 app.use('/', express.static(path.join(__dirname, '../www')))
 
 // parse application/json
-app.use(express.json({ limit: '50mb' }))
-app.use(express.urlencoded({ limit: '50mb' }))
+app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
 // Can remove this after testing is over. Since we will not encounter CORS issues if the server is serving the webpage
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
