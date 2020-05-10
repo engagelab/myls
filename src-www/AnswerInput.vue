@@ -145,4 +145,7 @@ export default {
 .checkValid :invalid {
   border: red;
 }
+label {
+  @apply pointer-events-none;
+}
 </style>

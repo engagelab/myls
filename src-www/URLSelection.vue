@@ -25,7 +25,7 @@
             :key="u.id"
             :class="{ 'bg-gray-100' : uIndex % 2 === 0 }"
           >
-            <td v-for="(c, cIndex) in columns" :key="`CR${c.name}`" class="border px-4 py-2">
+            <td v-for="(c, cIndex) in columns" :key="`${u.id}-${cIndex}`" class="border px-4 py-2">
               <!-- Binary type quesiton -->
               <div class="flex flex-row justify-between" v-if="entrytype == 'select'">
                 <span
