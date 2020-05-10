@@ -133,12 +133,14 @@ export default {
       )
     },
     allTimeSpentSelected() {
-      const usesTimeSpentColumn = this.columns.some(c => c.name == 'Time Spent')
+      const usesTimeSpentColumn = this.columns.some(
+        c => c.name == 'Time Spent in that activity'
+      )
       if (usesTimeSpentColumn) {
         return this.paginatedList
           .flat()
           .filter(u => u.selections.selected)
-          .every(u => u.selections['Time Spent'])
+          .every(u => u.selections['Time Spent in that activity'])
       } else {
         return true
       }
@@ -166,6 +168,7 @@ export default {
       } else {
         this.$emit('next-detail', this.paginatedList.flat())
       }
+      window.scrollTo(0, 0)
     },
     previousDetail() {
       if (this.pageIndex > 0) {
@@ -173,6 +176,7 @@ export default {
       } else {
         this.$emit('previous-detail', this.paginatedList.flat())
       }
+      window.scrollTo(0, 0)
     },
     removeRow(index) {
       this.paginatedList[this.pageIndex].splice(index, 1)
