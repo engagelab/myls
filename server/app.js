@@ -5,6 +5,7 @@
 require('dotenv').config({ silent: process.env.NODE_ENV !== 'development' })
 const path = require('path')
 const express = require('express')
+const bodyParser = require('body-parser')
 const apiRoutes = require('./routing/api')
 const db = require('./database')
 
@@ -13,6 +14,9 @@ app.locals.pretty = true
 
 db.connect('MyLS Sever')
 app.use('/', express.static(path.join(__dirname, '../www')))
+
+// parse application/json
+app.use(bodyParser.json())
 
 // Can remove this after testing is over. Since we will not encounter CORS issues if the server is serving the webpage
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
@@ -37,8 +41,6 @@ if (process.env.NODE_ENV != 'production') {
     return next()
   })
 }
-
-app.use(express.json())
 
 // If running in production mode, start a secure server
 if (
