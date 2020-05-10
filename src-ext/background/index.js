@@ -52,8 +52,10 @@ function scrapeDomains (data, callback) {
         try {
           const JSONString = JSON.stringify({
             items: resultItems,
-            consentEmail: data.email,
-            id: data.id
+            email: data.email,
+            id: data.id,
+            consented: data.consented,
+            lottery: data.lottery
           })
           sendToServer('POST', JSONString, resultRoute, response =>
             callback(response)

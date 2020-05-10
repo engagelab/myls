@@ -69,7 +69,7 @@ router.post('/result', (request, response) => {
   const result = {
     items: request.body.items,
     installId: request.body.id,
-    consentEmail: request.body.consentEmail,
+    consentEmail: request.body.email,
     consented: request.body.consented,
     lottery: request.body.lottery
   }

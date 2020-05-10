@@ -251,7 +251,7 @@ export default {
         .map(d => d.urls.filter(u => u.selections.selected))
         .reduce((acc, curr) => acc.concat(curr))
       const request = {
-        data: { urls: data, id: this.id, consentEmail: this.email, consented: this.consented, lottery: this.lottery },
+        data: { urls: data, id: this.id, email: this.email, consented: this.consented, lottery: this.lottery },
         type: 'SUBMIT',
       }
       chrome.runtime.sendMessage(editorExtensionId, request, response => {
