@@ -5,7 +5,7 @@
 let TEST_MODE = false
 
 const errorResponse = (error, response) => {
-  console.log(`Error: ${error.message}`)
+  console.dir(error)
   response.status(error.status).json({
     status: error.status,
     message: error.message
