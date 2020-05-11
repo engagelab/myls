@@ -7,7 +7,7 @@ const hotHost = process.env.VUE_APP_HOTRELOAD_SERVER_HOST
 const hotPort = process.env.VUE_APP_HOTRELOAD_SERVER_PORT
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/myls/' : '/',
+  publicPath: process.env.NODE_ENV == 'production' ? '/myls/' : '/',
   outputDir: './www',
   assetsDir: 'assets',
   configureWebpack: config => {

@@ -5,7 +5,7 @@
     "details": [
       {
         "title": "1) Ask questions to other developers",
-        "description": "Select all websites/platforms you use for the activity above, who you carry it out with and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, who you carry it out with and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Slack in a week and 1 hour is spent asking questions to other developers, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -143,7 +143,7 @@
       },
       {
         "title": "2) Share and/or discuss coding items, source code, specifications and/or new ideas",
-        "description": "Select all websites/platforms you use for the activity above, who you carry it out with, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, who you carry it out with, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Stack Overflow in a week and 1 hour is spent discussing coding items, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -276,7 +276,7 @@
       },
       {
         "title": "3) Find and assess information on the web to solve problems during a project or task.",
-        "description": "Select all websites/platforms you use for the activity above and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Google in a week and 1 hour is spent finding information about a problem, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -382,7 +382,7 @@
       },
       {
         "title": "4) Check out code components (snippets), software libraries or plugins to reuse, adapt and integrate them.",
-        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Stack Overflow in a week and 1 hour is spent checking out code components, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -490,7 +490,7 @@
       },
       {
         "title": "5) Check out tutorials, online courses, webinars or e-learning platforms.",
-        "description": "Select all websites/platforms you use for the activity above, the type of resource you find in them, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, the type of resource you find in them, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on YouTube in a week and 1 hour is spent checking out tutorials, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -858,7 +858,7 @@
     "details": [
       {
         "title": "1) Track changes in ongoing open source projects",
-        "description": "Select all websites/platforms you use for the activity above, who the projects belong to, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, who the projects belong to, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on GitHub in a week and 1 hour is spent tracking changes in projects, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -916,7 +916,7 @@
       },
       {
         "title": "2) Seek out other developers’ comments, issues or discussions.",
-        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Twitter in a week and 1 hour is spent seeking others comments, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -1014,7 +1014,7 @@
       },
       {
         "title": "3) Seek out interesting or important news, announcements or events.",
-        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Twitter in a week and 1 hour is spent seeking out important news, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -1166,7 +1166,7 @@
       },
       {
         "title": "4) Seek out other developers’ reflections or ideas.",
-        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Twitter in a week and 1 hour is spent seeking out other developers' ideas, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -1304,7 +1304,7 @@
       },
       {
         "title": "5) Check out tutorials, online courses, webinars or e-learning platforms.",
-        "description": "Select all websites/platforms you use for the activity above, the type of resource you find in them,  and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, the type of resource you find in them,  and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on YouTube in a week and 1 hour is spent checking out tutorials, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -1646,7 +1646,7 @@
       },
       {
         "title": "6) Monitor job openings descriptions and requirements.",
-        "description": "Select all websites/platforms you use for the activity above and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Linkedin in a week and 1 hour is spent monitoring job openings, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -1748,7 +1748,7 @@
     "details": [
       {
         "title": "1) Track and assess changes in ongoing open source projects.",
-        "description": "Select all websites/platforms you use for the activity above, who the projects belong to, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, who the projects belong to, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on GitHub in a week and 1 hour is spent tracking changes in projects, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -1806,7 +1806,7 @@
       },
       {
         "title": "2) Develop and submit contributions to software projects.",
-        "description": "Select all websites/platforms you use for the activity above, who the projects belong to, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, who the projects belong to, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on GitHub in a week and 1 hour is developing a contribution to a project, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -1864,7 +1864,7 @@
       },
       {
         "title": "3) Seek out other developers’ discussions, issues, comments, reflections or ideas.",
-        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Twitter in a week and 1 hour is spent seeking others discussions, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -2001,8 +2001,8 @@
         ]
       },
       {
-        "title": "4) Share comments, reflections or ideas about news, topics you want to learn.",
-        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity.",
+        "title": "4) Share comments, reflections or ideas about news or topics you want to learn.",
+        "description": "Select all websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Twitter in a week and 1 hour is spent sharing ideas, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -2114,7 +2114,7 @@
       },
       {
         "title": "5) Participate in discussions about topics or issues you want to learn.",
-        "description": "Select all websites/platforms you use for the activity above, who you carry it out with, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, who you carry it out with, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Stack Overflow in a week and 1 hour is spent discussing a topic, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -2281,7 +2281,7 @@
       },
       {
         "title": "6) Ask questions to other developers",
-        "description": "Select all websites/platforms you use for the activity above, who you carry it out with and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, who you carry it out with and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Slack in a week and 1 hour is spent asking questions to other developers, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -2419,7 +2419,7 @@
       },
       {
         "title": "7) Answer questions from other developers",
-        "description": "Select all  websites/platforms you use for the activity above, who you carry it out with and the amount of time used in that website/platform for that activity.",
+        "description": "Select all  websites/platforms you use for the activity above, who you carry it out with and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Slack in a week and 1 hour is spent answering questions to other developers, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -2557,7 +2557,7 @@
       },
       {
         "title": "8) Share and/or discuss coding items, source code, specifications and/or new ideas.",
-        "description": "Select all  websites/platforms  you use for the activity above, who you carry it out with and the amount of time used in that website/platform for that activity.",
+        "description": "Select all  websites/platforms  you use for the activity above, who you carry it out with and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Stack Overflow in a week and 1 hour is spent discussing coding items, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -2690,7 +2690,7 @@
       },
       {
         "title": "9) Check out code components (snippets), software libraries or plugins to reuse, adapt and integrate them.",
-        "description": "Select all  websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all  websites/platforms you use for the activity above, where the information comes from, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Stack Overflow in a week and 1 hour is spent checking out code components, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -2798,7 +2798,7 @@
       },
       {
         "title": "10) Check out tutorials, online courses, webinars or e-learning platforms.",
-        "description": "Select all websites/platforms  you use for the activity above, the type of resource you find in them, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms  you use for the activity above, the type of resource you find in them, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on YouTube in a week and 1 hour is spent checking out tutorials, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -3140,7 +3140,7 @@
       },
       {
         "title": "11) Document your own coding activity and work in text, audio or video.",
-        "description": "Select all  websites/platforms you use for the activity above and the amount of time used in that website/platform for that activity.",
+        "description": "Select all  websites/platforms you use for the activity above and the amount of time used in that website/platform for that activity.  For example, if you spend 3 hours on YouTube in a week and 1 hour is spent documenting your own coding activity, then select 25-50%",
         "urls": [
           {
             "name": "Read the Docs",
@@ -3211,7 +3211,7 @@
     "details": [
       {
         "title": "1) Develop and submit contributions to software projects.",
-        "description": "Select all websites/platforms you use for the activity above, who the project(s) belong to, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, who the project(s) belong to, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on GitHub in a week and 1 hour is developing a contribution to a project, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -3269,7 +3269,7 @@
       },
       {
         "title": "2) Share references on something you are working on or learning, relevant news, or events you are participating in.",
-        "description": "Select all websites/platforms you use for the activity above, who you share content with and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, who you share content with and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Twitter in a week and 1 hour is spent sharing relevant news, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -3377,7 +3377,7 @@
       },
       {
         "title": "3) Contribute to specialized software communities by answering other developers questions or moderating discussions.",
-        "description": "Select all websites/platforms you use for the activity above and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Stack Overflow in a week and 1 hour is spent moderating discussions, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -3473,7 +3473,7 @@
       },
       {
         "title": "4) Share content that documents your work, reflections or ideas.",
-        "description": "Select all websites/platforms you use for the activity above, who you share content with and the amount of time used in that website/platform for that activity.",
+        "description": "Select all websites/platforms you use for the activity above, who you share content with and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Twitter in a week and 1 hour is spent sharing your ideas, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",
@@ -3586,7 +3586,7 @@
       },
       {
         "title": "5) Participate in online courses, webinars, events or e-learning platforms that provide some form of certification or verifiable record.",
-        "description": "Select all  websites/platforms you use for the activity above, the type of resource you find in them, and the amount of time used in that website/platform for that activity.",
+        "description": "Select all  websites/platforms you use for the activity above, the type of resource you find in them, and the amount of time used in that website/platform for that activity. For example, if you spend 3 hours on Coursera in a week and 1 hour is spent on programming related courses, then select 25-50%",
         "urls": [
           {
             "name": "GitHub",

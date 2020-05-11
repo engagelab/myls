@@ -9,9 +9,9 @@ const Installed = require('../../models/Installed')
 const dataFile = require('../../data.json')
 
 const downloadCSV = function (results, response, mode) {
-  const data = []
+  let data = []
   let header = {}
-  if (mode == 'results') {
+  if (mode == 'overview') {
     header = {
       header: true,
       delimiter: '|',
@@ -19,15 +19,17 @@ const downloadCSV = function (results, response, mode) {
         installId: 'installId',
         consentEmail: 'consentEmail',
         consented: 'consented',
+        search: 'search',
         url: 'url',
-        title: 'title',
-        count: 'visits',
-        OtherStudents: 'Other Students',
-        DeveloperCommunity: 'Developer Community',
-        ExpertDevelopers: 'Expert Developers',
-        TimeSpent: 'Time Spent',
-        Activity: 'Activity',
-        info: 'Titles'
+        info: 'Titles',
+        itemCount: 'History Items',
+
+        // Selection key names : column titles
+        'Other Students': 'Other Students',
+        'Developer Community': 'Developer Community',
+        'Expert Developers': 'Expert Developers',
+        'Time Spent in that activity': 'Time Spent',
+        Activity: 'Activity'
       },
       cast: {
         boolean: function (value) {
@@ -37,23 +39,98 @@ const downloadCSV = function (results, response, mode) {
     }
     results.reduce((acc, curr) => {
       const a = curr.items.map(i => {
-        const sKeys = Object.keys(i.selections)
-        const b = {}
-        sKeys.forEach(key => {
-          newKey = key.replace(/ /g, '')
-          b[newKey] = i.selections[key]
-        })
         return {
-          ...b,
+          installId: curr.installId,
+          consentEmail: curr.consentEmail,
+          consented: curr.consented,
+          search: i.search,
           url: i.url,
-          title: i.title,
-          userId: curr._id.toString(),
           info: i.info,
-          count: i.visitData.count
+          itemCount: i.historyItems.length,
+          ...i.selections
         }
       })
-      return acc.concat(a)
+      data = acc.concat(a)
     }, [])
+  } else if (mode == 'history') {
+    header = {
+      header: true,
+      delimiter: '|',
+      columns: {
+        installId: 'installId',
+
+        // Item key names: column titles
+        name: 'Name',
+        url: 'URL',
+
+        // History key names : column titles
+        historyId: 'History ID',
+        title: 'Title',
+        url: 'URL',
+        visitCount: 'Visit Count',
+
+        // Visit key names: column titles
+        visitId: 'Visit ID',
+        transition: 'Transition',
+        referringVisitId: 'Referring Visit ID',
+        visitTime: 'Visit Time'
+      },
+      cast: {
+        boolean: function (value) {
+          return value ? 'true' : 'false'
+        },
+        date: function (value) {
+          return value.toTimeString()
+        }
+      }
+    }
+    results.reduce((acc, curr) => {
+      const a = []
+      curr.items.forEach(i => {
+        i.historyItems.forEach(h => {
+          h.visitItems.forEach(v => {
+            const n = {
+              installId: curr.installId,
+              name: i.name,
+              url: i.url,
+
+              // History key names : column titles
+              historyId: h.id,
+              title: h.title,
+              url: h.url,
+              visitCount: h.visitCount,
+
+              // Visit key names: column titles
+              visitId: v.id,
+              transition: v.transition,
+              referringVisitId: v.referringVisitId,
+              visitTime: new Date(v.visitTime)
+            }
+            a.push(n)
+          })
+        })
+      })
+      data = acc.concat(a)
+    }, [])
+  } else if (mode == 'installs') {
+    header = {
+      header: true,
+      delimiter: '|',
+      columns: {
+        installId: 'installId',
+        installed: 'installed',
+        uninstalled: 'uninstalled'
+      },
+      cast: {
+        boolean: function (value) {
+          return value ? 'true' : 'false'
+        },
+        date: function (value) {
+          return value.toTimeString()
+        }
+      }
+    }
+    data = results
   }
 
   stringify(data, header, (err, content) => {
@@ -64,6 +141,29 @@ const downloadCSV = function (results, response, mode) {
     response.end(content)
   })
 }
+
+// Example:  api/resultfile?os=xxxxxx&mode=history    mode == [ 'installs' | 'overview' | 'history' ]
+router.get('/resultfile', (request, response) => {
+  const modeTypes = ['installs', 'overview', 'history']
+  const os = process.env.OBFUSCATION_STRING
+  const mode = request.query.mode
+  if (request.query.os != os || modeTypes.indexOf(mode) < 0) {
+    return utilities.errorResponse({ status: 400 }, response)
+  }
+  const model = mode == 'installs' ? Installed : Result
+  model
+    .find({}, (error, results) => {
+      if (error) {
+        utilities.errorResponse(
+          { status: 400, message: 'Error finding in DB' },
+          response
+        )
+      } else {
+        downloadCSV(results, response, mode)
+      }
+    })
+    .lean()
+})
 
 router.post('/result', (request, response) => {
   const result = {
@@ -92,28 +192,6 @@ router.post('/result', (request, response) => {
 
 router.get('/data', (request, response) => {
   utilities.successResponse(dataFile, response)
-})
-
-// Example:  api/resultfile?os=xxxxxx&mode=history    mode == [ 'installs' | 'history' | 'visits']
-router.get('/resultfile', (request, response) => {
-  const os = process.env.OBFUSCATION_STRING
-  if (request.query.os != os) {
-    return utilities.errorResponse({ status: 400 }, response)
-  }
-  const mode = request.query.mode
-  const model = mode == 'installs' ? Installed : Result
-  model
-    .find({}, (error, results) => {
-      if (error) {
-        utilities.errorResponse(
-          { status: 400, message: 'Error finding in DB' },
-          response
-        )
-      } else {
-        downloadCSV(results, response, mode)
-      }
-    })
-    .lean()
 })
 
 module.exports = router

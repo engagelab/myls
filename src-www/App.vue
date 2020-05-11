@@ -163,6 +163,11 @@ export default {
   },
   created() {
     this.id = window.localStorage.getItem('id')
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === 'visible' && this.mode == 'error') {
+        this.start()
+      }
+    });
   },
   computed: {
     detailItems() {
