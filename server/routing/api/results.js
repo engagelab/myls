@@ -14,7 +14,7 @@ const downloadCSV = function (results, response, mode) {
   if (mode == 'overview') {
     header = {
       header: true,
-      delimiter: '|',
+      delimiter: ',',
       columns: {
         installId: 'installId',
         consentEmail: 'consentEmail',
@@ -37,12 +37,12 @@ const downloadCSV = function (results, response, mode) {
         }
       }
     }
-    results.reduce((acc, curr) => {
-      const a = curr.items.map(i => {
+    data = results.reduce((acc, r) => {
+      const a = r.items.map(i => {
         return {
-          installId: curr.installId,
-          consentEmail: curr.consentEmail,
-          consented: curr.consented,
+          installId: r.installId,
+          consentEmail: r.consentEmail,
+          consented: r.consented,
           search: i.search,
           url: i.url,
           info: i.info,
@@ -50,12 +50,12 @@ const downloadCSV = function (results, response, mode) {
           ...i.selections
         }
       })
-      data = acc.concat(a)
+      return acc.concat(a)
     }, [])
   } else if (mode == 'history') {
     header = {
       header: true,
-      delimiter: '|',
+      delimiter: ',',
       columns: {
         installId: 'installId',
 
@@ -84,13 +84,13 @@ const downloadCSV = function (results, response, mode) {
         }
       }
     }
-    results.reduce((acc, curr) => {
+    data = results.reduce((acc, r) => {
       const a = []
-      curr.items.forEach(i => {
+      r.items.forEach(i => {
         i.historyItems.forEach(h => {
           h.visitItems.forEach(v => {
             const n = {
-              installId: curr.installId,
+              installId: r.installId,
               name: i.name,
               url: i.url,
 
@@ -110,7 +110,7 @@ const downloadCSV = function (results, response, mode) {
           })
         })
       })
-      data = acc.concat(a)
+      return acc.concat(a)
     }, [])
   } else if (mode == 'installs') {
     header = {
