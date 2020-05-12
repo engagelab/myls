@@ -104,7 +104,7 @@ const downloadCSV = function (results, response, mode) {
               visitId: v.id,
               transition: v.transition,
               referringVisitId: v.referringVisitId,
-              visitTime: new Date(v.visitTime)
+              visitTime: v.visitTime
             }
             a.push(n)
           })
