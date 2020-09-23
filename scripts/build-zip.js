@@ -3,16 +3,16 @@
 const fs = require('fs')
 const path = require('path')
 // eslint-disable-next-line
-var archiver = require('archiver')
+var archiver = require("archiver");
 
 const extPackageJson = require('../package.json')
 
-const DEST_DIR = path.join(__dirname, '../dist')
-const DEST_ZIP_DIR = path.join(__dirname, '../dist-zip')
+const DEST_DIR = path.join(__dirname, '../ext')
+const DEST_ZIP_DIR = path.join(__dirname, '../ext-zip')
 
 const extractExtensionData = () => ({
   name: extPackageJson.name,
-  version: extPackageJson.version,
+  version: extPackageJson.version
 })
 
 const makeDestZipDirIfNotExists = () => {

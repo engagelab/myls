@@ -11,20 +11,22 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
+// Only run this config to serve/build Chrome Extension using e.g. 'yarn run dev`
+// if (process.env.BUILD_EXTENSION === 'true') {
 // eslint-disable-next-line
 function configFunc(env, argv) {
   const isDevMode = env.NODE_ENV === 'development'
   const config = {
     devtool: isDevMode ? 'eval-source-map' : false,
-    context: path.resolve(__dirname, './src'),
+    context: path.resolve(__dirname, './src-ext'),
     entry: {
       options: './options/index.js',
       popup: './popup/index.js',
-      background: './background/index.js',
+      background: './background/index.js', // < ------------ We only need the background script
       contentScripts: './contentScripts/index.js'
     },
     output: {
-      path: path.resolve(__dirname, './dist'),
+      path: path.resolve(__dirname, './ext'),
       publicPath: '.',
       filename: '[name].js'
     },
@@ -115,12 +117,6 @@ function configFunc(env, argv) {
         filename: 'popup.html',
         chunks: ['popup']
       }),
-      new HtmlWebpackPlugin({
-        title: 'index',
-        template: './index.html',
-        filename: 'index.html',
-        chunks: ['popup']
-      }),
       new Dotenv()
     ]
   }
@@ -148,7 +144,7 @@ function configFunc(env, argv) {
         filename: '[name].css'
       }),
       new PurgecssPlugin({
-        paths: fg.sync([`./src/**/*`], {
+        paths: fg.sync([`./src-ext/**/*`], {
           onlyFiles: true,
           absolute: true
         })
@@ -163,5 +159,6 @@ function configFunc(env, argv) {
   }
   return config
 }
+// }
 
 module.exports = configFunc

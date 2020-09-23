@@ -6,7 +6,7 @@ Upon submission the user's history is scanned for the selected URLS, and the res
 
 # Configuration
 
-Update the server address before building in these two files: 
+Update the server address before building in these two files:
   * src/background/index.js
   * src/popup/App.vue
 
@@ -18,6 +18,11 @@ Update the server address before building in these two files:
 4. Set Chrome extensions to developer mode
 5. Use 'load Unpacked' to select the /dist folder
 6. Run server `node server/server_myls.js`
+
+# Build extension for Chrome Store
+
+*** Remember to change .env vars VUE_APP_FULL_SERVER and VUE_APP_EXTENSION_ID !!
+*** Also remove local testing urls from manifest.json
 
 # Spec 4/2020
 
