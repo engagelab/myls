@@ -21,7 +21,6 @@ const downloadCSV = function (results, response, mode) {
         consented: 'consented',
         search: 'search',
         url: 'url',
-        info: 'Titles',
         itemCount: 'History Items',
 
         // Selection key names : column titles
@@ -45,7 +44,6 @@ const downloadCSV = function (results, response, mode) {
           consented: r.consented,
           search: i.search,
           url: i.url,
-          info: i.info,
           itemCount: i.historyItems.length,
           ...i.selections
         }
@@ -65,8 +63,8 @@ const downloadCSV = function (results, response, mode) {
 
         // History key names : column titles
         historyId: 'History ID',
-        title: 'Title',
-        url: 'URL',
+        // title: 'Title',
+        // url: 'URL',
         visitCount: 'Visit Count',
 
         // Visit key names: column titles
@@ -96,8 +94,8 @@ const downloadCSV = function (results, response, mode) {
 
               // History key names : column titles
               historyId: h.id,
-              title: h.title,
-              url: h.url,
+              // title: h.title,
+              // url: h.url,
               visitCount: h.visitCount,
 
               // Visit key names: column titles
@@ -126,7 +124,7 @@ const downloadCSV = function (results, response, mode) {
           return value ? 'true' : 'false'
         },
         date: function (value) {
-          return value.toTimeString()
+          return value.toLocaleString('en-GB', { timeZone: 'UTC' })
         }
       }
     }

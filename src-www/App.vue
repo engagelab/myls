@@ -63,41 +63,64 @@
 
       <!-- The second template displays general selection of category -->
       <template v-if="mode == 'activities'">
-        <p class="pt-2 underline">Activities</p>
+        <h1 class="font-bold">Part I: Practices and actions</h1>
         <div class="p-2">
-          <h2 class="font-bold">{{tasks[taskIndex].title}}</h2>
-          <p class="mb-2">{{tasks[taskIndex].description}}</p>
-          <div v-for="d in tasks[taskIndex].details" :key="d.id" class="flex flex-row pl-2">
-            <span class="pr-2">{{d.title}}</span>
-            <AnswerInput mode="binary" v-model="d.selected" />
+          <h2 class="font-bold">{{practices[pIndex].title}}</h2>
+          <p class="mb-2">{{practices[pIndex].description}}</p>
+          <div v-for="a in practices[pIndex].actions" :key="a.id" class="flex flex-col pl-2">
+            <div class="flex flex-row my-1 justify-between lg:justify-start">
+              <span class="pr-2">{{a.title}}</span>
+              <AnswerInput mode="binary" v-model="a.selected" />
+            </div>
+            <div class="flex flex-col" v-if="a.selected">
+              <!-- If 'other' then allow entry of additional Actions -->
+              <div v-for="(c, cIndex) in a.customActions" :key="c.id" class="flex flex-row items-center py-1 ml-">
+                <AnswerInput
+                  placeholder="action.."
+                  mode="text"
+                  v-model="c.name"
+                  class="w-full lg:w-1/2"
+                />
+                <button class="btn-myls bg-red-400" @click="removeAction(a, cIndex)">X</button>
+              </div>
+              <div class="flex flex-row">
+                <button v-if="a.entrytype == 'text' && a.selected" class="btn-myls mr-4 mt-4" @click="addAction(a)">+ Add Action</button>
+              </div>
+            </div>
+
           </div>
         </div>
         <button
           class="btn-myls mt-4 mr-4"
-          v-if="taskIndex > 0"
+          v-if="pIndex > 0"
           @click="previousDetail()"
         >Back</button>
         <button
+          v-if="pIndex < practices.length - 1 || practiceColumns.length > 1"
           class="btn-myls mt-4"
           @click="selectTasks()"
         >{{ confirmOrNone }}</button>
       </template>
 
       <!-- The third template then displays details for one selected category at a time -->
-      <template v-if="mode == 'details'">
+      <template v-if="mode == 'websites'">
         <p class="pt-2 underline">Resources</p>
         <URLSelection
-          :key="detail.id"
-          :title="detail.title"
-          :taskTitle="detail.taskTitle"
-          :description="detail.description"
-          :urls="detail.urls"
-          :columns="detail.columns"
-          :entrytype="detail.entrytype"
+          :urls="urls"
+          :columns="practiceColumns"
           class="p-2"
-          @next-detail="updatedList => nextDetail(updatedList, detail)"
-          @previous-detail="updatedList => previousDetail(updatedList, detail)"
+          @next-detail="updatedList => nextDetail(updatedList, true)"
+          @previous-detail="updatedList => previousDetail(updatedList, true)"
         />
+      </template>
+
+      <!-- The fourth template allows selection of demographics -->
+      <template v-if="mode == 'demographics'">
+        <p class="pt-2 underline">Demographics</p>
+        <div v-for="d in demographics" :key="d.id" class="flex flex-row my-1 justify-between lg:justify-start">
+          <span class="pr-2">{{ d.title }}</span>
+          <AnswerInput :mode="d.type" v-model="a.selected" />
+        </div>
       </template>
 
       <!-- Final template confirms submission of results -->
@@ -148,8 +171,10 @@ export default {
     return {
       submitStatus: false,
       domains: [],
-      tasks: [],
-      taskIndex: 0,
+      practices: [],
+      urls: [],
+      demographics: [],
+      pIndex: 0,
       detailIndex: 0,
       data: [],
       errorMessage: '',
@@ -172,17 +197,32 @@ export default {
   computed: {
     detailItems() {
       let details = []
-      this.tasks[this.taskIndex].details.filter(d => d.selected).forEach(d => details.push(d))
+      this.practices[this.pIndex].actions.filter(d => d.selected).forEach(d => details.push(d))
       return details
     },
-    detail() {
-      return this.detailItems[this.detailIndex]
+    // Return only Practices where Actions were selected
+    practiceColumns() {
+      const pc = this.practices.filter(p => p.actions.some(a => a.selected))
+      return ['URL', ...pc ]
     },
     confirmOrNone() {
       return this.detailItems.length < 1 ? 'None' : 'Confirm'
     }
   },
   methods: {
+    createNewEntry(selected) {
+      return {
+        id: `url-${Math.random()}`,
+        name: ''
+      }
+    },
+    removeAction(a, index) {
+      a.customActions.splice(index, 1)
+    },
+    addAction(a) {
+      const newEntry = this.createNewEntry(true)
+      a.customActions.push(newEntry)
+    },
     start() {
       const messageError = () => {
         if (chrome.runtime.lastError) {
@@ -245,8 +285,8 @@ export default {
     // Send the result to our server via the Chrome background script
     submitChoices() {
       const selectedTasks = []
-      this.tasks.forEach(t => {
-        t.details.filter(d => d.selected).forEach(d => selectedTasks.push(d))
+      this.practices.forEach(p => {
+        p.actions.filter(d => d.selected).forEach(d => selectedTasks.push(d))
       })
       // Nothing to submit
       if (selectedTasks.length < 1) {
@@ -299,39 +339,68 @@ export default {
     // Reformat the JSON data to include selectors
     configureData() {
       // this.submitStatus = window.localStorage.getItem('submitStatus') // TODO: Uncomment when debugging is done!
-      this.tasks = this.data.map((task, index) => {
-        const details = task.details.map((detail, index2) => {
-          const urls = detail.urls.map((entry, index3) => {
-            const selections = { selected: false }
-            detail.columns.forEach(
-              c => (selections[c.name] = c.type == 'binary' ? false : '')
-            )
-            return {
-              id: `url-${index3}`,
-              name: entry.name,
-              url: entry.url,
-              search: entry.search,
-              selections,
-              info: `${task.title} : ${detail.title}`,
-            }
-          })
-          return {
-            id: `detail-${index2}`,
-            taskTitle: task.title,
-            title: detail.title,
-            description: detail.description,
-            urls,
-            columns: detail.columns,
-            entrytype: detail.entrytype || 'select',
-            selected: false,
+      this.data.practices.forEach((p, index) => {
+        const actions = p.actions.map((action, index2) => {
+          const a = {
+            id: `action-${index2}`,
+            taskTitle: p.title,
+            title: action.title,
+            entrytype: action.entrytype || 'select',
+            selected: false
           }
+          if (action.entrytype === 'text') a.customActions = []
+          return a
         })
-        return {
-          id: `task-${index}`,
-          title: task.title,
-          description: task.description,
-          details,
+        this.practices.push({
+          id: `practice-${index}`,
+          title: p.title,
+          shortTitle: p.shortTitle,
+          description: p.description,
+          actions,
           selected: false,
+        })
+      })
+    },
+    configureWebsites() {
+      this.urls = this.data.urls.map((entry, index) => {
+        const selections = { selected: false }
+        this.practiceColumns.forEach(
+          p => (selections[p.shortTitle] = p.type == 'binary' ? false : '')
+        )
+        return {
+          id: `url-${index}`,
+          name: entry.name,
+          type: 'normal',
+          url: entry.url,
+          search: entry.search,
+          selections
+        }
+      })
+    },
+    configureDemographics() {
+      const setupSelectors = (entry) => {
+        const selections = {}
+        if (entry.type === 'binary') selections.selected = false // true / false
+        else if (entry.type === 'multiChoice') {
+          selections.selected = [] // Multiple choice
+        } else if (entry.type === 'conditional') {
+          selections.selected = '' // Single choice
+          selections.subSelection = {} // Conditional sub-question may be of any type
+          entry.conditionals.forEach(c => {
+            selections.subSelections = setupSelectors(c) // Multiple choice or true / false
+          })
+        }
+        return selections
+      }
+      this.demographics = this.data.demographics.map((entry, index) => {
+        const selections = setupSelectors(entry)
+        return {
+          id: `demo-${index}`,
+          name: entry.title,
+          type: entry.type,
+          options: entry.options,
+          conditionals: entry.conditionals,
+          selections
         }
       })
     },
@@ -339,48 +408,45 @@ export default {
       this.mode = 'activities'
     },
     selectTasks() {
-      if (this.detailItems.length < 1) {
-        if (this.taskIndex < this.tasks.length - 1) {
-           this.taskIndex++
-        } else {
-           this.mode = 'submit'
-        }
-      } else {
-        this.mode = 'details'
+      if (this.pIndex < this.practices.length - 1) {
+        this.pIndex++
+      } else if (this.mode == 'activities' && this.practiceColumns.length > 1) {
+        this.configureWebsites()
+        this.mode = 'websites'
       }
     },
     getExtension() {
       window.open(process.env.VUE_APP_CHROME_STORE_EXTENSION_URL, '_blank')
     },
     nextDetail(updatedList, detail) {
-      detail.urls = updatedList
+      // this.urls = updatedList
       if (this.detailIndex < this.detailItems.length - 1) {
         this.detailIndex++
-      } else if (this.taskIndex < this.tasks.length - 1) {
+      } else if (this.pIndex < this.practices.length - 1) {
         this.detailIndex = 0
-        this.taskIndex++
+        this.pIndex++
         this.mode = 'activities'
+      } else if (this.mode == 'websites') {
+        this.mode = 'demographics'
       } else {
         this.mode = 'submit'
       }
     },
     previousDetail(updatedList, detail) {
-      if (detail)
-        detail.urls = updatedList
+      // if (detail)
+      //    this.urls = updatedList
       if (this.detailIndex > 0) {
         // Previous detail
         this.detailIndex--
-      } else if (this.mode == 'details') {
-        // Previous activity selection
+      } else if (this.mode == 'websites') {
+        // Previous section
         this.mode = 'activities'
-        // this.tasks[this.taskIndex].details.forEach(d => d.selected = false)
-      } else {
-        // Previous Task, final detail
-        this.taskIndex--
-        if (this.detailItems.length > 0) {
-          this.detailIndex = this.detailItems.length - 1
-          this.mode = 'details'
-        }
+      } else if (this.mode == 'demographics') {
+        // Previous section
+        this.mode = 'websites'
+      }else if (this.pIndex > 0) {
+        // Previous Practice
+        this.pIndex--
       }
     },
   },

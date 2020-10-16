@@ -35,10 +35,10 @@
     </template>
     <template v-if="mode == 'text'">
       <input
-        class="mr-1 mb-1 checkValid"
+        class="mr-1 mb-1 checkValid w-full"
         :placeholder="placeholder"
         type="text"
-        id="textString"
+        :id="'textString' + randomId"
         v-model="selectedText"
         @input="valueInput"
       />
@@ -109,24 +109,33 @@ export default {
       selectedQuart: '',
       selectedText: '',
       selectedUrl: '',
+      randomId: Math.random()
+    }
+  },
+  watch: {
+    value: function () {
+      this.checkValue()
     }
   },
   mounted() {
-    switch (this.mode) {
-      case 'binary':
-        this.selectedBoolean = this.value
-        break
-      case 'url':
-        this.selectedUrl = this.value
-        break
-      case 'text':
-        this.selectedText = this.value
-        break
-      case 'quaternary':
-        this.selectedQuart = this.value
-    }
+    this.checkValue()
   },
   methods: {
+    checkValue() {
+      switch (this.mode) {
+        case 'binary':
+          this.selectedBoolean = this.value
+          break
+        case 'url':
+          this.selectedUrl = this.value
+          break
+        case 'text':
+          this.selectedText = this.value
+          break
+        case 'quaternary':
+          this.selectedQuart = this.value
+      }
+    },
     valueInput($event) {
       const value =
         this.mode == 'binary'

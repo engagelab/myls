@@ -1,22 +1,21 @@
 <template>
   <div>
-    <h1 class="font-bold">{{ taskTitle }}</h1>
-    <h1 class="font-bold text-2xl mt-4">{{ title }}</h1>
+    <h1 class="font-bold">Part II: Websites</h1>
+    <!--h1 class="font-bold text-2xl mt-4">{{ title }}</h1-->
     <p
       v-if="paginatedList.length > 1"
       class="mb-4"
     >{{ `Page ${pageIndex + 1} of ${paginatedList.length}`}}</p>
-    <p>{{ description }}</p>
     <div class="flex flex-row content-start justify-between">
       <table class="table-fixed">
         <thead>
           <tr>
             <th
               v-for="(c, cIndex) in columns"
-              :key="`CH${c.name}`"
+              :key="`CH${c.shortTitle}`"
               :class="[cIndex === 0 ? 'w-1/4' : 'w-1/6']"
               class="px-4 py-2"
-            >{{c.name}}</th>
+            >{{c.shortTitle}}</th>
           </tr>
         </thead>
         <tbody>
@@ -27,28 +26,27 @@
           >
             <td v-for="(c, cIndex) in columns" :key="`${u.id}-${cIndex}`" class="border px-4 py-2">
               <!-- Binary type quesiton -->
-              <div class="flex flex-row justify-between" v-if="entrytype == 'select'">
+              <div class="flex flex-row justify-between" v-if="u.type === 'normal'">
                 <span
                   v-if="cIndex === 0"
                   class="font-mono text-sm text-green-900 break-words max-w-12"
                 >
                   <a :href="u.url" rel="noopener noreferrer" target="_blank">{{ u.name }}</a>
                 </span>
-                <AnswerInput v-if="cIndex === 0" mode="binary" v-model="u.selections.selected" />
                 <AnswerInput
-                  v-if="cIndex > 0 && u.selections.selected"
-                  :mode="c.type"
-                  v-model="u.selections[c.name]"
+                  v-if="cIndex > 0"
+                  mode="binary"
+                  v-model="u.selections[c.shortTitle]"
                 />
               </div>
-              <!-- Text type question -->
-              <div class="flex flex-row items-center" v-if="entrytype == 'text'">
+              <!-- User-added question -->
+              <div class="flex flex-row items-center"  v-if="u.type === 'user'">
                 <AnswerInput v-if="cIndex === 0" mode="url" v-model="u.search" />
                 <AnswerInput
                   v-if="cIndex > 0"
                   placeholder="answer here.."
-                  :mode="c.type"
-                  v-model="u.selections[c.name]"
+                  mode="binary"
+                  v-model="u.selections[c.shortTitle]"
                 />
                 <button v-if="cIndex === 0" class="btn-myls bg-red-400" @click="removeRow(uIndex)">X</button>
               </div>
@@ -57,7 +55,7 @@
         </tbody>
       </table>
     </div>
-    <button v-if="entrytype == 'text'" class="btn-myls mr-4 mt-4" @click="addRow()">+ Add URL</button>
+    <button class="btn-myls mr-4 mt-4" @click="addRow()">+ Add URL</button>
     <div class="flex flex-row mt-8">
       <button class="btn-myls mr-4" @click="previousDetail()">Back</button>
       <button
@@ -78,18 +76,6 @@ export default {
     AnswerInput,
   },
   props: {
-    taskTitle: {
-      type: String,
-      default: '',
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    description: {
-      type: String,
-      default: '',
-    },
     urls: {
       type: Array,
       default: () => [],
@@ -148,18 +134,17 @@ export default {
   },
   methods: {
     createNewEntry(selected) {
+      const selections = { selected: false }
+      this.columns.forEach(
+        p => (selections[p.shortTitle] = p.type == 'binary' ? false : '')
+      )
       return {
         id: `url-${Math.random()}`,
         name: 'other',
+        type: 'user',
         url: '',
         search: '',
-        selections: {
-          selected,
-          URL: '',
-          Activity: '',
-          'Time Spent': '',
-        },
-        info: `${this.taskTitle} : ${this.title}`,
+        selections
       }
     },
     nextDetail() {

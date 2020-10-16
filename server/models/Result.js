@@ -16,9 +16,9 @@ const itemSchema = {
     {
       id: { type: String },
       lastVisitTime: { type: Number },
-      title: { type: String },
+      // title: { type: String },
       typedCount: { type: Number },
-      url: { type: String },
+      // url: { type: String },
       visitCount: { type: Number },
       visitItems: [
         {
