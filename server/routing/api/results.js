@@ -169,7 +169,9 @@ router.post('/result', (request, response) => {
     installId: request.body.id,
     consentEmail: request.body.email,
     consented: request.body.consented,
-    lottery: request.body.lottery
+    lottery: request.body.lottery,
+    demographics: request.body.demographics,
+    practices: request.body.practices
   }
   if (result.items && result.installId && result.consentEmail) {
     Result.create(result, function callback (error, newResult) {

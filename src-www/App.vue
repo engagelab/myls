@@ -74,11 +74,11 @@
             </div>
             <div class="flex flex-col" v-if="a.selected">
               <!-- If 'other' then allow entry of additional Actions -->
-              <div v-for="(c, cIndex) in a.customActions" :key="c.id" class="flex flex-row items-center py-1 ml-">
+              <div v-for="(c, cIndex) in a.customActions" :key="c.id" class="flex flex-row items-center py-1">
                 <AnswerInput
                   placeholder="action.."
                   mode="text"
-                  v-model="c.name"
+                  v-model="c.title"
                   class="w-full lg:w-1/2"
                 />
                 <button class="btn-myls bg-red-400" @click="removeAction(a, cIndex)">X</button>
@@ -117,10 +117,15 @@
       <!-- The fourth template allows selection of demographics -->
       <template v-if="mode == 'demographics'">
         <p class="pt-2 underline">Demographics</p>
-        <div v-for="d in demographics" :key="d.id" class="flex flex-row my-1 justify-between lg:justify-start">
-          <span class="pr-2">{{ d.title }}</span>
-          <AnswerInput :mode="d.type" v-model="a.selected" />
+        <div v-for="d in demographics" :key="d.id" class="flex flex-col my-2 justify-between lg:justify-start">
+          <p class="pr-2">{{ d.title }}</p>
+          <AnswerInput class="pl-4" v-model="d.selection" :mode="d.type" :options="d.options" :conditionals="d.conditionals" />
         </div>
+        <button
+          v-if="allDegmographicsAnswered"
+          class="btn-myls mt-4"
+          @click="selectTasks()"
+        >Done</button>
       </template>
 
       <!-- Final template confirms submission of results -->
@@ -200,10 +205,28 @@ export default {
       this.practices[this.pIndex].actions.filter(d => d.selected).forEach(d => details.push(d))
       return details
     },
+    allDegmographicsAnswered() {
+      return this.demographics.every(entry => {
+        switch (entry.type) {
+          case 'binary':
+            return entry.selection === true || entry.selection === false
+            break
+          case 'multiChoice':
+            return entry.selection.length > 0
+            break
+          // Assumes conditional step 1 is 'single choice' and step 2 is a 'multichoice' type
+          case 'conditional':
+            return entry.selection.level1
+              && (entry.selection.level2 === true
+              || entry.selection.level2 === false
+              || (entry.selection.level2.length && entry.selection.level2.length > 0))
+        }
+      })
+    },
     // Return only Practices where Actions were selected
     practiceColumns() {
       const pc = this.practices.filter(p => p.actions.some(a => a.selected))
-      return ['URL', ...pc ]
+      return [{ shortTitle: 'URL' }, ...pc ]
     },
     confirmOrNone() {
       return this.detailItems.length < 1 ? 'None' : 'Confirm'
@@ -213,7 +236,7 @@ export default {
     createNewEntry(selected) {
       return {
         id: `url-${Math.random()}`,
-        name: ''
+        title: ''
       }
     },
     removeAction(a, index) {
@@ -284,19 +307,28 @@ export default {
     },
     // Send the result to our server via the Chrome background script
     submitChoices() {
-      const selectedTasks = []
-      this.practices.forEach(p => {
-        p.actions.filter(d => d.selected).forEach(d => selectedTasks.push(d))
+
+      // Collect only those Practices that have selected Actions
+      const practices = this.practices.filter(p => p.actions.some(a => a.selected)).map(p => {
+        let customActions = []
+        let actions = p.actions.filter(a => a.selected).map(a => {
+          // include custom actions if they exist
+          if (a.customActions && a.customActions.length > 0)
+            customActions = a.customActions.map(c => c.title)
+          return a.title
+        })
+        if (customActions.length > 0) actions = actions.concat(customActions)
+        return { practice: p.title, actions }
       })
-      // Nothing to submit
-      if (selectedTasks.length < 1) {
-        return this.submitStatus = true
-      }
-      const data = selectedTasks
-        .map(d => d.urls.filter(u => u.selections.selected))
-        .reduce((acc, curr) => acc.concat(curr))
+
+      // Collect Websites selected
+      const urls = this.urls.filter(u => u.selections.selected)
+
+      // Collect Demographics - only the data we need
+      const demographics = this.demographics.map(d => ({ selection: d.selection, title: d.title }))
+
       const request = {
-        data: { urls: data, id: this.id, email: this.email, consented: this.consented, lottery: this.lottery },
+        data: { practices, urls, demographics, id: this.id, email: this.email, consented: this.consented, lottery: this.lottery },
         type: 'SUBMIT',
       }
       chrome.runtime.sendMessage(editorExtensionId, request, response => {
@@ -321,6 +353,7 @@ export default {
       xhr.addEventListener('loadend', () => {
         this.data = xhr.response
         this.configureData()
+        this.configureDemographics()
       })
 
       const dataRoute = process.env.VUE_APP_DATA_ROUTE
@@ -379,28 +412,37 @@ export default {
     },
     configureDemographics() {
       const setupSelectors = (entry) => {
-        const selections = {}
-        if (entry.type === 'binary') selections.selected = false // true / false
-        else if (entry.type === 'multiChoice') {
-          selections.selected = [] // Multiple choice
+        let selection
+        // if (entry.type === 'binary') selection = undefined // true / false
+        if (entry.type === 'multiChoice') {
+          selection = [] // Multiple choice
         } else if (entry.type === 'conditional') {
-          selections.selected = '' // Single choice
-          selections.subSelection = {} // Conditional sub-question may be of any type
+          selection = {
+            level1: '', // Single choice
+            level2: undefined  // Conditional sub-question may be of any type
+          }
           entry.conditionals.forEach(c => {
-            selections.subSelections = setupSelectors(c) // Multiple choice or true / false
+            selection.level2 = setupSelectors(c) // Multiple choice or true / false
           })
         }
-        return selections
+        return selection
       }
       this.demographics = this.data.demographics.map((entry, index) => {
-        const selections = setupSelectors(entry)
+        const selection = setupSelectors(entry)
         return {
-          id: `demo-${index}`,
-          name: entry.title,
+          id: `demog-${index}`,
+          title: entry.title,
           type: entry.type,
-          options: entry.options,
-          conditionals: entry.conditionals,
-          selections
+          options: entry.options ? entry.options.map((o, i) => {
+            return { title: o, id: `demog-option-${index}-${i}`}
+          }) : [],
+          conditionals: entry.conditionals ? entry.conditionals.map((c, i) => {
+            c.options = c.options ? c.options.map((o, i) => {
+            return { title: o, id: `demog-cond-option-${index}-${i}`}
+          }) : []
+            return {...c, id: `demog-cond-${index}-${i}`}
+          }) : [],
+          selection
         }
       })
     },
@@ -413,13 +455,15 @@ export default {
       } else if (this.mode == 'activities' && this.practiceColumns.length > 1) {
         this.configureWebsites()
         this.mode = 'websites'
+      } else if (this.mode == 'demographics') {
+        this.mode = 'submit'
       }
     },
     getExtension() {
       window.open(process.env.VUE_APP_CHROME_STORE_EXTENSION_URL, '_blank')
     },
     nextDetail(updatedList, detail) {
-      // this.urls = updatedList
+      this.urls = updatedList
       if (this.detailIndex < this.detailItems.length - 1) {
         this.detailIndex++
       } else if (this.pIndex < this.practices.length - 1) {

@@ -255,7 +255,7 @@
       ]
     },
     {
-      "title": "In what university are you currently taking your bachelor?",
+      "title": "c) In what university are you currently taking your bachelor?",
       "type": "conditional",
       "options": [
         "a) University of Oslo (UiO)",

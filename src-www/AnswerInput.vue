@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row items-center ml-2">
+  <div class="flex flex-row items-center ml-2 py-1">
     <template v-if="mode == 'binary'">
       <input
         class="mr-1 mb-1"
@@ -7,7 +7,7 @@
         id="yes"
         :value="true"
         v-model="selectedBoolean"
-        @input="valueInput"
+        @change="valueInput"
       />
       <label class="mr-2" for="yes">Yes</label>
       <input
@@ -16,7 +16,7 @@
         id="no"
         :value="false"
         v-model="selectedBoolean"
-        @input="valueInput"
+        @change="valueInput"
       />
       <label class="mr-1" for="no">No</label>
     </template>
@@ -50,7 +50,7 @@
         id="1-25"
         value="1-25%"
         v-model="selectedQuart"
-        @input="valueInput"
+        @change="valueInput"
       />
       <label class="inputQ" for="1-25">1-25%</label>
       <input
@@ -59,7 +59,7 @@
         id="25-50"
         value="25-50%"
         v-model="selectedQuart"
-        @input="valueInput"
+        @change="valueInput"
       />
       <label class="inputQ" for="25-50">25-50%</label>
       <input
@@ -68,7 +68,7 @@
         id="50-75"
         value="50-75%"
         v-model="selectedQuart"
-        @input="valueInput"
+        @change="valueInput"
       />
       <label class="inputQ" for="50-75">50-75%</label>
       <input
@@ -77,15 +77,47 @@
         id="100"
         value="100%"
         v-model="selectedQuart"
-        @input="valueInput"
+        @change="valueInput"
       />
       <label class="inputQ" for="100">100%</label>
+    </template>
+    <template v-if="mode == 'multiChoice'">
+      <div class="flex flex-col">
+        <div v-for="o in options" :key="o.id" class="py-1">
+          <input
+            class="mr-1 mb-1"
+            type="checkbox"
+            :id="`input-${o.id}`"
+            :value="o.title"
+            v-model="selectedMultiChoice"
+            @change="valueInput"
+          />
+          <label class="mr-2" :for="`input-${o.id}`">{{ o.title }}</label>
+        </div>
+      </div>
+    </template>
+    <template v-if="mode == 'conditional'">
+      <div class="flex flex-col py-1">
+        <div v-for="(o, i) in options" :key="o.id">
+          <input
+            class="mr-1 mb-1"
+            type="radio"
+            :id="`input-${o.id}`"
+            :value="o.title"
+            v-model="selectedSingleChoice"
+            @change="valueInput"
+          />
+          <label class="mr-2" :for="`input-${o.id}`">{{ o.title }}</label>
+          <AnswerInput v-if="selectedSingleChoice === o.title" class="pl-4" mode="multiChoice" v-model="selectedMultiChoice" @input="valueInput" :options="conditionals[i].options" />
+        </div>
+      </div>
     </template>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'AnswerInput',
   model: {
     prop: 'value',
     event: 'input',
@@ -98,6 +130,14 @@ export default {
       value: String,
       default: 'binary',
     },
+    options: {
+      value: Array,
+      default: () => [],
+    },
+    conditionals: {
+      value: Object,
+      default: () => {},
+    },
     placeholder: {
       value: String,
       default: '',
@@ -105,10 +145,12 @@ export default {
   },
   data() {
     return {
-      selectedBoolean: false,
+      selectedBoolean: undefined,
       selectedQuart: '',
       selectedText: '',
       selectedUrl: '',
+      selectedSingleChoice:'',
+      selectedMultiChoice: [],
       randomId: Math.random()
     }
   },
@@ -137,10 +179,20 @@ export default {
       }
     },
     valueInput($event) {
-      const value =
-        this.mode == 'binary'
-          ? $event.target.value == 'true'
-          : $event.target.value
+      let value
+      switch (this.mode) {
+        case 'binary':
+          value = $event.target.value == 'true'
+          break;
+        case 'multiChoice':
+          value = this.selectedMultiChoice
+          break;
+        case 'conditional':
+          value = { level1: this.selectedSingleChoice, level2: this.selectedMultiChoice }
+          break;
+        default:
+          value = $event.target.value
+      }
       this.$emit('input', value)
     },
   },

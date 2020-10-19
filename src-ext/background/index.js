@@ -55,7 +55,9 @@ function scrapeDomains (data, callback) {
             email: data.email,
             id: data.id,
             consented: data.consented,
-            lottery: data.lottery
+            lottery: data.lottery,
+            practices: data.practices,
+            demographics: data.demographics
           })
           sendToServer('POST', JSONString, resultRoute, response =>
             callback(response)

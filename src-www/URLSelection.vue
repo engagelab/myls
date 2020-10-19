@@ -37,6 +37,7 @@
                   v-if="cIndex > 0"
                   mode="binary"
                   v-model="u.selections[c.shortTitle]"
+                  @input="value => u.selections.selected = true"
                 />
               </div>
               <!-- User-added question -->
@@ -47,6 +48,7 @@
                   placeholder="answer here.."
                   mode="binary"
                   v-model="u.selections[c.shortTitle]"
+                  @input="value => u.selections.selected = true"
                 />
                 <button v-if="cIndex === 0" class="btn-myls bg-red-400" @click="removeRow(uIndex)">X</button>
               </div>
