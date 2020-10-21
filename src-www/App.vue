@@ -318,17 +318,24 @@ export default {
           return a.title
         })
         if (customActions.length > 0) actions = actions.concat(customActions)
-        return { practice: p.title, actions }
+        return { practice: p.title, shortTitle: p.shortTitle, actions }
       })
 
       // Collect Websites selected
-      const urls = this.urls.filter(u => u.selections.selected)
+      const urls = this.urls.filter(u => u.selections.selected).map(u => {
+        delete u.selections['selected']
+        delete u.selections['URL']
+        return u
+        /* const filteredSelections = Object.entries(u.selections).filter(e => e[0] !== 'selected' && e[0] !== 'URL')
+        const selections = Object.fromEntries(filteredSelections)
+        return { ...u, ...selections } */
+      })
 
       // Collect Demographics - only the data we need
-      const demographics = this.demographics.map(d => ({ selection: d.selection, title: d.title }))
+      const demographics = this.demographics.map(d => ({ selection: d.selection, title: d.title, shortTitle: d.shortTitle }))
 
       const request = {
-        data: { practices, urls, demographics, id: this.id, email: this.email, consented: this.consented, lottery: this.lottery },
+        data: { other: { practices, demographics }, urls, id: this.id, email: this.email, consented: this.consented, lottery: this.lottery },
         type: 'SUBMIT',
       }
       chrome.runtime.sendMessage(editorExtensionId, request, response => {
@@ -352,7 +359,7 @@ export default {
       // Event listener must be added before calling open()
       xhr.addEventListener('loadend', () => {
         this.data = xhr.response
-        this.configureData()
+        this.configurePractices()
         this.configureDemographics()
       })
 
@@ -370,7 +377,7 @@ export default {
       }
     },
     // Reformat the JSON data to include selectors
-    configureData() {
+    configurePractices() {
       // this.submitStatus = window.localStorage.getItem('submitStatus') // TODO: Uncomment when debugging is done!
       this.data.practices.forEach((p, index) => {
         const actions = p.actions.map((action, index2) => {
@@ -432,6 +439,7 @@ export default {
         return {
           id: `demog-${index}`,
           title: entry.title,
+          shortTitle: entry.shortTitle,
           type: entry.type,
           options: entry.options ? entry.options.map((o, i) => {
             return { title: o, id: `demog-option-${index}-${i}`}

@@ -21,7 +21,8 @@
     "nanoid": "^3.1.4",
     "path": "^0.12.7",
     "postcss-loader": "^3.0.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "webextension-polyfill": "^0.6.0"
   },
   "description": "vue-chrome-extension-boilerplate",
   "devDependencies": {
@@ -78,5 +79,5 @@
     "remove-evals": "node scripts/remove-evals.js",
     "zip": "node scripts/build-zip.js"
   },
-  "version": "1.0.3"
+  "version": "1.0.4"
 }

@@ -7,8 +7,23 @@ const utilities = require('../utilities')
 const Result = require('../../models/Result')
 const Installed = require('../../models/Installed')
 const dataFile = require('../../data.json')
+const DELIMITER = '|'
 
 const downloadCSV = function (results, response, mode) {
+  const getDemographic = (d) => {
+    if (typeof d.selection === 'boolean') {
+      return d.selection ? 'true' : 'false'
+    } else if (Array.isArray(d.selection)) {
+      return d.selection.reduce((acc, i) => `${acc}${DELIMITER}${i}`)
+    } else {
+      return d.selection.level1 + DELIMITER + d.selection.level2.reduce((acc, i) => `${acc}${DELIMITER}${i}`, [])
+    }
+  }
+
+  const getPractices = (p) => {
+    return p.actions.reduce((acc, i) => `${acc}${DELIMITER}${i}`)
+  }
+
   let data = []
   let header = {}
   if (mode == 'overview') {
@@ -19,16 +34,7 @@ const downloadCSV = function (results, response, mode) {
         installId: 'installId',
         consentEmail: 'consentEmail',
         consented: 'consented',
-        search: 'search',
-        url: 'url',
-        itemCount: 'History Items',
-
-        // Selection key names : column titles
-        'Other Students': 'Other Students',
-        'Developer Community': 'Developer Community',
-        'Expert Developers': 'Expert Developers',
-        'Time Spent in that activity': 'Time Spent',
-        Activity: 'Activity'
+        lottery: 'lottery'
       },
       cast: {
         boolean: function (value) {
@@ -36,12 +42,40 @@ const downloadCSV = function (results, response, mode) {
         }
       }
     }
+    dataFile.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
+    dataFile.demographics.forEach(d => header.columns[d.shortTitle] = d.shortTitle)
+    data = results.reduce((acc, r) => {
+      const a =  {
+        installId: r.installId,
+        consentEmail: r.consentEmail,
+        consented: r.consented,
+        lottery: r.lottery,
+      }
+      r.demographics.forEach(d => a[d.shortTitle] = getDemographic(d))
+      r.practices.forEach(p => a[p.shortTitle] = getPractices(p))
+      return acc.concat(a)
+    }, [])
+  } else if (mode == 'websites') {
+    header = {
+      header: true,
+      delimiter: ',',
+      columns: {
+        installId: 'installId',
+        search: 'search',
+        url: 'url',
+        itemCount: 'History Items'
+      },
+      cast: {
+        boolean: function (value) {
+          return value ? 'true' : 'false'
+        }
+      }
+    }
+    dataFile.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
     data = results.reduce((acc, r) => {
       const a = r.items.map(i => {
         return {
           installId: r.installId,
-          consentEmail: r.consentEmail,
-          consented: r.consented,
           search: i.search,
           url: i.url,
           itemCount: i.historyItems.length,
@@ -140,9 +174,9 @@ const downloadCSV = function (results, response, mode) {
   })
 }
 
-// Example:  api/resultfile?os=xxxxxx&mode=history    mode == [ 'installs' | 'overview' | 'history' ]
+// Example:  api/resultfile?os=xxxxxx&mode=history    mode == [ 'installs' | 'overview' | 'history' | 'websites' ]
 router.get('/resultfile', (request, response) => {
-  const modeTypes = ['installs', 'overview', 'history']
+  const modeTypes = ['installs', 'overview', 'history', 'websites']
   const os = process.env.OBFUSCATION_STRING
   const mode = request.query.mode
   if (request.query.os != os || modeTypes.indexOf(mode) < 0) {
@@ -170,8 +204,8 @@ router.post('/result', (request, response) => {
     consentEmail: request.body.email,
     consented: request.body.consented,
     lottery: request.body.lottery,
-    demographics: request.body.demographics,
-    practices: request.body.practices
+    demographics: request.body.other.demographics,
+    practices: request.body.other.practices
   }
   if (result.items && result.installId && result.consentEmail) {
     Result.create(result, function callback (error, newResult) {

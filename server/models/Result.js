@@ -33,20 +33,30 @@ const itemSchema = {
   ]
 }
 
+const practicesSchema = {
+  practice: { type: String },
+  actions: { type: Array, default: [], of: { type: String } }
+}
+
 const resultSchema = new mongoose.Schema(
   {
     installId: { type: String },
     consentEmail: { type: String },
     consented: { type: Boolean },
     lottery: { type: Boolean },
-    demographics: [{
-      title: { type: String },
-      selection: { type: mongoose.Schema.Types.Mixed }
-    }],
-    practices: [{
-      practice: { type: String },
-      actions: [{ type: String }]
-    }],
+    demographics: {
+      type: Array,
+      default: [],
+      of: {
+        title: { type: String },
+        selection: { type: mongoose.Schema.Types.Mixed }
+      }
+    },
+    practices: {
+      type: Array,
+      default: [],
+      of: practicesSchema
+    },
     items: {
       type: Array,
       default: [],
