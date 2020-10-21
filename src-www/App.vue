@@ -4,25 +4,27 @@
       <img src="./assets/icons/icon_32.png">
       <h1 class="font-bold text-lg w-full pl-4">Learning Practices Survey</h1>
     </div>
-    <template v-if="mode == ''">
-      <p class="m-4">Welcome to the Online Learning Practices Survey!</p>
-      <p class="m-4">This survey is about your use of resources from the Internet when you learn to program.
-        It asks you about how you solve problems and learn new skills when you work on a programming task,
-        how you get information about professional programming and your future programming career.
-        The survey collects data from your browsing history, <u>only</u> of the websites <u>you report to use</u> during the survey for those activities.</p>
-      <p class="m-4">The data collected from you will be anonymized and it will be stored safely, according to the regulations for data protection in Norway and Europe (GDPR).
-        You will not be recognized by others or your teachers.</p>
-      <p class="m-4">This study is part of a PhD project at the Department of Education at UiO. The project studies how computer and software engineering students use the Internet to learn programming.
-        If you have any questions and or want to know more, contact me at a.a.a.moya@iped.uio.no.</p>
-      <p class="m-4">Thank you very much for your participation!</p>
-      <p class="m-4">Andres Araos</p>
-      <div class="flex flex-row m-4">
-        <p>I would like to participate in the lottery to win a gift card of 500 kr. from Elkjøp </p>
-        <AnswerInput mode="binary" :value="lottery" @input="value => lottery = value" />
+    <template v-if="mode == ''" >
+      <div class="max-w-4xl">
+        <p class="m-4">Welcome to the Online Learning Practices Survey!</p>
+        <p class="m-4">This survey is about your use of resources from the Internet when you learn to program.
+          It asks you about how you solve problems and learn new skills when you work on a programming task,
+          how you get information about professional programming and your future programming career.
+          The survey collects data from your browsing history, <u>only</u> of the websites <u>you report to use</u> during the survey for those activities.</p>
+        <p class="m-4">The data collected from you will be anonymized and it will be stored safely, according to the regulations for data protection in Norway and Europe (GDPR).
+          You will not be recognized by others or your teachers.</p>
+        <p class="m-4">This study is part of a PhD project at the Department of Education at UiO. The project studies how computer and software engineering students use the Internet to learn programming.
+          If you have any questions and or want to know more, contact me at a.a.a.moya@iped.uio.no.</p>
+        <p class="m-4">Thank you very much for your participation!</p>
+        <p class="m-4">Andres Araos</p>
+        <div class="flex flex-row m-4">
+          <p>I would like to participate in the lottery to win a gift card of 500 kr. from Elkjøp </p>
+          <AnswerInput mode="binary" :value="lottery" @input="value => lottery = value" />
+        </div>
+        <button class="btn-myls m-4" @click="start()">Begin</button>
       </div>
-      <button class="btn-myls m-4" @click="start()">Begin</button>
     </template>
-    <div v-if="!submitStatus" class="m-4">
+    <div v-if="!submitStatus" class="m-4 max-w-5xl">
       <!-- The first template requests consent before proceeding-->
       <template v-if="mode == 'consent'">
         <h1 class="font-bold text-lg">Informed consent</h1>
