@@ -42,13 +42,16 @@
             <li>To provide access to the web browsing history of the websites I declare to use during the survey</li>
             <li>To participate in an interview</li>
           </ul>
-          </p>
-          <p class="mt-4">I give consent for my personal data to be processed until the end date of the project, approx. January 2021.
         </p>
-        <div class="flex flex-row p-4">
-          <span>Email address:&nbsp;</span>
-          <AnswerInput mode="text" placeholder="user@example.com" :value="email" @input="value => email = value" />
+        <div class="flex flex-row">
+          <p class="mt-4">I give consent for my personal data to be processed until the end date of the project, approx. January 2021.</p>
           <AnswerInput mode="binary" :value="consented" @input="value => consented = value" />
+        </div>
+        <div class="flex flex-row py-2">
+          <span class="ml-2 py-1">Email address:&nbsp;</span>
+          <AnswerInput mode="text" placeholder="user@example.com" :value="email" @input="value => email = value" />
+        </div>
+        <div class="flex flex-row p-2">
           <button
             class="btn-myls"
             :class="{ 'btn-disabled': !consented || !email }"
