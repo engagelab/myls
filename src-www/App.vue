@@ -391,7 +391,7 @@ export default {
             taskTitle: p.title,
             title: action.title,
             entrytype: action.entrytype || 'select',
-            selected: false
+            selected: undefined
           }
           if (action.entrytype === 'text') a.customActions = []
           return a
@@ -410,7 +410,7 @@ export default {
       this.urls = this.data.urls.map((entry, index) => {
         const selections = { selected: false }
         this.practiceColumns.forEach(
-          p => (selections[p.shortTitle] = p.type == 'binary' ? false : '')
+          p => (selections[p.shortTitle] = false)
         )
         return {
           id: `url-${index}`,

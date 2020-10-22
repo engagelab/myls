@@ -99,20 +99,21 @@ const downloadCSV = function (results, response, mode) {
         historyId: 'History ID',
         // title: 'Title',
         // url: 'URL',
+        lastVisitTime: 'Last Visit Time (UTC)',
         visitCount: 'Visit Count',
 
         // Visit key names: column titles
         visitId: 'Visit ID',
         transition: 'Transition',
         referringVisitId: 'Referring Visit ID',
-        visitTime: 'Visit Time'
+        visitTime: 'Visit Time (UTC)'
       },
       cast: {
         boolean: function (value) {
           return value ? 'true' : 'false'
         },
         date: function (value) {
-          return value.toTimeString()
+          return value.toLocaleString('en-GB', { timeZone: 'UTC' }).replace(',','')
         }
       }
     }
@@ -130,13 +131,14 @@ const downloadCSV = function (results, response, mode) {
               historyId: h.id,
               // title: h.title,
               // url: h.url,
+              lastVisitTime: new Date(h.lastVisitTime),
               visitCount: h.visitCount,
 
               // Visit key names: column titles
               visitId: v.id,
               transition: v.transition,
               referringVisitId: v.referringVisitId,
-              visitTime: v.visitTime
+              visitTime: new Date(v.visitTime)
             }
             a.push(n)
           })
@@ -147,18 +149,18 @@ const downloadCSV = function (results, response, mode) {
   } else if (mode == 'installs') {
     header = {
       header: true,
-      delimiter: '|',
+      delimiter: ',',
       columns: {
         installId: 'installId',
-        installed: 'installed',
-        uninstalled: 'uninstalled'
+        installed: 'installed (UTC)',
+        uninstalled: 'uninstalled (UTC)'
       },
       cast: {
         boolean: function (value) {
           return value ? 'true' : 'false'
         },
         date: function (value) {
-          return value.toLocaleString('en-GB', { timeZone: 'UTC' })
+          return value.toLocaleString('en-GB', { timeZone: 'UTC' }).replace(',','')
         }
       }
     }
