@@ -99,21 +99,22 @@ const downloadCSV = function (results, response, mode) {
         historyId: 'History ID',
         // title: 'Title',
         // url: 'URL',
-        lastVisitTime: 'Last Visit Time (UTC)',
+        lastVisitTime: 'Last Visit Time (ms)',
         visitCount: 'Visit Count',
 
         // Visit key names: column titles
         visitId: 'Visit ID',
         transition: 'Transition',
         referringVisitId: 'Referring Visit ID',
-        visitTime: 'Visit Time (UTC)'
+        visitTime: 'Visit Time (ms)'
       },
       cast: {
         boolean: function (value) {
           return value ? 'true' : 'false'
         },
         date: function (value) {
-          return value.toLocaleString('en-GB', { timeZone: 'UTC' }).replace(',','')
+          // return value.toLocaleString('en-GB', { timeZone: 'UTC' }).replace(',','')
+          return value.getTime().toString()
         }
       }
     }
@@ -152,15 +153,16 @@ const downloadCSV = function (results, response, mode) {
       delimiter: ',',
       columns: {
         installId: 'installId',
-        installed: 'installed (UTC)',
-        uninstalled: 'uninstalled (UTC)'
+        installed: 'installed (ms)',
+        uninstalled: 'uninstalled (ms)'
       },
       cast: {
         boolean: function (value) {
           return value ? 'true' : 'false'
         },
         date: function (value) {
-          return value.toLocaleString('en-GB', { timeZone: 'UTC' }).replace(',','')
+          // return value.toLocaleString('en-GB', { timeZone: 'UTC' }).replace(',','')
+          return value.getTime().toString()
         }
       }
     }
