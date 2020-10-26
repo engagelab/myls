@@ -4,15 +4,19 @@
       <img src="./assets/icons/icon_32.png">
       <h1 class="font-bold text-lg w-full pl-4">Learning Practices Survey</h1>
     </div>
+
     <template v-if="mode == ''" >
       <div class="max-w-4xl">
         <p class="m-4">Welcome to the Online Learning Practices Survey!</p>
-        <p class="m-4">This survey is about your use of resources from the Internet when you learn to program.
-          It asks you about how you solve problems and learn new skills when you work on a programming task,
-          how you get information about professional programming and your future programming career.
-          The survey collects data from your browsing history, <u>only</u> of the websites <u>you report to use</u> during the survey for those activities.</p>
+        <p class="m-4">This survey is about your use of resources from the Internet when you learn software development.
+          It asks you about how you solve problems and learn new skills when you work on a software development task,
+          and how you get information about professional software development and manage your future career as a software developer.
+          The survey collects data from your browsing history, <u>only</u> of the websites <u>you report to use</u> during the survey for those activities,
+          and <u>only the frequency</u> with which you access these sites in time</p>
         <p class="m-4">The data collected from you will be anonymized and it will be stored safely, according to the regulations for data protection in Norway and Europe (GDPR).
           You will not be recognized by others or your teachers.</p>
+          <p class="m-4"><span class="text-blue-600 cursor-pointer" @click="mode = 'anon'">Here</span> you can learn more about how we anonymize your data and about the data we collect from your browser history
+           [link to separate page with a sample of the table of raw data].</p>
         <p class="m-4">This study is part of a PhD project at the Department of Education at UiO. The project studies how computer and software engineering students use the Internet to learn programming.
           If you have any questions and or want to know more, contact me at a.a.a.moya@iped.uio.no.</p>
         <p class="m-4">Thank you very much for your participation!</p>
@@ -24,6 +28,7 @@
         <button class="btn-myls m-4" @click="start()">Begin</button>
       </div>
     </template>
+
     <div v-if="!submitStatus" class="m-4 max-w-5xl">
       <!-- The first template requests consent before proceeding-->
       <template v-if="mode == 'consent'">
@@ -59,6 +64,11 @@
             :disabled="!consented || !email"
           >Confirm</button>
         </div>
+      </template>
+
+      <template v-if="mode == 'anon'">
+        <Anon></Anon>
+        <button class="btn-myls mt-4 ml-2" @click="mode = ''">Back</button>
       </template>
 
       <template v-if="mode == 'tandc'">
@@ -168,6 +178,7 @@
 import URLSelection from './URLSelection.vue'
 import AnswerInput from './AnswerInput.vue'
 import TandC from './TandC'
+import Anon from './Anonimisation'
 const editorExtensionId = process.env.VUE_APP_EXTENSION_ID
 
 export default {
@@ -176,6 +187,7 @@ export default {
     URLSelection,
     AnswerInput,
     TandC,
+    Anon
   },
   data() {
     return {
@@ -250,6 +262,9 @@ export default {
     addAction(a) {
       const newEntry = this.createNewEntry(true)
       a.customActions.push(newEntry)
+    },
+    anonymizationPage() {
+      this.mode = 'anon'
     },
     start() {
       const messageError = () => {

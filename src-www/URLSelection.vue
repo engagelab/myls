@@ -57,7 +57,7 @@
         </tbody>
       </table>
     </div>
-    <button class="btn-myls mr-4 mt-4" @click="addRow()">+ Add URL</button>
+    <button class="btn-myls mr-4 mt-4" v-if="pageIndex === paginatedList.length - 1" @click="addRow()">+ Add URL</button>
     <div class="flex flex-row mt-8">
       <button class="btn-myls mr-4" @click="previousDetail()">Back</button>
       <button
