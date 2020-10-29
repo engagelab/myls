@@ -111,7 +111,7 @@
           @click="previousDetail()"
         >Back</button>
         <button
-          v-if="pIndex < practices.length - 1 || practiceColumns.length > 1"
+          v-if="allActionsAnswered && (pIndex < practices.length - 1 || practiceColumns.length > 1)"
           class="btn-myls mt-4"
           @click="selectTasks()"
         >{{ confirmOrNone }}</button>
@@ -238,6 +238,11 @@ export default {
               || entry.selection.level2 === false
               || (entry.selection.level2.length && entry.selection.level2.length > 0))
         }
+      })
+    },
+    allActionsAnswered() {
+      return this.practices[this.pIndex].actions.every(entry => {
+        return typeof entry.selected === 'boolean'
       })
     },
     // Return only Practices where Actions were selected
