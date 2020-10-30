@@ -53,7 +53,6 @@
         v-model="selectedText"
         @input="valueInput"
       />
-      <span>{{ validEmail }}</span>
     </template>
     <template v-if="mode == 'quaternary'">
       <input
