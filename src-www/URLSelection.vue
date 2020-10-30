@@ -138,7 +138,7 @@ export default {
     createNewEntry(selected) {
       const selections = { selected: false }
       this.columns.forEach(
-        p => (selections[p.shortTitle] = p.type == 'binary' ? false : '')
+        p => (selections[p.shortTitle] = false)
       )
       return {
         id: `url-${Math.random()}`,

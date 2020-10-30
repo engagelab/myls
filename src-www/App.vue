@@ -54,14 +54,14 @@
         </div>
         <div class="flex flex-row py-2">
           <span class="ml-2 py-1">Email address:&nbsp;</span>
-          <AnswerInput mode="text" placeholder="user@example.com" :value="email" @input="value => email = value" />
+          <AnswerInput mode="email" placeholder="user@example.com" :value="email" @input="value => email = value" />
         </div>
         <div class="flex flex-row p-2">
           <button
             class="btn-myls"
-            :class="{ 'btn-disabled': !consented || !email }"
+            :class="{ 'btn-disabled': !consented || !validEmail }"
             @click="giveConsent()"
-            :disabled="!consented || !email"
+            :disabled="!consented || !validEmail"
           >Confirm</button>
         </div>
       </template>
@@ -111,10 +111,12 @@
           @click="previousDetail()"
         >Back</button>
         <button
-          v-if="allActionsAnswered && (pIndex < practices.length - 1 || practiceColumns.length > 1)"
+          v-if="pIndex < practices.length - 1 || practiceColumns.length > 1"
+          :class="{ 'btn-disabled': !allActionsAnswered }"
+          :disabled="!allActionsAnswered"
           class="btn-myls mt-4"
           @click="selectTasks()"
-        >{{ confirmOrNone }}</button>
+        >confirm</button>
       </template>
 
       <!-- The third template then displays details for one selected category at a time -->
@@ -137,7 +139,8 @@
           <AnswerInput class="pl-4" v-model="d.selection" :mode="d.type" :options="d.options" :conditionals="d.conditionals" />
         </div>
         <button
-          v-if="allDegmographicsAnswered"
+          :class="{ 'btn-disabled': !allDegmographicsAnswered }"
+          :disabled="!allDegmographicsAnswered"
           class="btn-myls mt-4"
           @click="selectTasks()"
         >Done</button>
@@ -180,7 +183,7 @@ import AnswerInput from './AnswerInput.vue'
 import TandC from './TandC'
 import Anon from './Anonimisation'
 const editorExtensionId = process.env.VUE_APP_EXTENSION_ID
-
+const emailRegex = new RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
 export default {
   name: 'app',
   components: {
@@ -217,6 +220,9 @@ export default {
     });
   },
   computed: {
+    validEmail() {
+      return emailRegex.test(this.email)
+    },
     detailItems() {
       let details = []
       this.practices[this.pIndex].actions.filter(d => d.selected).forEach(d => details.push(d))

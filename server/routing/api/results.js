@@ -32,7 +32,6 @@ const downloadCSV = function (results, response, mode) {
       delimiter: ',',
       columns: {
         installId: 'installId',
-        consentEmail: 'consentEmail',
         consented: 'consented',
         lottery: 'lottery'
       },
@@ -47,12 +46,27 @@ const downloadCSV = function (results, response, mode) {
     data = results.reduce((acc, r) => {
       const a =  {
         installId: r.installId,
-        consentEmail: r.consentEmail,
         consented: r.consented,
         lottery: r.lottery,
       }
       r.demographics.forEach(d => a[d.shortTitle] = getDemographic(d))
       r.practices.forEach(p => a[p.shortTitle] = getPractices(p))
+      return acc.concat(a)
+    }, [])
+  } else if (mode == 'emails') {
+    header = {
+      header: true,
+      delimiter: ',',
+      columns: {
+        installId: 'installId',
+        consentEmail: 'consentEmail'
+      }
+    }
+    data = results.reduce((acc, r) => {
+      const a =  {
+        installId: r.installId,
+        consentEmail: r.consentEmail
+      }
       return acc.concat(a)
     }, [])
   } else if (mode == 'websites') {
@@ -93,7 +107,7 @@ const downloadCSV = function (results, response, mode) {
 
         // Item key names: column titles
         name: 'Name',
-        url: 'URL',
+        search: 'Search URL',
 
         // History key names : column titles
         historyId: 'History ID',
@@ -126,7 +140,7 @@ const downloadCSV = function (results, response, mode) {
             const n = {
               installId: r.installId,
               name: i.name,
-              url: i.url,
+              search: i.search,
 
               // History key names : column titles
               historyId: h.id,
@@ -180,7 +194,7 @@ const downloadCSV = function (results, response, mode) {
 
 // Example:  api/resultfile?os=xxxxxx&mode=history    mode == [ 'installs' | 'overview' | 'history' | 'websites' ]
 router.get('/resultfile', (request, response) => {
-  const modeTypes = ['installs', 'overview', 'history', 'websites']
+  const modeTypes = ['installs', 'overview', 'history', 'websites', 'emails']
   const os = process.env.OBFUSCATION_STRING
   const mode = request.query.mode
   if (request.query.os != os || modeTypes.indexOf(mode) < 0) {

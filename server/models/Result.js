@@ -44,6 +44,7 @@ const resultSchema = new mongoose.Schema(
     consentEmail: { type: String },
     consented: { type: Boolean },
     lottery: { type: Boolean },
+    created: { type: Date, default: Date.now },
     demographics: {
       type: Array,
       default: [],

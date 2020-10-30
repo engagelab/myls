@@ -35,13 +35,25 @@
     </template>
     <template v-if="mode == 'text'">
       <input
-        class="mr-1 mb-1 checkValid w-full"
+        class="mr-1 mb-1 checkValid w-full px-1"
         :placeholder="placeholder"
         type="text"
         :id="'textString' + randomId"
         v-model="selectedText"
         @input="valueInput"
       />
+    </template>
+    <template v-if="mode == 'email'">
+      <input
+        class="mr-1 mb-1 w-full px-1 placeholder-black placeholder-opacity-25"
+        :class="[validEmail ? 'valid-email' : 'invalid-email']"
+        :placeholder="placeholder"
+        type="email"
+        :id="'textString' + randomId"
+        v-model="selectedText"
+        @input="valueInput"
+      />
+      <span>{{ validEmail }}</span>
     </template>
     <template v-if="mode == 'quaternary'">
       <input
@@ -162,6 +174,12 @@ export default {
   mounted() {
     this.checkValue()
   },
+  computed: {
+    validEmail() {
+      const regex = new RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+      return regex.test(this.selectedText)
+    },
+  },
   methods: {
     checkValue() {
       switch (this.mode) {
@@ -171,6 +189,8 @@ export default {
         case 'url':
           this.selectedUrl = this.value
           break
+        case 'email':
+          this.selectedText = this.value
         case 'text':
           this.selectedText = this.value
           break
@@ -203,8 +223,11 @@ export default {
 .inputQ {
   @apply mr-1 whitespace-no-wrap;
 }
-.checkValid :invalid {
-  border: red;
+.valid-email {
+  @apply bg-green-400 rounded-sm
+}
+.invalid-email {
+  @apply bg-red-400 rounded-sm
 }
 label {
   @apply pointer-events-none;
