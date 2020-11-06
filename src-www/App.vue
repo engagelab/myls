@@ -95,7 +95,7 @@
               <!-- If 'other' then allow entry of additional Actions -->
               <div v-for="(c, cIndex) in a.customActions" :key="c.id" class="flex flex-row items-center py-1">
                 <AnswerInput
-                  placeholder="action.."
+                  placeholder="beskrive aktivitetet.."
                   mode="text"
                   v-model="c.title"
                   class="w-full lg:w-1/2"
@@ -103,7 +103,7 @@
                 <button class="btn-myls bg-red-400" @click="removeAction(a, cIndex)">X</button>
               </div>
               <div class="flex flex-row">
-                <button v-if="a.entrytype == 'text' && a.selected" class="btn-myls mr-4 mt-4" @click="addAction(a)">+ Add Action</button>
+                <button v-if="a.entrytype == 'text' && a.selected" class="btn-myls mr-4 mt-4" @click="addAction(a)">+ Legge til Aktivitet</button>
               </div>
             </div>
 
@@ -240,11 +240,11 @@ export default {
           case 'multiChoice':
           case 'singleChoice':
           case 'text':
-            return entry.selection.length > 0
+            return entry.selection && entry.selection.length > 0
             break
           // Assumes conditional step 1 is 'single choice' and step 2 is a 'multichoice' type
           case 'conditional':
-            return entry.selection.level1
+            return entry.selection && entry.selection.level1
               && (entry.selection.level2 === true
               || entry.selection.level2 === false
               || (entry.selection.level2.length && entry.selection.level2.length > 0))
