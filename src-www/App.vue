@@ -252,8 +252,8 @@ export default {
       })
     },
     allActionsAnswered() {
-      return this.practices[this.pIndex].actions.every(entry => {
-        return typeof entry.selected === 'boolean'
+      return this.practices[this.pIndex].actions.every(action => {
+        return typeof action.selected === 'boolean' && (action.entrytype !== 'text' || (!action.selected || (action.customActions.length > 0 && action.customActions.every(a => a.title !== ''))))
       })
     },
     // Return only Practices where Actions were selected

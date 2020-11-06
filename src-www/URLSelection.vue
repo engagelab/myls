@@ -65,7 +65,7 @@
         :class="{ 'btn-disabled': !allTimeSpentSelected }"
         :disabled="!allTimeSpentSelected"
         @click="nextDetail()"
-      >{{ nextIsNone ? 'None' : 'Next'}}</button>
+      >{{ nextIsNone ? 'Ingen' : 'Neste'}}</button>
     </div>
   </div>
 </template>
@@ -152,18 +152,18 @@ export default {
     nextDetail() {
       if (this.pageIndex < this.paginatedList.length - 1) {
         this.pageIndex++
+        window.scrollTo(0, 0)
       } else {
         this.$emit('next-detail', this.paginatedList.flat())
       }
-      window.scrollTo(0, 0)
     },
     previousDetail() {
       if (this.pageIndex > 0) {
         this.pageIndex--
+        window.scrollTo(0, 0)
       } else {
         this.$emit('previous-detail', this.paginatedList.flat())
       }
-      window.scrollTo(0, 0)
     },
     removeRow(index) {
       this.paginatedList[this.pageIndex].splice(index, 1)

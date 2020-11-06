@@ -136,7 +136,7 @@
           "title": "10) Stille spørsmål til andre utviklere (f.eks. på Stack Overflow)."
         },
         {
-          "title": "11) Svare på spørsmål fra andre utviklere."
+          "title": "11) Svare på spørsmål fra andre utviklere"
         },
         {
           "title": "12) Dele og diskutere kildekoden med andre utviklere."
@@ -628,7 +628,7 @@
       "search": "developer.mozilla.org"
     },
     {
-      "name": "Hackr.io",
+      "name": "https://hackr.io/",
       "url": "https://hackr.io/",
       "search": "hackr.io"
     },
@@ -745,7 +745,7 @@
       "type": "text"
     },
     {
-      "title": "3) På hvilket universitet tar du for tiden din bachelor og hvilke emne(r) tar du dette semesteret??",
+      "title": "3) På hvilket universitet tar du for tiden din bachelor?",
       "shortTitle": "University",
       "type": "conditional",
       "options": [
