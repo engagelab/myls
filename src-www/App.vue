@@ -2,83 +2,87 @@
   <div>
     <div class="flex flex-row bg-gray-300 p-2">
       <img src="./assets/icons/icon_32.png">
-      <h1 class="font-bold text-lg w-full pl-4">Learning Practices Survey</h1>
+      <h1 class="font-bold text-lg w-full pl-4">Undersøkelse om læringspraksis</h1>
     </div>
 
     <template v-if="mode == ''" >
       <div class="max-w-4xl">
-        <p class="m-4">Welcome to the Online Learning Practices Survey!</p>
-        <p class="m-4">This survey is about your use of resources from the Internet when you learn software development.
-          It asks you about how you solve problems and learn new skills when you work on a software development task,
-          and how you get information about professional software development and manage your future career as a software developer.
-          The survey collects data from your browsing history, <u>only</u> of the websites <u>you report to use</u> during the survey for those activities,
-          and <u>only the frequency</u> with which you access these sites in time</p>
-        <p class="m-4">The data collected from you will be anonymized and it will be stored safely, according to the regulations for data protection in Norway and Europe (GDPR).
-          You will not be recognized by others or your teachers.</p>
-          <p class="m-4"><span class="text-blue-600 cursor-pointer" @click="mode = 'anon'">Here</span> you can learn more about how we anonymize your data and about the data we collect from your browser history
-           [link to separate page with a sample of the table of raw data].</p>
-        <p class="m-4">This study is part of a PhD project at the Department of Education at UiO. The project studies how computer and software engineering students use the Internet to learn programming.
-          If you have any questions and or want to know more, contact me at a.a.a.moya@iped.uio.no.</p>
-        <p class="m-4">Thank you very much for your participation!</p>
+        <p class="m-4 font-bold">Velkommen til  Online Learning Practices Survey!</p>
+        <p class="m-4">Denne undersøkelsen handler om ditt bruk av ressurser fra Internett når du lærer programvareutvikling.
+          Den spør deg om hvordan du: løser problemer og lærer nye ferdigheter når du jobber med en programvareutviklingsoppgave,
+          får informasjon om profesjonell programvareutvikling og administrerer din fremtidige karriere som programvareutvikler.
+          Undersøkelsen samler inn data fra nettleserloggen din, <u>men kun</u> på nettstedene som <u>du rapporterer å ha brukt</u> for aktiviteter du angir,
+          og <u>kun hvor ofte</u> du får tilgang til disse nettstedene med i tide.</p>
+        <p class="m-4">Dataene som samles inn fra deg vil bli anonymisert og lagres trygt, i henhold til forskriften om databeskyttelse i Norge og Europa (GDPR).
+          Du vil ikke bli gjenkjent av andre, eller av lærerne dine.</p>
+          <p class="m-4">
+            <span class="text-blue-600 cursor-pointer" @click="mode = 'anon'">Her</span>
+            kan du lære mer om hvordan vi anonymiserer dataene dine og om dataene vi samler inn fra nettleserloggen din.</p>
+        <p class="m-4">Denne studien er en del av et PhD-prosjekt ved Institutt for pedagogikk ved UiO.
+          I dette prosjektet forsker jeg på hvordan data- og programvareingeniørstudenter bruker Internett til å lære programmering.
+          Hvis du har spørsmål og eller ønsker å vite mer om prosjektet, kontakt meg på a.a.a.moya@iped.uio.no.</p>
+        <p class="m-4">Tusen takk for din deltakelse!</p>
         <p class="m-4">Andres Araos</p>
         <div class="flex flex-row m-4">
-          <p>I would like to participate in the lottery to win a gift card of 500 kr. from Elkjøp </p>
+          <p>Jeg ønsker å delta i lotteriet der jeg kan vinne et gavekort på 500 kroner fra Elkjøp</p>
           <AnswerInput mode="binary" :value="lottery" @input="value => lottery = value" />
         </div>
-        <button class="btn-myls m-4" @click="start()">Begin</button>
+        <button class="btn-myls m-4" @click="start()">Begynne</button>
       </div>
     </template>
 
     <div v-if="!submitStatus" class="m-4 max-w-5xl">
       <!-- The first template requests consent before proceeding-->
       <template v-if="mode == 'consent'">
-        <h1 class="font-bold text-lg">Informed consent</h1>
+        <h1 class="font-bold text-lg">Informert samtykke</h1>
         <p
           class="mt-4"
-        >Thank you for agreeing to participate in this survey study!</p>
+        >Takk for at du deltar i denne studien!</p>
         <p
           class="mt-4"
-        >Please, read about the project and how it collects, stores and processes data in the Information Letter that you can find <span class="text-blue-600 cursor-pointer" @click="mode = 'tandc'">here</span>.</p>
+        >Vennligst les om prosjektet og hvordan vi samler inn, lagrer og behandler data, i informasjonsbrevet som du finner <span class="text-blue-600 cursor-pointer" @click="mode = 'tandc'">her</span>.</p>
 
         <p class="mt-4">
-          I have received and understood information about the project <i>exploring undergraduate students’ learning with non-curricular resources and digital tools</i> and have been given the opportunity to ask questions. I give consent:
+          Jeg har mottatt og forstått informasjonen om prosjektet som <i>utforsker studenters læring med nettbaserte ressurser og digitale verktøy.</i>
+          Jeg har fått mulighet til å stille spørsmål. Jeg gir samtykke til:
           <ul class="list-disc list-inside m-2">
-            <li>To participate in a survey</li>
-            <li>To provide access to the web browsing history of the websites I declare to use during the survey</li>
-            <li>To participate in an interview</li>
+            <li>å delta i en undersøkelse</li>
+            <li>å gi tilgang til nettleserloggen til nettstedene jeg erklærer å bruke under undersøkelsen</li>
+            <li>å delta i et intervju</li>
           </ul>
         </p>
-        <div class="flex flex-row">
-          <p class="mt-4">I give consent for my personal data to be processed until the end date of the project, approx. January 2021.</p>
+        <div class="flex flex-row mt-4">
+          <p>Jeg gir samtykke til at personopplysningene mine behandles frem til prosjektets sluttdato, ca. januar 2022.</p>
           <AnswerInput mode="binary" :value="consented" @input="value => consented = value" />
         </div>
         <div class="flex flex-row py-2">
-          <span class="ml-2 py-1">Email address:&nbsp;</span>
+          <span class="py-1">E-postadresse:&nbsp;</span>
           <AnswerInput mode="email" placeholder="user@example.com" :value="email" @input="value => email = value" />
         </div>
-        <div class="flex flex-row p-2">
+        <div class="flex flex-row">
           <button
             class="btn-myls"
             :class="{ 'btn-disabled': !consented || !validEmail }"
             @click="giveConsent()"
             :disabled="!consented || !validEmail"
-          >Confirm</button>
+          >Bekreft</button>
         </div>
       </template>
 
       <template v-if="mode == 'anon'">
         <Anon></Anon>
-        <button class="btn-myls mt-4 ml-2" @click="mode = ''">Back</button>
+        <button class="btn-myls mt-4 ml-2" @click="mode = ''">Tilbake</button>
       </template>
 
       <template v-if="mode == 'tandc'">
         <TandC></TandC>
-        <button class="btn-myls mt-4 ml-2" @click="mode = 'consent'">Back</button>
+        <button class="btn-myls mt-4 ml-2" @click="mode = 'consent'">Tilbake</button>
       </template>
 
       <!-- The second template displays general selection of category -->
       <template v-if="mode == 'activities'">
-        <h1 class="font-bold">Part I: Practices and actions</h1>
+        <h1 class="font-bold">Del I: Aktiviteter</h1>
+        <p>Obs: Velg alle aktivitetene du utfører, selv om de gjentas under forskjellige seksjoner.</p>
         <div class="p-2">
           <h2 class="font-bold">{{practices[pIndex].title}}</h2>
           <p class="mb-2">{{practices[pIndex].description}}</p>
@@ -109,19 +113,18 @@
           class="btn-myls mt-4 mr-4"
           v-if="pIndex > 0"
           @click="previousDetail()"
-        >Back</button>
+        >Tilbake</button>
         <button
           v-if="pIndex < practices.length - 1 || practiceColumns.length > 1"
           :class="{ 'btn-disabled': !allActionsAnswered }"
           :disabled="!allActionsAnswered"
           class="btn-myls mt-4"
           @click="selectTasks()"
-        >confirm</button>
+        >Bekreft</button>
       </template>
 
       <!-- The third template then displays details for one selected category at a time -->
       <template v-if="mode == 'websites'">
-        <p class="pt-2 underline">Resources</p>
         <URLSelection
           :urls="urls"
           :columns="practiceColumns"
@@ -133,7 +136,7 @@
 
       <!-- The fourth template allows selection of demographics -->
       <template v-if="mode == 'demographics'">
-        <p class="pt-2 underline">Demographics</p>
+        <h1 class="font-bold">Del III: Bakgrunn</h1>
         <div v-for="d in demographics" :key="d.id" class="flex flex-col my-2 justify-between lg:justify-start">
           <p class="pr-2">{{ d.title }}</p>
           <AnswerInput class="pl-4" v-model="d.selection" :mode="d.type" :options="d.options" :conditionals="d.conditionals" />
@@ -143,35 +146,35 @@
           :disabled="!allDegmographicsAnswered"
           class="btn-myls mt-4"
           @click="selectTasks()"
-        >Done</button>
+        >Ferdig</button>
       </template>
 
       <!-- Final template confirms submission of results -->
       <template v-if="mode == 'submit'">
-        <p>We will now scan your browser history to count URLs matching only those you selected in the survey.</p>
-        <p class="pt-2">By clicking 'Submit' you agree to share both your survey answers and selective browser history for the selected URLs with the University of Oslo MyLS Project:
-          <i>“Learning with the internet”</i>.
+        <p>Vi skanner nå nettleserloggen din for å telle nettadresser som bare samsvarer med de du valgte i undersøkelsen.</p>
+        <p class="pt-2">Ved å klikke 'Send' samtykker du i å dele både undersøkelsessvar og selektiv nettleserhistorikk for de valgte URL-ene med MyLS-prosjektet ved Universitetet i Oslo:
+          <i>“Learning with the Internet”</i>.
         </p>
-        <p class="pt-2">The data collected from you will be anonymized and it will be stored safely, according to the regulations for data protection in Norway and Europe (GDPR).
-          You will not be recognized by others or your teachers.</p>
-        <button class="btn-myls mt-4" @click="submitChoices()">Submit</button>
+        <p class="pt-2">Dataene som samles inn fra deg vil bli anonymisert, og de vil bli lagret trygt, i henhold til regelverket for databeskyttelse i Norge og Europa (GDPR).
+          Du vil ikke bli gjenkjent av andre, heller ikke av lærerne dine.</p>
+        <button class="btn-myls mt-4" @click="submitChoices()">Send</button>
       </template>
 
       <!-- Error template -->
       <template v-if="mode == 'error'">
         <p>{{errorMessage}}</p>
-        <p>Ensure you are running Chrome web browser and have the Extension installed.</p>
-        <button class="btn-myls mt-4" @click="getExtension()">Get the Chrome extension...</button>
+        <p>Du må har Chrome nettleser og 'Learning Practices Survey' Extension installert.</p>
+        <button class="btn-myls mt-4" @click="getExtension()">Få Chrome extension...</button>
       </template>
     </div>
     <div v-else class="p-2">
-      <p>Thank you for your submission!</p>
+      <p>Takk for ditt bidrag!</p>
       <div v-if="id">
-        <p>If you wish to uninstall this extension, click here:</p>
-        <button class="btn-myls m-4" @click="uninstall()">Uninstall Chrome extension</button>
+        <p>Vil du avinstallere denne extension, trykk her:</p>
+        <button class="btn-myls m-4" @click="uninstall()">Avinstallere Chrome extension</button>
       </div>
       <div v-else>
-        <p>The extension is no longer installed</p>
+        <p>Extension er ikke installert</p>
       </div>
     </div>
   </div>
@@ -235,6 +238,8 @@ export default {
             return entry.selection === true || entry.selection === false
             break
           case 'multiChoice':
+          case 'singleChoice':
+          case 'text':
             return entry.selection.length > 0
             break
           // Assumes conditional step 1 is 'single choice' and step 2 is a 'multichoice' type
@@ -312,7 +317,7 @@ export default {
                   }
                 )
               }
-              this.mode = 'demographics'
+              this.mode = 'consent'
               this.getData()
             }
           }

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1 class="font-bold">Part II: Websites</h1>
-    <!--h1 class="font-bold text-2xl mt-4">{{ title }}</h1-->
+    <h1 class="font-bold">Del II: Nettstedsbruk</h1>
+    <p>Blant de oppførte nettsteder, velg alle nettsteder du bruker når du utfører aktiviteter i Del 1</p>
     <p
       v-if="paginatedList.length > 1"
       class="mb-4"
-    >{{ `Page ${pageIndex + 1} of ${paginatedList.length}`}}</p>
+    >{{ `Side ${pageIndex + 1} of ${paginatedList.length}`}}</p>
     <div class="flex flex-row content-start justify-between">
       <table class="table-fixed">
         <thead>
@@ -57,7 +57,7 @@
         </tbody>
       </table>
     </div>
-    <button class="btn-myls mr-4 mt-4" v-if="pageIndex === paginatedList.length - 1" @click="addRow()">+ Add URL</button>
+    <button class="btn-myls mr-4 mt-4" v-if="pageIndex === paginatedList.length - 1" @click="addRow()">+ Legge til URL</button>
     <div class="flex flex-row mt-8">
       <button class="btn-myls mr-4" @click="previousDetail()">Back</button>
       <button

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row items-center ml-2 py-1">
+  <div class="flex flex-row items-center ml-2">
     <template v-if="mode == 'binary'">
       <input
         class="mr-1 mb-1"
@@ -9,7 +9,7 @@
         v-model="selectedBoolean"
         @change="valueInput"
       />
-      <label class="mr-2" for="yes">Yes</label>
+      <label class="mr-2" for="yes">Ja</label>
       <input
         class="mr-1 mb-1"
         type="radio"
@@ -18,14 +18,14 @@
         v-model="selectedBoolean"
         @change="valueInput"
       />
-      <label class="mr-1" for="no">No</label>
+      <label class="mr-1" for="no">Nei</label>
     </template>
     <template v-if="mode == 'url'">
       <input
         class="mr-1 mb-1"
         type="url"
         id="urlString"
-        placeholder="https://example.com"
+        placeholder="https://eksempel.com"
         pattern="https://.*"
         size="30"
         required
