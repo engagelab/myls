@@ -35,7 +35,7 @@
     </template>
     <template v-if="mode == 'text'">
       <input
-        class="mr-1 mb-1 checkValid w-full px-1"
+        class="mr-1 mb-1 checkValid w-full px-1 border-b border-gray-300"
         :placeholder="placeholder"
         type="text"
         :id="'textString' + randomId"
@@ -101,6 +101,21 @@
             :id="`input-${o.id}`"
             :value="o.title"
             v-model="selectedMultiChoice"
+            @change="valueInput"
+          />
+          <label class="mr-2" :for="`input-${o.id}`">{{ o.title }}</label>
+        </div>
+      </div>
+    </template>
+    <template v-if="mode == 'singleChoice'">
+      <div class="flex flex-col">
+        <div v-for="(o) in options" :key="o.id">
+          <input
+            class="mr-1 mb-1"
+            type="radio"
+            :id="`input-${o.id}`"
+            :value="o.title"
+            v-model="selectedSingleChoice"
             @change="valueInput"
           />
           <label class="mr-2" :for="`input-${o.id}`">{{ o.title }}</label>

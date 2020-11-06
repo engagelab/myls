@@ -312,7 +312,7 @@ export default {
                   }
                 )
               }
-              this.mode = 'consent'
+              this.mode = 'demographics'
               this.getData()
             }
           }
