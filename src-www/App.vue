@@ -226,11 +226,6 @@ export default {
     validEmail() {
       return emailRegex.test(this.email)
     },
-    detailItems() {
-      let details = []
-      this.practices[this.pIndex].actions.filter(d => d.selected).forEach(d => details.push(d))
-      return details
-    },
     allDegmographicsAnswered() {
       return this.demographics.every(entry => {
         switch (entry.type) {
@@ -261,9 +256,6 @@ export default {
       const pc = this.practices.filter(p => p.actions.some(a => a.selected))
       return [{ shortTitle: 'URL' }, ...pc ]
     },
-    confirmOrNone() {
-      return this.detailItems.length < 1 ? 'None' : 'Confirm'
-    }
   },
   methods: {
     createNewEntry(selected) {
@@ -290,40 +282,44 @@ export default {
         this.errorMessage = 'Chrome Extension not found'
         this.mode = 'error'
       }
-
-      try {
-        chrome.runtime.sendMessage(
-          editorExtensionId,
-          { type: 'HELLO' },
-          response => {
-            if (!response || !response.success) {
-              messageError()
-            } else {
-              if (!this.id) {
-                const request = {
-                  data: {
-                    mode: 'installed',
-                  },
-                  type: 'INSTALLSTATUS',
-                }
-                chrome.runtime.sendMessage(
-                  editorExtensionId,
-                  request,
-                  response => {
-                    if (response.success) {
-                      window.localStorage.setItem('id', response.data.id)
-                      this.id = response.data.id
-                    }
+      if (chrome) {
+        try {
+          chrome.runtime.sendMessage(
+            editorExtensionId,
+            { type: 'HELLO' },
+            response => {
+              if (!response || !response.success) {
+                messageError()
+              } else {
+                if (!this.id) {
+                  const request = {
+                    data: {
+                      mode: 'installed',
+                    },
+                    type: 'INSTALLSTATUS',
                   }
-                )
+                  chrome.runtime.sendMessage(
+                    editorExtensionId,
+                    request,
+                    response => {
+                      if (response.success) {
+                        window.localStorage.setItem('id', response.data.id)
+                        this.id = response.data.id
+                      }
+                    }
+                  )
+                }
+                this.mode = 'consent'
+                this.getData()
               }
-              this.mode = 'consent'
-              this.getData()
             }
-          }
-        )
-      } catch (error) {
-        messageError()
+          )
+        } catch (error) {
+          messageError()
+        }
+      } else {
+        this.errorMessage = 'Chrome Extension not found'
+        this.mode = 'error'
       }
     },
     uninstall() {
@@ -508,9 +504,7 @@ export default {
     },
     nextDetail(updatedList, detail) {
       this.urls = updatedList
-      if (this.detailIndex < this.detailItems.length - 1) {
-        this.detailIndex++
-      } else if (this.pIndex < this.practices.length - 1) {
+      if (this.pIndex < this.practices.length - 1) {
         this.detailIndex = 0
         this.pIndex++
         this.mode = 'activities'
