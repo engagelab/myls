@@ -2,7 +2,7 @@
   <div>
     <h1>Informert samtykke</h1>
     <h1>Prosjekttittel: Læring med internett. En studie om studentenes læring med nettbaserte læringsressurser og digitale verktøy</h1>
-    <p>Takk for at du deltar i prosjektet, 'Læring med internett!</p>
+    <p>Takk for at du deltar i prosjektet 'Læring med internett’.</p>
 
     <h2>Formålet med prosjektet</h2>
     <p>Dette prosjektets mål er å forstå hvordan spesialiserte,
@@ -101,7 +101,7 @@
     <h2>Hvor kan jeg finne ut mer?</h2>
     <p>Hvis du har spørsmål om prosjektet, eller ønsker å vite mer om dine rettigheter, kontakt:</p>
     <ul>
-      <li>Universitetet i Oslo via Andrés Araos, via e-post: a.a.a.moya@iped.uio.no</li>
+      <li>Universitetet i Oslo via Andrés Araos, via e-post: a.a.a.moya@iped.uio.no, a.a.a.moya@iped.uio.no eller veileder Crina Damsa, via e-post: crina.damsa@iped.uio.no</li>
       <li>Vår personvernombud: Maren Magnus Voll, via e-post: personvernombud@uio.no</li>
       <li>NSD – Norsk Senter for forskningsdata AS, via e-post: (personverntjenester@nsd.no) eller på telefon: +47 55 58 21 17.</li>
     </ul>

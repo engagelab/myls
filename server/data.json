@@ -1,7 +1,7 @@
 {
   "practices": [
     {
-      "title": "I) Aktiviteter til Problemløsning",
+      "title": "Seksjon I: Aktiviteter til Problemløsning",
       "shortTitle": "Problemløsning",
       "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett når du  trenger å løse problemer mens du arbeider med programmeringsoppgaver:",
       "actions": [
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "title": "II) Aktiviteter for å holde deg oppdatert",
+      "title": "Seksjon II: Aktiviteter for å holde deg oppdatert",
       "shortTitle": "Holde deg oppdatert",
       "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett når du vil holde deg oppdatert med de nyeste trendene innen programvareindustrien:",
       "actions": [
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "title": "III) Aktiviteter til å lære nye ting",
+      "title": "Seksjon III: Aktiviteter til å lære nye ting",
       "shortTitle": "Lære nye ting ",
       "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett når du vil lære noe nytt om utvikling av programvare (nye programmeringsspråk, metoder, bruke nye software, problemløsning ferdigheter):",
       "actions": [
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "title": "IV) Aktiviteter til karrierehåndtering",
+      "title": "Seksjon IV: Aktiviteter til karrierehåndtering",
       "shortTitle": "Karrierehåndtering",
       "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett når du vil administrere din karriere som data- og programvareingeniør:",
       "actions": [
@@ -428,11 +428,6 @@
       "search": "www.reddit.com/r/AskProgramming"
     },
     {
-      "name": "Reddit Python Education",
-      "url": "https://www.reddit.com/r/learnpython",
-      "search": "www.reddit.com/r/learnpython"
-    },
-    {
       "name": "Towards Data Science",
       "url": "www.towardsdatascience.com",
       "search": "www.towardsdatascience.com"
@@ -538,11 +533,6 @@
       "search": "www.sololearn.com"
     },
     {
-      "name": "MOOC.fi",
-      "url": "https://www.mooc.fi",
-      "search": "www.mooc.fi"
-    },
-    {
       "name": "The Software Guild",
       "url": "https://www.thesoftwareguild.com",
       "search": "www.thesoftwareguild.com"
@@ -588,39 +578,9 @@
       "search": "nodeschool.io"
     },
     {
-      "name": "Learn SQL",
-      "url": "https://www.learnsqlonline.org/",
-      "search": "www.learnsqlonline.org"
-    },
-    {
-      "name": "Learn Python",
-      "url": "https://www.learnpython.org/",
-      "search": "www.learnpython.org"
-    },
-    {
-      "name": "Learn Java",
-      "url": "https://www.learnjavaonline.org/",
-      "search": "www.learnjavaonline.org"
-    },
-    {
-      "name": "Learn JS",
-      "url": "https://www.learn-js.org/",
-      "search": "www.learn-js.org"
-    },
-    {
-      "name": "Oracle Jave Tutorial",
+      "name": "Oracle JAVA Tutorial",
       "url": "https://docs.oracle.com/javase/tutorial/",
       "search": "docs.oracle.com/javase/tutorial"
-    },
-    {
-      "name": "Learn Git Branching",
-      "url": "https://learngitbranching.js.org/",
-      "search": "learngitbranching.js.org"
-    },
-    {
-      "name": "LearnCPP",
-      "url": "https://www.learncpp.com/",
-      "search": "www.learncpp.com"
     },
     {
       "name": "Mozilla Developer Network MDN",

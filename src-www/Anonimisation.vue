@@ -4,7 +4,7 @@
     <p class="m-4">I det øyeblikket du sender inn undersøkelsen, lagres og analyseres alle svarene dine og dataene fra nettleserloggen din ved hjelp av en tilfeldig generert ID-kode.
       Jeg vil kun få tilgang til din personlige e-post når analysen av disse dataene er over, for å kunne invitere deg til et gruppeintervju på Zoom.
       Resultatene av denne analysen vil ikke avsløre individuelle svar. I bildet kan du se et eksempel på hvordan nettleserloggdataene samles inn,
-      og hvordan den krypterte kodingen ser ut.
+      og hvordan den tilfeldig generert kodingen ser ut.
     </p>
     <div class="flex flex-row justify-center">
       <img src="./assets/anonTable.png" />

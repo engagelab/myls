@@ -7,24 +7,26 @@
 
     <template v-if="mode == ''" >
       <div class="max-w-4xl">
-        <p class="m-4 font-bold">Velkommen til  Online Learning Practices Survey!</p>
-        <p class="m-4">Denne undersøkelsen handler om ditt bruk av ressurser fra Internett når du lærer programvareutvikling.
-          Den spør deg om hvordan du: løser problemer og lærer nye ferdigheter når du jobber med en programvareutviklingsoppgave,
-          får informasjon om profesjonell programvareutvikling og administrerer din fremtidige karriere som programvareutvikler.
-          Undersøkelsen samler inn data fra nettleserloggen din, <u>men kun</u> på nettstedene som <u>du rapporterer å ha brukt</u> for aktiviteter du angir,
-          og <u>kun hvor ofte</u> du får tilgang til disse nettstedene med i tide.</p>
-        <p class="m-4">Dataene som samles inn fra deg vil bli anonymisert og lagres trygt, i henhold til forskriften om databeskyttelse i Norge og Europa (GDPR).
-          Du vil ikke bli gjenkjent av andre, eller av lærerne dine.</p>
+        <p class="m-4 font-bold">Velkommen til Online Learning Practices Survey!</p>
+        <p class="m-4">Denne undersøkelsen handler om studenters bruk av internett når man lærer programvareutvikling.
+          Den skal finne ut av hvordan studenter løser problemer og lærer nye ferdigheter når de jobber med en programvareutviklingsoppgave,
+          får informasjon om profesjonell programvareutvikling og administrerer sin fremtidige karriere som programvareutviklere.
+        </p>
+        <p>
+          Undersøkelsen vil samler inn data fra din nettleserloggen, <u>men kun</u> på nettstedene som <u>du rapporterer å ha brukt</u> for aktiviteter du angir,
+          og <u>kun hvor ofte og lenge</u> du får tilgang til disse nettstedene.</p>
+        <p class="m-4">Dataene som samles inn om deg vil bli anonymisert og lagres trygt, i henhold til lovgivningen om personvern i Norge og Europa (GDPR).
+          Du vil ikke bli gjenkjent av andre eller av lærerne dine.</p>
           <p class="m-4">
             <span class="text-blue-600 cursor-pointer" @click="mode = 'anon'">Her</span>
-            kan du lære mer om hvordan vi anonymiserer dataene dine og om dataene vi samler inn fra nettleserloggen din.</p>
+            kan du lese mer om hvordan vi anonymiserer dataene dine og om dataene vi samler inn fra nettleserloggen din..</p>
         <p class="m-4">Denne studien er en del av et PhD-prosjekt ved Institutt for pedagogikk ved UiO.
-          I dette prosjektet forsker jeg på hvordan data- og programvareingeniørstudenter bruker Internett til å lære programmering.
-          Hvis du har spørsmål og eller ønsker å vite mer om prosjektet, kontakt meg på a.a.a.moya@iped.uio.no.</p>
+          I dette prosjektet forsker jeg på hvordan studenter innen data- og programvare bruker internett til å lære programmering.
+          Hvis du har spørsmål eller ønsker å vite mer om prosjektet, kontakt meg på a.a.a.moya@iped.uio.no.</p>
         <p class="m-4">Tusen takk for din deltakelse!</p>
         <p class="m-4">Andres Araos</p>
         <div class="flex flex-row m-4">
-          <p>Jeg ønsker å delta i lotteriet der jeg kan vinne et gavekort på 500 kroner fra Elkjøp</p>
+          <p>Jeg ønsker å delta i lotteri for å vinne et gavekort på 500 kroner fra Elkjøp</p>
           <AnswerInput mode="binary" :value="lottery" @input="value => lottery = value" />
         </div>
         <button class="btn-myls m-4" @click="start()">Begynne</button>

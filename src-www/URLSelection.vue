@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1 class="font-bold">Del II: Nettstedsbruk</h1>
-    <p>Blant de oppførte nettsteder, velg alle nettsteder du bruker når du utfører aktiviteter i Del 1</p>
+    <p>Kryss av for ‘ja’ for alle oppførte nettstedene du bruker/har brukt når du har utført aktiviteter i del 1.<br/>
+      Obs. Nettstedene står listet opp over syv sider, vennligst gå gjennom alle sidene.
+    </p>
     <p
       v-if="paginatedList.length > 1"
       class="mb-4"
@@ -95,7 +97,7 @@ export default {
     return {
       paginatedList: [], // Array of arrays - each internal array is a page of URLs
       pageIndex: 0,
-      pageLength: 20,
+      pageLength: 13,
     }
   },
   mounted() {
