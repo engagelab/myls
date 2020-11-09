@@ -12,7 +12,7 @@
           Den skal finne ut av hvordan studenter løser problemer og lærer nye ferdigheter når de jobber med en programvareutviklingsoppgave,
           får informasjon om profesjonell programvareutvikling og administrerer sin fremtidige karriere som programvareutviklere.
         </p>
-        <p>
+        <p class="m-4">
           Undersøkelsen vil samler inn data fra din nettleserloggen, <u>men kun</u> på nettstedene som <u>du rapporterer å ha brukt</u> for aktiviteter du angir,
           og <u>kun hvor ofte og lenge</u> du får tilgang til disse nettstedene.</p>
         <p class="m-4">Dataene som samles inn om deg vil bli anonymisert og lagres trygt, i henhold til lovgivningen om personvern i Norge og Europa (GDPR).
