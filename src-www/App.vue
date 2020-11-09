@@ -8,9 +8,8 @@
     <template v-if="mode == ''" >
       <div class="max-w-4xl">
         <p class="m-4 font-bold">Velkommen til Online Learning Practices Survey!</p>
-        <p class="m-4">Denne undersøkelsen handler om studenters bruk av internett når man lærer programvareutvikling.
-          Den skal finne ut av hvordan studenter løser problemer og lærer nye ferdigheter når de jobber med en programvareutviklingsoppgave,
-          får informasjon om profesjonell programvareutvikling og administrerer sin fremtidige karriere som programvareutviklere.
+        <p class="m-4">Denne undersøkelsen handler om hvordan studenter innen data- og programvare bruker internett til å lære programmering.
+          Studien er en del av et PhD-prosjekt ved Institutt for pedagogikk ved UiO.
         </p>
         <p class="m-4">
           Undersøkelsen vil samler inn data fra din nettleserloggen, <u>men kun</u> på nettstedene som <u>du rapporterer å ha brukt</u> for aktiviteter du angir,
@@ -20,9 +19,7 @@
           <p class="m-4">
             <span class="text-blue-600 cursor-pointer" @click="mode = 'anon'">Her</span>
             kan du lese mer om hvordan vi anonymiserer dataene dine og om dataene vi samler inn fra nettleserloggen din..</p>
-        <p class="m-4">Denne studien er en del av et PhD-prosjekt ved Institutt for pedagogikk ved UiO.
-          I dette prosjektet forsker jeg på hvordan studenter innen data- og programvare bruker internett til å lære programmering.
-          Hvis du har spørsmål eller ønsker å vite mer om prosjektet, kontakt meg på a.a.a.moya@iped.uio.no.</p>
+        <p class="m-4">Hvis du har spørsmål eller ønsker å vite mer om prosjektet, kontakt meg på a.a.a.moya@iped.uio.no.</p>
         <p class="m-4">Tusen takk for din deltakelse!</p>
         <p class="m-4">Andres Araos</p>
         <div class="flex flex-row m-4">
