@@ -15,8 +15,10 @@ const downloadCSV = function (results, response, mode) {
       return d.selection ? 'true' : 'false'
     } else if (Array.isArray(d.selection)) {
       return d.selection.reduce((acc, i) => `${acc}${DELIMITER}${i}`)
-    } else {
+    } else if (typeof d.selection === "object") {
       return d.selection.level1 + DELIMITER + d.selection.level2.reduce((acc, i) => `${acc}${DELIMITER}${i}`, [])
+    } else {
+      return d.selection
     }
   }
 
