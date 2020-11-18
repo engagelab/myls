@@ -1,7 +1,21 @@
 {
+  "name": "myls",
+  "version": "1.0.6",
+  "description": "vue-chrome-extension-boilerplate",
   "author": {
     "email": "richarne@uv.uio.no",
     "name": "Richard Nesnass"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js,.vue --fix ./src-ext",
+    "build:ext": "npm run pack && npm run remove-evals && npm run zip",
+    "build:www": "vue-cli-service build",
+    "dev:ext": "webpack --mode=development --env.NODE_ENV=development --progress --hide-modules --hot --watch",
+    "dev:www": "vue-cli-service serve --mode development",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
+    "pack": "webpack --mode=production --env.NODE_ENV=production --progress --hide-modules",
+    "remove-evals": "node scripts/remove-evals.js",
+    "zip": "node scripts/build-zip.js"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
@@ -22,12 +36,13 @@
     "path": "^0.12.7",
     "postcss-loader": "^3.0.0",
     "vue": "^2.6.11",
+    "vue-i18n": "^8.22.1",
     "webextension-polyfill": "^0.6.0"
   },
-  "description": "vue-chrome-extension-boilerplate",
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
+    "@intlify/vue-i18n-loader": "^1.0.0",
     "@vue/cli-plugin-babel": "~4.3.0",
     "@vue/cli-plugin-eslint": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
@@ -56,6 +71,7 @@
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "tailwindcss": "^1.9.6",
+    "vue-cli-plugin-i18n": "~1.0.1",
     "vue-loader": "^15.9.1",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11",
@@ -64,20 +80,8 @@
     "webpack-extension-reloader": "^1.1.4"
   },
   "license": "MIT",
-  "name": "myls",
   "repository": {
     "type": "git",
     "url": "git+https://bitbucket.usit.uio.no/scm/engagelab/myls.git"
-  },
-  "scripts": {
-    "build:ext": "npm run pack && npm run remove-evals && npm run zip",
-    "dev:ext": "webpack --mode=development --env.NODE_ENV=development --progress --hide-modules --hot --watch",
-    "dev:www": "vue-cli-service serve --mode development",
-    "build:www": "vue-cli-service build",
-    "lint": "eslint --ext .js,.vue --fix ./src-ext",
-    "pack": "webpack --mode=production --env.NODE_ENV=production --progress --hide-modules",
-    "remove-evals": "node scripts/remove-evals.js",
-    "zip": "node scripts/build-zip.js"
-  },
-  "version": "1.0.6"
+  }
 }

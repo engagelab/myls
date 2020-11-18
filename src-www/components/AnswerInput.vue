@@ -9,7 +9,7 @@
         v-model="selectedBoolean"
         @change="valueInput"
       />
-      <label class="mr-2" for="yes">Ja</label>
+      <label class="mr-2" for="yes">{{ $t('yes') }}</label>
       <input
         class="mr-1 mb-1"
         type="radio"
@@ -18,7 +18,7 @@
         v-model="selectedBoolean"
         @change="valueInput"
       />
-      <label class="mr-1" for="no">Nei</label>
+      <label class="mr-1" for="no">{{ $t('no') }}</label>
     </template>
     <template v-if="mode == 'url'">
       <input
@@ -140,6 +140,19 @@
     </template>
   </div>
 </template>
+
+<i18n>
+{
+  "en": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "no": {
+    "yes": "Ja",
+    "no": "Nei"
+  }
+}
+</i18n>
 
 <script>
 export default {

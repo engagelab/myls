@@ -10,9 +10,11 @@ module.exports = {
   publicPath: process.env.NODE_ENV == 'production' ? '/myls/' : '/',
   outputDir: './www',
   assetsDir: 'assets',
+
   configureWebpack: config => {
     config.entry = './src-www/main.js'
   },
+
   chainWebpack: config => {
     if (process.env.NODE_ENV === 'production') {
       config.plugin('html').tap(args => {
@@ -23,6 +25,7 @@ module.exports = {
       })
     }
   },
+
   devServer: {
     https: useSSL
       ? {
@@ -48,6 +51,15 @@ module.exports = {
         target: `${protocol}://${host}:${port}`,
         changeOrigin: true
       }
+    }
+  },
+
+  pluginOptions: {
+    i18n: {
+      locale: 'no',
+      fallbackLocale: 'en',
+      localeDir: 'locales',
+      enableInSFC: true
     }
   }
 }

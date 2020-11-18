@@ -6,8 +6,11 @@ const router = require('express').Router()
 const utilities = require('../utilities')
 const Result = require('../../models/Result')
 const Installed = require('../../models/Installed')
-const dataFile = require('../../data.json')
 const DELIMITER = '|'
+const dataFiles = {
+  en: require('../../data_en.json'),
+  no: require('../../data_no.json')
+}
 
 const downloadCSV = function (results, response, mode) {
   const getDemographic = (d) => {
@@ -43,8 +46,8 @@ const downloadCSV = function (results, response, mode) {
         }
       }
     }
-    dataFile.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
-    dataFile.demographics.forEach(d => header.columns[d.shortTitle] = d.shortTitle)
+    dataFiles.en.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
+    dataFile.en.demographics.forEach(d => header.columns[d.shortTitle] = d.shortTitle)
     data = results.reduce((acc, r) => {
       const a =  {
         installId: r.installId,
@@ -87,7 +90,7 @@ const downloadCSV = function (results, response, mode) {
         }
       }
     }
-    dataFile.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
+    dataFiles.en.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
     data = results.reduce((acc, r) => {
       const a = r.items.map(i => {
         return {
@@ -245,7 +248,7 @@ router.post('/result', (request, response) => {
 })
 
 router.get('/data', (request, response) => {
-  utilities.successResponse(dataFile, response)
+  utilities.successResponse(dataFiles, response)
 })
 
 module.exports = router

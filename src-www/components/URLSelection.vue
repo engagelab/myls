@@ -1,13 +1,12 @@
 <template>
   <div>
-    <h1 class="font-bold">Del II: Nettstedsbruk</h1>
-    <p>Kryss av for ‘ja’ for alle oppførte nettstedene du bruker/har brukt når du har utført aktiviteter i del 1.<br/>
-      Obs. Nettstedene står listet opp over syv sider, vennligst gå gjennom alle sidene.
-    </p>
+    <h1 class="font-bold">{{ $t('part2Title') }}</h1>
+    <p>{{ $t('part2Comment') }}</p><br />
+    <p>{{ $t('part2Comment2') }}</p>
     <p
       v-if="paginatedList.length > 1"
       class="mb-4"
-    >{{ `Side ${pageIndex + 1} of ${paginatedList.length}`}}</p>
+    >{{ $t('side') + ` ${ pageIndex + 1} of ${paginatedList.length}`}}</p>
     <div class="flex flex-row content-start justify-between">
       <table class="table-fixed">
         <thead>
@@ -59,18 +58,45 @@
         </tbody>
       </table>
     </div>
-    <button class="btn-myls mr-4 mt-4" v-if="pageIndex === paginatedList.length - 1" @click="addRow()">+ Legge til URL</button>
+    <button class="btn-myls mr-4 mt-4" v-if="pageIndex === paginatedList.length - 1" @click="addRow()">{{ $t('addURL') }}</button>
     <div class="flex flex-row mt-8">
-      <button class="btn-myls mr-4" @click="previousDetail()">Back</button>
+      <button class="btn-myls mr-4" @click="previousDetail()">{{ $t('back') }}</button>
       <button
         class="btn-myls"
         :class="{ 'btn-disabled': !allTimeSpentSelected }"
         :disabled="!allTimeSpentSelected"
         @click="nextDetail()"
-      >{{ nextIsNone ? 'Ingen' : 'Neste'}}</button>
+      >{{ nextIsNone ? $t('none') : $t('next') }}</button>
     </div>
   </div>
 </template>
+
+<i18n>
+{
+  "en": {
+    "en": "English",
+    "back": "Back",
+    "addURL": "+ Add URL",
+    "part2Title": "Part II: Webpage Use",
+    "part2Comment": "Check ‘yes’ for all listed sites you use / have used when you have performed activities in part 1",
+    "part2Comment2": "Note: The sites are listed over seven pages, please go through all the pages.",
+    "side": "Page",
+    "none": "None",
+    "next": "Next"
+  },
+  "no": {
+    "no": "Norwegian",
+    "back": "Tilbake",
+    "addURL": "+ Legge til URL",
+    "part2Title": "Del II: Nettstedsbruk",
+    "part2Comment": "Kryss av for ‘ja’ for alle oppførte nettstedene du bruker/har brukt når du har utført aktiviteter i del 1.",
+    "part2Comment2": "Obs. Nettstedene står listet opp over syv sider, vennligst gå gjennom alle sidene.",
+    "side": "Side",
+    "none": "Ingen",
+    "next": "Neste"
+  }
+}
+</i18n>
 
 <script>
 import AnswerInput from './AnswerInput.vue'
