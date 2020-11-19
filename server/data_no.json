@@ -710,7 +710,8 @@
       "type": "conditional",
       "options": [
         "a) Universitetet i Oslo (UiO)",
-        "b) Oslo Metropolitan University (OsloMet)"
+        "b) Oslo Metropolitan University (OsloMet)",
+        "c) Universitetet i Sørøst-Norge (USN)"
       ],
       "conditionals": [
         {
@@ -759,6 +760,30 @@
             "xi) ADTS3100 - Universell utforming av IKT",
             "xii) DAVE3600 - Apputvikling",
             "xiii) DAVE3625 - Introduksjon til Kunstig Intelligens"
+          ]
+        },
+        {
+          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) SYS1000V - Systemutvikling",
+            "ii) INF1000V - Informasjonssystemer",
+            "iii) PRG1000V - Grunnleggende programmering 1",
+            "iv) WEB1100V - Webutvikling og HCI",
+            "v) OBJ2000V - Objektorientert programmering 1",
+            "vi) DAT2000V - Database 2",
+            "vii) APP2000V - Applikasjonsutvikling",
+            "viii) MAR1000 - Marketing Management",
+            "ix) IOT3000V - Internet-of-things",
+            "x) SPA3000V - Scientific Project Assignment",
+            "xi) SEC3000V - Information Systems Security",
+            "xii) STR2000 - Strategisk ledelse",
+            "xiii) DA-OPT3900 - Optimering",
+            "xiv) ENL3000V - Entreprenørskapsledelse",
+            "xv) IBS3000V - Individer, bedrifter og samfunn",
+            "xvi) ECO3000V - eCommerce",
+            "xvii) SO-ØKO1100 - Økonomisk sosiologi",
+            "xviii) SO-AUV1100 - Arbeid, utdanning og velferdspolitikk"
           ]
         }
       ]
