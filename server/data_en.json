@@ -1,231 +1,231 @@
 {
   "practices": [
     {
-      "title": "Practice I: Problem solving activities and resources",
-      "shortTitle": "Problem solving",
-      "description": "From the listed activities, select all those you carry out on the Internet when you need to solve problems during a programming task:",
+      "title": "Section 1: Problem Solving Activities",
+      "shortTitle": "Problem Solving",
+      "description": "From the listed activities, select all you perform on the Internet when you need to solve problems while working on programming tasks:",
       "actions": [
         {
-          "title": "1) Ask questions to other developers"
+          "title": "1) Ask questions to other developers."
         },
         {
-          "title": "2) Share and/or discuss coding items, source code, specifications and/or new ideas"
+          "title": "2) Share and discuss code components (e.g. snippets) with other developers."
         },
         {
-          "title": "3) Dele og diskutere kildekoden med andre utviklere."
+          "title": "3) Share and discuss source code with other developers."
         },
         {
-          "title": "4) Dele og diskutere kodespesifikasjoner med andre utviklere."
+          "title": "4) Share and discuss code specifications with other developers."
         },
         {
-          "title": "5) Dele og diskutere nye ideer med andre utviklere."
+          "title": "5) Share and discuss new ideas with other developers."
         },
         {
-          "title": "6) Søke og vurder informasjon på nettet."
+          "title": "6) Search and assess information online."
         },
         {
-          "title": "7) Bruke (f. eks., gjenbruke/tilpasse/integrere) kodekomponenter i din kode (f.eks fra Stackoverflow)."
+          "title": "Use (e.g., reuse / customize / integrate) code components in your code (e.g. from Stackoverflow)."
         },
         {
-          "title": "8) Søke i programvarebiblioteker for programmeringsressurser (f.eks., Python function eller JAVA class)."
+          "title": "8) Search in software libraries for programming resources (e.g. Python function or JAVA class)."
         },
         {
-          "title": "9) Bruke eller gjenbruke programvare-plugins."
+          "title": "9) Use or reuse software plugins."
         },
         {
-          "title": "10) Se på online tutorials (f.eks en video på YouTube)."
+          "title": "10) Watch online tutorials (e.g. a video on YouTube)."
         },
         {
-          "title": "11) Se etter ressurser i online kurs (f.eks på Udemy)."
+          "title": "11) Look for resources in online courses (e.g. on Udemy)."
         },
         {
-          "title": "12) Se på webinarer (f.eks på YouTube)."
+          "title": "12) Watch webinars (e.g. on YouTube)."
         },
         {
-          "title": "13) Bruke ressurser fra e-læringsplattformer (f.eks fra W3School)."
+          "title": "13) Use resources from e-learning platforms (e.g. from W3School)."
         },
         {
-          "title": "14) Annet",
+          "title": "14) Other",
           "entrytype": "text"
         }
       ]
     },
     {
-      "title": "Seksjon II: Aktiviteter for å holde deg oppdatert",
-      "shortTitle": "Holde deg oppdatert",
-      "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett når du vil holde deg oppdatert med de nyeste trendene innen programvareindustrien:",
+      "title": "Section 2: Activities for Staying up to Date",
+      "shortTitle": "Staying up to Date",
+      "description": "From the listed activities, select all you perform on the Internet when you want to stay up to date with the latest trends in the software development industry:",
       "actions": [
         {
-          "title": "1) Spore endringer i pågående open source-prosjekter (f.eks på Github)."
+          "title": "1) Track changes in ongoing open source projects (e.g. on Github)."
         },
         {
-          "title": "2) Lese/høre/se på nyheter innenfor programvareindustrien (f.eks. på Medium.com)."
+          "title": "2) Read / listen / watch news within the software industry (e.g. on Medium.com)."
         },
         {
-          "title": "3) Holde seg oppdatert med hva som er nytt innenfor software utvikling feltet (f.eks. utgivelse av nye programvare)."
+          "title": "3) Stay up to date with what is new in the software development field (for example, release of a new software)."
         },
         {
-          "title": "4) Bli kjent med interessante eller viktige events (f.eks DeveloperWeek konferanse)."
+          "title": "4) Get acquainted with interesting or important events (e.g. DeveloperWeek conference)."
         },
         {
-          "title": "5) Lese andre utvikleres kommentarer (f.eks på Discord)."
+          "title": "5) Read other developers' comments (e.g. on Discord)."
         },
         {
-          "title": "6) Lese om andre utvikleres problemløsning (f.eks På Stackoverflow)."
+          "title": "6) Read about how other developers solve problems (e.g. On Stackoverflow)."
         },
         {
-          "title": "7) Lese andre utvikleres diskusjoner (f.eks på Reddit)."
+          "title": "7) Read other developers' discussions (e.g. on Reddit)."
         },
         {
-          "title": "8) Se på andre utvikleres refleksjoner eller ideer (f.eks i en blog eller videoblog)."
+          "title": "8) Look at other developers' reflections or ideas (e.g. in a blog or video blog)."
         },
         {
-          "title": "9) Se på ut online tutorials (f.eks På YouTube)."
+          "title": "9) Watch online tutorials (e.g. on YouTube)."
         },
         {
-          "title": "10) Finne frem relevante online kurs (f.eks På Udemy)."
+          "title": "10) Find relevant online courses (e.g. At Udemy)."
         },
         {
-          "title": "11) Se på webinarer (f.eks på YouTube)."
+          "title": "11) Watch webinars (e.g. on YouTube)."
         },
         {
-          "title": "12) Søke etter updates i e-læringsplattformene (f.eks programming challenges på Codewars)."
+          "title": "12) Check for updates in the e-learning platforms (e.g. programming challenges on Codewars)."
         },
         {
-          "title": "13) Sjekke stillingsbeskrivelser og krav ved publisering av ledige stilling (f.eks på Linkedin)."
+          "title": "13) Check job descriptions and requirements in published job vacancies (e.g. on Linkedin)."
         },
         {
-          "title": "14) Annet",
+          "title": "14) Other",
           "entrytype": "text"
         }
       ]
     },
     {
-      "title": "Seksjon III: Aktiviteter til å lære nye ting",
-      "shortTitle": "Lære nye ting ",
-      "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett når du vil lære noe nytt om utvikling av programvare (nye programmeringsspråk, metoder, bruke nye software, problemløsning ferdigheter):",
+      "title": "Section 3: Activities for Learning new things about programming",
+      "shortTitle": "Learning new things",
+      "description": "From the listed activities, select all you perform on the Internet when you want to learn something new about software development (for example, new programming languages, methods, using new software, problem solving skills):",
       "actions": [
         {
-          "title": "1) Spor og vurder endringer i pågående open-source prosjekter (f.eks. på Github)."
+          "title": "1) Track and evaluate changes in ongoing open-source projects (e.g. on Github)."
         },
         {
-          "title": "2) Utvikle og sende inn bidrag til software utviklingsprosjekter."
+          "title": "2) Develop and submit contributions to software development projects."
         },
         {
-          "title": "3) Lese andre utvikleres diskusjoner (f.eks. på Discord)."
+          "title": "3) Read other developers' discussions (e.g. on Discord)."
         },
         {
-          "title": "4) Delta i andre utvikleres diskusjoner (f.eks. på Reddit)."
+          "title": "4) Participate in other developers' discussions (e.g. on Reddit)."
         },
         {
-          "title": "5) Lese om andre utvikleres problemløsning (f.eks. på Stack Overflow)."
+          "title": "5) Read about other developers' problem solving (e.g. on Stack Overflow)."
         },
         {
-          "title": "6) Lese andre utvikleres kommentarer."
+          "title": "6) Read other developers' comments."
         },
         {
-          "title": "7) Ser på andre utvikleres refleksjoner eller ideer (f.eks. på en blog eller videoblog)."
+          "title": "7) Look at other developers' reflections or ideas (e.g. on a blog or video blog)."
         },
         {
-          "title": "8) Dele oppdateringer om hva du lærer (f.eks. på Twitter)."
+          "title": "8) Share updates on what you are learning (e.g. on Twitter)."
         },
         {
-          "title": "9) Dele refleksjonene dine om temaer du vil lære (f.eks. på Twitter)."
+          "title": "9) Share your reflections on topics you want to learn (e.g. on Twitter)."
         },
         {
-          "title": "10) Stille spørsmål til andre utviklere (f.eks. på Stack Overflow)."
+          "title": "10) Ask questions to other developers (e.g. on Stack Overflow)."
         },
         {
-          "title": "11) Svare på spørsmål fra andre utviklere."
+          "title": "11) Answer questions from other developers."
         },
         {
-          "title": "12) Dele og diskutere kildekoden med andre utviklere."
+          "title": "12) Share and discuss the source code with other developers."
         },
         {
-          "title": "13) Dele og diskutere kodekomponenter (f.eks. snippets) med andre utviklere."
+          "title": "13) Share and discuss code components (e.g. snippets) with other developers."
         },
         {
-          "title": "14) Dele og diskutere programvarespesifikasjoner med andre utviklere."
+          "title": "14) Share and discuss software specifications with other developers."
         },
         {
-          "title": "15) Dele og diskutere nye ideer med andre utviklere."
+          "title": "15) Share and discuss new ideas with other developers."
         },
         {
-          "title": "16) Bruke (f. eks., gjenbruke/tilpasse/integrere) kodekomponenter i din kode."
+          "title": "16) Use (e.g. reuse / customize / integrate) code components in your code."
         },
         {
-          "title": "17) Søke i programvarebiblioteker for programmeringsressurser (f.eks. python function eller JAVA class)."
+          "title": "17) Search in software libraries for programming resources (e.g. python function or JAVA class)."
         },
         {
-          "title": "18) Se på programvare-plugins."
+          "title": "18) Look at software plugins."
         },
         {
-          "title": "19) Se på online tutorials (f.eks. På YouTube)."
+          "title": "19) Watch online tutorials (e.g. on YouTube)."
         },
         {
-          "title": "20) Delta på onlinekurs (f.eks. på Udemy)."
+          "title": "20) Attend online courses (e.g. at Udemy)."
         },
         {
-          "title": "21) Se på webinarer (f.eks. På YouTube)."
+          "title": "21) Watch webinars (e.g. YouTube)."
         },
         {
-          "title": "22) Bruke e-læringsplattformene (f.eks. Codewars)."
+          "title": "22) Use e-learning platforms (e.g. Codewars)."
         },
         {
-          "title": "23) Dokumentere din egen programutvikling aktivitet (f.eks. med Github Wiki)."
+          "title": "23) Document your own software development activity (e.g. with Github Wiki)."
         },
         {
-          "title": "24) Annet",
+          "title": "24) Other",
           "entrytype": "text"
         }
       ]
     },
     {
-      "title": "Seksjon IV: Aktiviteter til karrierehåndtering",
-      "shortTitle": "Karrierehåndtering",
-      "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett når du vil administrere din karriere som data- og programvareingeniør:",
+      "title": "Section 4: Career Management Activities",
+      "shortTitle": "Career Management",
+      "description": "From the listed activities, select all you perform on the Internet when you want to manage your career as a computer and software engineer:",
       "actions": [
         {
-          "title": "1) Utvikle og sende inn bidrag til prosjekter som utvikler programvare (f.eks. på Github)."
+          "title": "1) Develop and submit contributions to software development projects (e.g. on Github)."
         },
         {
-          "title": "2) Dele referanser på prosjekter du jobber med (f.eks. på Twitter)."
+          "title": "2) Share references on projects you work in (e.g. on Twitter)."
         },
         {
-          "title": "3) Dele referanser om hva du lærer."
+          "title": "3) Share references about what you are learning."
         },
         {
-          "title": "4) Dele relevante nyheter."
+          "title": "4) Share relevant news."
         },
         {
-          "title": "5) Dele arrangementer du deltar i."
+          "title": "5) Share events you attend."
         },
         {
-          "title": "6) Svare på spørsmål fra andre utviklere i spesialiserte software development communities (f.eks. på Stack Overflow)."
+          "title": "6) Answer questions from other developers in specialized software development communities (e.g. on Stack Overflow)."
         },
         {
-          "title": "7) Moderere diskusjoner i spesialiserte foreninger eller plattformer (f.eks. på Stack Overflow)."
+          "title": "7) Moderate discussions in specialized online communities (e.g. on Stack Overflow)."
         },
         {
-          "title": "8) Dele innhold som dokumenterer arbeidet ditt (f.eks. på Twitch)"
+          "title": "8) Share content that documents your work (e.g. on Twitch)"
         },
         {
-          "title": "9) Dele refleksjoner eller ideer ditt om programutvikling (f.eks. en blog post)."
+          "title": "9) Share your reflections or ideas about software development (e.g. a blog post)."
         },
         {
-          "title": "10) Delta i onlinekurs med sertifisering."
+          "title": "10) Participate in online courses with certification."
         },
         {
-          "title": "11) Delta i webinarer med sertifisering."
+          "title": "11) Attend webinars with certification."
         },
         {
-          "title": "12) Delta i arrangementer med sertifisering (f eks. en hackathon)."
+          "title": "12) Participate in events with certification (e.g. a hackathon)."
         },
         {
-          "title": "13) Bruk e-læringsplattformer med sertifisering eller verifiserbare poster (f.eks. Hacker Earth)"
+          "title": "13) Use e-learning platforms with certification or verifiable records (e.g. HackerEarth)"
         },
         {
-          "title": "14) Annet",
+          "title": "14) Other",
           "entrytype": "text"
         }
       ]
@@ -690,13 +690,13 @@
   ],
   "demographics": [
     {
-      "title": "a) Do you have any software development experience before entering your program?",
-      "shortTitle": "Languages",
+      "title": "1) Gender",
+      "shortTitle": "gender",
       "type": "singleChoice",
       "options": [
-        "i) Woman",
-        "ii) Man",
-        "iii) Other"
+        "i) Kvinne",
+        "ii) Mann",
+        "iii) Annet"
       ]
     },
     {
@@ -705,16 +705,18 @@
       "type": "text"
     },
     {
-      "title": "3) På hvilket universitet tar du for tiden din bachelor og hvilke emne(r) tar du dette semesteret??",
+      "title": "3) At which university are you currently taking your bachelor?",
       "shortTitle": "University",
       "type": "conditional",
       "options": [
         "a) Universitetet i Oslo (UiO)",
-        "b) Oslo Metropolitan University (OsloMet)"
+        "b) Oslo Metropolitan University (OsloMet)",
+        "c) Universitetet i Sørøst-Norge (USN)",
+        "d) Monash University"
       ],
       "conditionals": [
         {
-          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "title": "4) Which of these courses are you taking this semester?",
           "type": "multiChoice",
           "options": [
             "i) IN1000 – Introduksjon til objektorientert programmering",
@@ -743,7 +745,7 @@
           ]
         },
         {
-          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "title": "4) Which of these courses are you taking this semester?",
           "type": "multiChoice",
           "options": [
             "i) DAPE1400 - Programmering",
@@ -760,26 +762,64 @@
             "xii) DAVE3600 - Apputvikling",
             "xiii) DAVE3625 - Introduksjon til Kunstig Intelligens"
           ]
+        },
+        {
+          "title": "4) Which of these courses are you taking this semester?",
+          "type": "multiChoice",
+          "options": [
+            "i) SYS1000V - Systemutvikling",
+            "ii) INF1000V - Informasjonssystemer",
+            "iii) PRG1000V - Grunnleggende programmering 1",
+            "iv) WEB1100V - Webutvikling og HCI",
+            "v) OBJ2000V - Objektorientert programmering 1",
+            "vi) DAT2000V - Database 2",
+            "vii) APP2000V - Applikasjonsutvikling",
+            "viii) MAR1000 - Marketing Management",
+            "ix) IOT3000V - Internet-of-things",
+            "x) SPA3000V - Scientific Project Assignment",
+            "xi) SEC3000V - Information Systems Security",
+            "xii) STR2000 - Strategisk ledelse",
+            "xiii) DA-OPT3900 - Optimering",
+            "xiv) ENL3000V - Entreprenørskapsledelse",
+            "xv) IBS3000V - Individer, bedrifter og samfunn",
+            "xvi) ECO3000V - eCommerce",
+            "xvii) SO-ØKO1100 - Økonomisk sosiologi",
+            "xviii) SO-AUV1100 - Arbeid, utdanning og velferdspolitikk"
+          ]
+        },
+        {
+          "title": "4) Which of these courses are you taking this semester?",
+          "type": "multiChoice",
+          "options": [
+            "i) MON1 - Programming",
+            "ii) MON2 - Database"
+          ]
         }
       ]
     },
     {
-      "title": "5) Når startet du i denne studien?",
+      "title": "4) If you are taking a course this semester that was not listed, write it down here",
+      "required": false,
+      "shortTitle": "extra_courses",
+      "type": "text"
+    },
+    {
+      "title": "5) When did you start your studies??",
       "shortTitle": "study_year",
       "type": "text"
     },
     {
-      "title": "6) Hadde du noen erfaring med utvikling av programvare før du startet på denne studien?",
+      "title": "6) Did you have any software development experience before entering your program?",
       "shortTitle": "Experience",
       "type": "binary"
     },
     {
-      "title": "7) Har du hatt arbeid/jobb i programvareindustrien på siden av studien?",
+      "title": "7) Have you taken any software development job while being in the program?",
       "shortTitle": "past_job",
       "type": "binary"
     },
     {
-      "title": "8) Har du for tiden arbeid/jobb i programvareindustrien på siden av studien?",
+      "title": "Are you currently taking any software development job while you study?",
       "shortTitle": "current_job",
       "type": "binary"
     }

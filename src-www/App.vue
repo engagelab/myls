@@ -285,6 +285,7 @@ export default {
     },
     allDegmographicsAnswered() {
       return this.demographics.every(entry => {
+        if (!entry.required) return true
         switch (entry.type) {
           case 'binary':
             return entry.selection === true || entry.selection === false
@@ -553,6 +554,7 @@ export default {
           id: `demog-${index}`,
           title: entry.title,
           shortTitle: entry.shortTitle,
+          required: entry.required === false ? false : true,
           type: entry.type,
           options: entry.options
             ? entry.options.map((o, i) => {

@@ -222,7 +222,7 @@
           "title": "12) Delta i arrangementer med sertifisering (f eks. en hackathon)."
         },
         {
-          "title": "13) Bruk e-læringsplattformer med sertifisering eller verifiserbare poster (f.eks. Hacker Earth)"
+          "title": "13) Bruk e-læringsplattformer med sertifisering eller verifiserbare poster (f.eks. HackerEarth)"
         },
         {
           "title": "14) Annet",
@@ -705,13 +705,14 @@
       "type": "text"
     },
     {
-      "title": "3) På hvilket universitet tar du for tiden din bachelor og hvilke emne(r) tar du dette semesteret??",
+      "title": "3) På hvilket universitet tar du for tiden din bachelor og hvilke emne(r) tar du dette semesteret?",
       "shortTitle": "University",
       "type": "conditional",
       "options": [
         "a) Universitetet i Oslo (UiO)",
         "b) Oslo Metropolitan University (OsloMet)",
-        "c) Universitetet i Sørøst-Norge (USN)"
+        "c) Universitetet i Sørøst-Norge (USN)",
+        "d) Monash University"
       ],
       "conditionals": [
         {
@@ -785,8 +786,22 @@
             "xvii) SO-ØKO1100 - Økonomisk sosiologi",
             "xviii) SO-AUV1100 - Arbeid, utdanning og velferdspolitikk"
           ]
+        },
+        {
+          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) MON1 - Programming",
+            "ii) MON2 - Database"
+          ]
         }
       ]
+    },
+    {
+      "title": "4) Hvis du tar emner dette semesteret som ikke var oppført, skriv dem ned her",
+      "required": false,
+      "shortTitle": "extra_courses",
+      "type": "text"
     },
     {
       "title": "5) Når startet du i denne studien?",

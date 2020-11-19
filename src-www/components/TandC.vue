@@ -412,6 +412,7 @@
       <ul>
         <li>
           University of Oslo via Andrés Araos, by email: a.a.a.moya@iped.uio.no
+          or supervisor Crina Damsa, by email: crina.damsa@iped.uio.no
         </li>
         <li>
           Our Data Protection Officer: Maren Magnus Voll, by email:

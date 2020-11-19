@@ -236,6 +236,12 @@
           ]
         }
       ]
+    },
+    {
+      "title": "4) Hvis du tar emner dette semesteret som ikke var oppført, skriv dem ned her",
+      "required": false,
+      "shortTitle": "extra_courses",
+      "type": "text"
     }
   ]
 }

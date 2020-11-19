@@ -24,17 +24,12 @@
 
     <div v-else-if="$i18n.locale === 'en'">
         <p class="m-4">Welcome to the Online Learning Practices Survey!</p>
-        <p class="m-4">This survey is about your use of resources from the Internet when you learn software development.
-          It asks you about how you solve problems and learn new skills when you work on a software development task,
-          and how you get information about professional software development and manage your future career as a software developer.
-          The survey collects data from your browsing history, <u>only</u> of the websites <u>you report to use</u> during the survey for those activities,
-          and <u>only the frequency</u> with which you access these sites in time</p>
-        <p class="m-4">The data collected from you will be anonymized and it will be stored safely, according to the regulations for data protection in Norway and Europe (GDPR).
-          You will not be recognized by others or your teachers.</p>
-          <p class="m-4"><span class="text-blue-600 cursor-pointer" @click="$emit('mode', 'anon')">Here</span> you can learn more about how we anonymize your data and about the data we collect from your browser history
-           [link to separate page with a sample of the table of raw data].</p>
-        <p class="m-4">This study is part of a PhD project at the Department of Education at UiO. The project studies how computer and software engineering students use the Internet to learn programming.
-          If you have any questions and or want to know more, contact me at a.a.a.moya@iped.uio.no.</p>
+        <p class="m-4">This survey is about how students in Computer Science and Software Engineering courses use the internet to learn programming. The study is part of a PhD project at the Department of Education at University of Oslo.</p>
+        <p class="m-4">
+          The survey will collect data about what you do when you work on programming tasks. In addition, it will collect some data from your browser history, but <u>only</u> from those sites that you report having used for programming tasks. No personal data or other browsing history is collected.</p>
+        <p class="m-4">The data will be anonymised and stored securely, in accordance with the legislation on privacy in Norway and Europe (GDPR). You will not be recognized by others or by your teachers.</p>
+        <p class="m-4"><span class="text-blue-600 cursor-pointer" @click="$emit('mode', 'anon')">Here</span> you can read more about how your data will be anonymized and about the data we collect from the browser history.</p>
+        <p class="m-4">If you have questions or want to know more about the project, contact Andres Araos at a.a.a.moya@iped.uio.no.</p>
         <p class="m-4">Thank you very much for your participation!</p>
         <p class="m-4">Andres Araos</p>
         <div class="flex flex-row m-4">
