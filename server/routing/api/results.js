@@ -47,7 +47,7 @@ const downloadCSV = function (results, response, mode) {
       }
     }
     dataFiles.en.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
-    dataFile.en.demographics.forEach(d => header.columns[d.shortTitle] = d.shortTitle)
+    dataFiles.en.demographics.forEach(d => header.columns[d.shortTitle] = d.shortTitle)
     data = results.reduce((acc, r) => {
       const a =  {
         installId: r.installId,
