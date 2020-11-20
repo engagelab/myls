@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h1 class="font-bold">Part II: Websites</h1>
-    <!--h1 class="font-bold text-2xl mt-4">{{ title }}</h1-->
+    <h1 class="font-bold">{{ $t('part2Title') }}</h1>
+    <p>{{ $t('part2Comment') }}</p><br />
+    <p>{{ $t('part2Comment2') }}</p>
     <p
       v-if="paginatedList.length > 1"
       class="mb-4"
-    >{{ `Page ${pageIndex + 1} of ${paginatedList.length}`}}</p>
+    >{{ $t('side') + ` ${ pageIndex + 1} of ${paginatedList.length}`}}</p>
     <div class="flex flex-row content-start justify-between">
       <table class="table-fixed">
         <thead>
@@ -57,18 +58,45 @@
         </tbody>
       </table>
     </div>
-    <button class="btn-myls mr-4 mt-4" v-if="pageIndex === paginatedList.length - 1" @click="addRow()">+ Add URL</button>
+    <button class="btn-myls mr-4 mt-4" v-if="pageIndex === paginatedList.length - 1" @click="addRow()">{{ $t('addURL') }}</button>
     <div class="flex flex-row mt-8">
-      <button class="btn-myls mr-4" @click="previousDetail()">Back</button>
+      <button class="btn-myls mr-4" @click="previousDetail()">{{ $t('back') }}</button>
       <button
         class="btn-myls"
         :class="{ 'btn-disabled': !allTimeSpentSelected }"
         :disabled="!allTimeSpentSelected"
         @click="nextDetail()"
-      >{{ nextIsNone ? 'None' : 'Next'}}</button>
+      >{{ nextIsNone ? $t('none') : $t('next') }}</button>
     </div>
   </div>
 </template>
+
+<i18n>
+{
+  "en": {
+    "en": "English",
+    "back": "Back",
+    "addURL": "+ Add URL",
+    "part2Title": "Part II: Webpage Use",
+    "part2Comment": "Check ‘yes’ for all listed sites you use / have used when you have performed activities in part 1",
+    "part2Comment2": "Note: The sites are listed over seven pages, please go through all the pages.",
+    "side": "Page",
+    "none": "None",
+    "next": "Next"
+  },
+  "no": {
+    "no": "Norwegian",
+    "back": "Tilbake",
+    "addURL": "+ Legge til URL",
+    "part2Title": "Del II: Nettstedsbruk",
+    "part2Comment": "Kryss av for ‘ja’ for alle oppførte nettstedene du bruker/har brukt når du har utført aktiviteter i del 1.",
+    "part2Comment2": "Obs. Nettstedene står listet opp over syv sider, vennligst gå gjennom alle sidene.",
+    "side": "Side",
+    "none": "Ingen",
+    "next": "Neste"
+  }
+}
+</i18n>
 
 <script>
 import AnswerInput from './AnswerInput.vue'
@@ -95,7 +123,7 @@ export default {
     return {
       paginatedList: [], // Array of arrays - each internal array is a page of URLs
       pageIndex: 0,
-      pageLength: 20,
+      pageLength: 13,
     }
   },
   mounted() {
@@ -152,18 +180,18 @@ export default {
     nextDetail() {
       if (this.pageIndex < this.paginatedList.length - 1) {
         this.pageIndex++
+        window.scrollTo(0, 0)
       } else {
         this.$emit('next-detail', this.paginatedList.flat())
       }
-      window.scrollTo(0, 0)
     },
     previousDetail() {
       if (this.pageIndex > 0) {
         this.pageIndex--
+        window.scrollTo(0, 0)
       } else {
         this.$emit('previous-detail', this.paginatedList.flat())
       }
-      window.scrollTo(0, 0)
     },
     removeRow(index) {
       this.paginatedList[this.pageIndex].splice(index, 1)

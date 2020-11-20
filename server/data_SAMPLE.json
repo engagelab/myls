@@ -9,18 +9,6 @@
           "title": "1) Ask questions to other developers"
         },
         {
-          "title": "2) Share and/or discuss coding items, source code, specifications and/or new ideas"
-        },
-        {
-          "title": "3) Find and assess information on the web to solve problems during a project or task."
-        },
-        {
-          "title": "4) Check out code components (snippets), software libraries or plugins to reuse, adapt and integrate them."
-        },
-        {
-          "title": "5) Check out tutorials, online courses, webinars or e-learning platforms."
-        },
-        {
           "title": "6) Other",
           "entrytype": "text"
         }
@@ -35,21 +23,6 @@
           "title": "1) Track changes in ongoing open source projects"
         },
         {
-          "title": "2) Seek out other developers’ comments, issues or discussions."
-        },
-        {
-          "title": "3) Seek out interesting or important news, announcements or events."
-        },
-        {
-          "title": "4) Seek out other developers’ reflections or ideas."
-        },
-        {
-          "title": "5) Check out tutorials, online courses, webinars or e-learning platforms."
-        },
-        {
-          "title": "6) Monitor job openings descriptions and requirements."
-        },
-        {
           "title": "7) Other",
           "entrytype": "text"
         }
@@ -62,30 +35,6 @@
       "actions": [
         {
           "title": "1) Track and assess changes in ongoing open source projects."
-        },
-        {
-          "title": "2) Develop and submit contributions to software projects."
-        },
-        {
-          "title": "3) Seek out other developers’ discussions, issues, comments, reflections or ideas."
-        },
-        {
-          "title": "4) Share comments, reflections or ideas about news or topics you want to learn."
-        },
-        {
-          "title": "5) Participate in discussions about topics or issues you want to learn."
-        },
-        {
-          "title": "6) Ask questions to other developers"
-        },
-        {
-          "title": "7) Answer questions from other developers"
-        },
-        {
-          "title": "8) Share and/or discuss coding items, source code, specifications and/or new ideas."
-        },
-        {
-          "title": "9) Check out code components (snippets), software libraries or plugins to reuse, adapt and integrate them."
         },
         {
           "title": "10) Check out tutorials, online courses, webinars or e-learning platforms."
@@ -106,18 +55,6 @@
       "actions": [
         {
           "title": "1) Develop and submit contributions to software projects."
-        },
-        {
-          "title": "2) Share references on something you are working on or learning, relevant news, or events you are participating in."
-        },
-        {
-          "title": "3) Contribute to specialized software communities by answering other developers questions or moderating discussions."
-        },
-        {
-          "title": "4) Share content that documents your work, reflections or ideas."
-        },
-        {
-          "title": "5) Participate in online courses, webinars, events or e-learning platforms that provide some form of certification or verifiable record."
         },
         {
           "title": "6) Other",
@@ -245,6 +182,21 @@
       "type": "binary"
     },
     {
+      "title": "1) Kjønn",
+      "shortTitle": "gender",
+      "type": "singleChoice",
+      "options": [
+        "i) Kvinne",
+        "ii) Mann",
+        "iii) Annet"
+      ]
+    },
+    {
+      "title": "2) Alder",
+      "shortTitle": "age",
+      "type": "text"
+    },
+    {
       "title": "d) What software development languages can you currently work with?",
       "shortTitle": "Languages",
       "type": "multiChoice",
@@ -284,6 +236,12 @@
           ]
         }
       ]
+    },
+    {
+      "title": "4) Hvis du tar emner dette semesteret som ikke var oppført, skriv dem ned her",
+      "required": false,
+      "shortTitle": "extra_courses",
+      "type": "text"
     }
   ]
 }

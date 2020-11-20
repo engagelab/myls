@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row items-center ml-2 py-1">
+  <div class="flex flex-row items-center ml-2">
     <template v-if="mode == 'binary'">
       <input
         class="mr-1 mb-1"
@@ -9,7 +9,7 @@
         v-model="selectedBoolean"
         @change="valueInput"
       />
-      <label class="mr-2" for="yes">Yes</label>
+      <label class="mr-2" for="yes">{{ $t('yes') }}</label>
       <input
         class="mr-1 mb-1"
         type="radio"
@@ -18,14 +18,14 @@
         v-model="selectedBoolean"
         @change="valueInput"
       />
-      <label class="mr-1" for="no">No</label>
+      <label class="mr-1" for="no">{{ $t('no') }}</label>
     </template>
     <template v-if="mode == 'url'">
       <input
         class="mr-1 mb-1"
         type="url"
         id="urlString"
-        placeholder="https://example.com"
+        placeholder="https://eksempel.com"
         pattern="https://.*"
         size="30"
         required
@@ -35,7 +35,7 @@
     </template>
     <template v-if="mode == 'text'">
       <input
-        class="mr-1 mb-1 checkValid w-full px-1"
+        class="mr-1 mb-1 checkValid w-full px-1 border-b border-gray-300"
         :placeholder="placeholder"
         type="text"
         :id="'textString' + randomId"
@@ -107,6 +107,21 @@
         </div>
       </div>
     </template>
+    <template v-if="mode == 'singleChoice'">
+      <div class="flex flex-col">
+        <div v-for="(o) in options" :key="o.id">
+          <input
+            class="mr-1 mb-1"
+            type="radio"
+            :id="`input-${o.id}`"
+            :value="o.title"
+            v-model="selectedSingleChoice"
+            @change="valueInput"
+          />
+          <label class="mr-2" :for="`input-${o.id}`">{{ o.title }}</label>
+        </div>
+      </div>
+    </template>
     <template v-if="mode == 'conditional'">
       <div class="flex flex-col py-1">
         <div v-for="(o, i) in options" :key="o.id">
@@ -125,6 +140,19 @@
     </template>
   </div>
 </template>
+
+<i18n>
+{
+  "en": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "no": {
+    "yes": "Ja",
+    "no": "Nei"
+  }
+}
+</i18n>
 
 <script>
 export default {
