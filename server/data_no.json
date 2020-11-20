@@ -712,7 +712,12 @@
         "a) Universitetet i Oslo (UiO)",
         "b) Oslo Metropolitan University (OsloMet)",
         "c) Universitetet i Sørøst-Norge (USN)",
-        "d) Monash University"
+        "d) Monash University",
+        "e) Norges arktiske universitet - Narvik (UiT)",
+        "f) Norges arktiske universitet - Tromsø (UiT)",
+        "g) Universitetet i Agder",
+        "h) NTNU",
+        "i) Norge Forsvaret"
       ],
       "conditionals": [
         {
@@ -793,6 +798,86 @@
           "options": [
             "i) MON1 - Programming",
             "ii) MON2 - Database"
+          ]
+        },
+        {
+          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) DTE-2508 Programmering 0",
+            "ii) TEK-1509 Teknisk realfag",
+            "iii) DTE-2605 Programmering 1",
+            "iv) TEK-1509 Teknisk realfag",
+            "v) TEK-1500 Beregningsorientert programmering",
+            "vi) TEK-1501 Statistikk",
+            "vii) TEK-1505 Statistikk",
+            "viii) TEK-1510 Matematikk",
+            "ix) TEK-2800 Matematikk 3",
+            "x) TEK-2801 Fysikk 2",
+            "xi) TEK-1502 Ingeniørfaglig yrkesutøvelse og arbeidsmetoder",
+            "xii) DTE-2505 Operativsystemer",
+            "xiii) TEK-1507 Matte 1",
+            "xix) DTE-2507 Datakommunikasjon og sikkerhet",
+            "xv) DTE-2801 Internettapplikasjoner",
+            "xvi) DTE-2802 Webapplikasjoner 2",
+            "xvii) DTE-2803 Sikkerkunnskaps håndtering og standardisering",
+            "xviii) DTE-2804 Smart teknologi for assistanse, helse og velferd",
+            "xix) DTE-2602 Introduksjon Maskinlæring og AI",
+            "xx) DTE-2501 AI / Algoritmer",
+            "xxi) DTE-2502 Maskinlæring",
+            "xxii) DTE-2503 Mobilprogrammering 2",
+            "xxiii) DTE-2800 Datamaskingrafikk",
+            "xiv) TEK-1508 Tekniskspråkføring"
+          ]
+        },
+        {
+          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) INF-1100 Innføring i programmering og datamaskiners virkemåte",
+            "ii) MAT-0001 Brukerkurs i matematikk",
+            "iii) MAT-1001 Kalkulus 1",
+            "iv) MAT-1005 Diskret matematikk",
+            "v) INF-2200 Datamaskinarkitektur og –organisering",
+            "vi) FIL-0700 Examen philosophicum",
+            "vii) INF-2202 Concurrent and DataIntensive Programming",
+            "viii) INF-2700 Database Systems",
+            "ix) INF-2300 Computer communication"
+          ]
+        },
+        {
+          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) MON1 - Programming",
+            "ii) MON2 - Database"
+          ]
+        },
+        {
+          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) MON1 - Programming",
+            "ii) MON2 - Database"
+          ]
+        },
+        {
+          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) ING1501 Cyberingeniørens profesjon",
+            "ii) ING1502 Matematiske metoder 1",
+            "iii) ING2501 Matematiske metoder 2",
+            "iv) ING2502 Elektro",
+            "v) ING3505 Statistikk og økonomi",
+            "vi) ING1503 Programmering og digitalteknikk",
+            "vii) ING2503 Informasjonssikkerhet",
+            "viii) ING2504 Operativsystemer",
+            "ix) ING3504 Signalbehandling",
+            "x) ING3501 Rolle og kommunikasjon 1",
+            "xi) ING3510 Cyberoperasjoner",
+            "xii) ING3509 Militære IKT-systemer",
+            "xiii) ING3508 Militær informasjonsinfrastruktur"
           ]
         }
       ]
