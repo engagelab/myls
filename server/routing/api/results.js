@@ -6,9 +6,29 @@ const router = require('express').Router()
 const utilities = require('../utilities')
 const Result = require('../../models/Result')
 const Installed = require('../../models/Installed')
-const dataFile = require('../../data.json')
+const DELIMITER = '|'
+const dataFiles = {
+  en: require('../../data_en.json'),
+  no: require('../../data_no.json')
+}
 
 const downloadCSV = function (results, response, mode) {
+  const getDemographic = (d) => {
+    if (typeof d.selection === 'boolean') {
+      return d.selection ? 'true' : 'false'
+    } else if (Array.isArray(d.selection)) {
+      return d.selection.reduce((acc, i) => `${acc}${DELIMITER}${i}`)
+    } else if (typeof d.selection === "object") {
+      return d.selection.level1 + DELIMITER + d.selection.level2.reduce((acc, i) => `${acc}${DELIMITER}${i}`, [])
+    } else {
+      return d.selection
+    }
+  }
+
+  const getPractices = (p) => {
+    return p.actions.reduce((acc, i) => `${acc}${DELIMITER}${i}`)
+  }
+
   let data = []
   let header = {}
   if (mode == 'overview') {
@@ -17,19 +37,8 @@ const downloadCSV = function (results, response, mode) {
       delimiter: ',',
       columns: {
         installId: 'installId',
-        consentEmail: 'consentEmail',
         consented: 'consented',
-        search: 'search',
-        url: 'url',
-        info: 'Titles',
-        itemCount: 'History Items',
-
-        // Selection key names : column titles
-        'Other Students': 'Other Students',
-        'Developer Community': 'Developer Community',
-        'Expert Developers': 'Expert Developers',
-        'Time Spent in that activity': 'Time Spent',
-        Activity: 'Activity'
+        lottery: 'lottery'
       },
       cast: {
         boolean: function (value) {
@@ -37,15 +46,57 @@ const downloadCSV = function (results, response, mode) {
         }
       }
     }
+    dataFiles.en.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
+    dataFile.en.demographics.forEach(d => header.columns[d.shortTitle] = d.shortTitle)
+    data = results.reduce((acc, r) => {
+      const a =  {
+        installId: r.installId,
+        consented: r.consented,
+        lottery: r.lottery,
+      }
+      r.demographics.forEach(d => a[d.shortTitle] = getDemographic(d))
+      r.practices.forEach(p => a[p.shortTitle] = getPractices(p))
+      return acc.concat(a)
+    }, [])
+  } else if (mode == 'emails') {
+    header = {
+      header: true,
+      delimiter: ',',
+      columns: {
+        installId: 'installId',
+        consentEmail: 'consentEmail'
+      }
+    }
+    data = results.reduce((acc, r) => {
+      const a =  {
+        installId: r.installId,
+        consentEmail: r.consentEmail
+      }
+      return acc.concat(a)
+    }, [])
+  } else if (mode == 'websites') {
+    header = {
+      header: true,
+      delimiter: ',',
+      columns: {
+        installId: 'installId',
+        search: 'search',
+        url: 'url',
+        itemCount: 'History Items'
+      },
+      cast: {
+        boolean: function (value) {
+          return value ? 'true' : 'false'
+        }
+      }
+    }
+    dataFiles.en.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
     data = results.reduce((acc, r) => {
       const a = r.items.map(i => {
         return {
           installId: r.installId,
-          consentEmail: r.consentEmail,
-          consented: r.consented,
           search: i.search,
           url: i.url,
-          info: i.info,
           itemCount: i.historyItems.length,
           ...i.selections
         }
@@ -61,26 +112,28 @@ const downloadCSV = function (results, response, mode) {
 
         // Item key names: column titles
         name: 'Name',
-        url: 'URL',
+        search: 'Search URL',
 
         // History key names : column titles
         historyId: 'History ID',
-        title: 'Title',
-        url: 'URL',
+        // title: 'Title',
+        // url: 'URL',
+        lastVisitTime: 'Last Visit Time (ms)',
         visitCount: 'Visit Count',
 
         // Visit key names: column titles
         visitId: 'Visit ID',
         transition: 'Transition',
         referringVisitId: 'Referring Visit ID',
-        visitTime: 'Visit Time'
+        visitTime: 'Visit Time (ms)'
       },
       cast: {
         boolean: function (value) {
           return value ? 'true' : 'false'
         },
         date: function (value) {
-          return value.toTimeString()
+          // return value.toLocaleString('en-GB', { timeZone: 'UTC' }).replace(',','')
+          return value.getTime().toString()
         }
       }
     }
@@ -92,19 +145,20 @@ const downloadCSV = function (results, response, mode) {
             const n = {
               installId: r.installId,
               name: i.name,
-              url: i.url,
+              search: i.search,
 
               // History key names : column titles
               historyId: h.id,
-              title: h.title,
-              url: h.url,
+              // title: h.title,
+              // url: h.url,
+              lastVisitTime: new Date(h.lastVisitTime),
               visitCount: h.visitCount,
 
               // Visit key names: column titles
               visitId: v.id,
               transition: v.transition,
               referringVisitId: v.referringVisitId,
-              visitTime: v.visitTime
+              visitTime: new Date(v.visitTime)
             }
             a.push(n)
           })
@@ -115,18 +169,19 @@ const downloadCSV = function (results, response, mode) {
   } else if (mode == 'installs') {
     header = {
       header: true,
-      delimiter: '|',
+      delimiter: ',',
       columns: {
         installId: 'installId',
-        installed: 'installed',
-        uninstalled: 'uninstalled'
+        installed: 'installed (ms)',
+        uninstalled: 'uninstalled (ms)'
       },
       cast: {
         boolean: function (value) {
           return value ? 'true' : 'false'
         },
         date: function (value) {
-          return value.toTimeString()
+          // return value.toLocaleString('en-GB', { timeZone: 'UTC' }).replace(',','')
+          return value.getTime().toString()
         }
       }
     }
@@ -142,9 +197,9 @@ const downloadCSV = function (results, response, mode) {
   })
 }
 
-// Example:  api/resultfile?os=xxxxxx&mode=history    mode == [ 'installs' | 'overview' | 'history' ]
+// Example:  api/resultfile?os=xxxxxx&mode=history    mode == [ 'installs' | 'overview' | 'history' | 'websites' ]
 router.get('/resultfile', (request, response) => {
-  const modeTypes = ['installs', 'overview', 'history']
+  const modeTypes = ['installs', 'overview', 'history', 'websites', 'emails']
   const os = process.env.OBFUSCATION_STRING
   const mode = request.query.mode
   if (request.query.os != os || modeTypes.indexOf(mode) < 0) {
@@ -171,7 +226,9 @@ router.post('/result', (request, response) => {
     installId: request.body.id,
     consentEmail: request.body.email,
     consented: request.body.consented,
-    lottery: request.body.lottery
+    lottery: request.body.lottery,
+    demographics: request.body.other.demographics,
+    practices: request.body.other.practices
   }
   if (result.items && result.installId && result.consentEmail) {
     Result.create(result, function callback (error, newResult) {
@@ -191,7 +248,7 @@ router.post('/result', (request, response) => {
 })
 
 router.get('/data', (request, response) => {
-  utilities.successResponse(dataFile, response)
+  utilities.successResponse(dataFiles, response)
 })
 
 module.exports = router

@@ -1,22 +1,22 @@
 <template>
   <div>
-    <h1 class="font-bold">{{ taskTitle }}</h1>
-    <h1 class="font-bold text-2xl mt-4">{{ title }}</h1>
+    <h1 class="font-bold">{{ $t('part2Title') }}</h1>
+    <p>{{ $t('part2Comment') }}</p><br />
+    <p>{{ $t('part2Comment2') }}</p>
     <p
       v-if="paginatedList.length > 1"
       class="mb-4"
-    >{{ `Page ${pageIndex + 1} of ${paginatedList.length}`}}</p>
-    <p>{{ description }}</p>
+    >{{ $t('side') + ` ${ pageIndex + 1} of ${paginatedList.length}`}}</p>
     <div class="flex flex-row content-start justify-between">
       <table class="table-fixed">
         <thead>
           <tr>
             <th
               v-for="(c, cIndex) in columns"
-              :key="`CH${c.name}`"
+              :key="`CH${c.shortTitle}`"
               :class="[cIndex === 0 ? 'w-1/4' : 'w-1/6']"
               class="px-4 py-2"
-            >{{c.name}}</th>
+            >{{c.shortTitle}}</th>
           </tr>
         </thead>
         <tbody>
@@ -27,28 +27,29 @@
           >
             <td v-for="(c, cIndex) in columns" :key="`${u.id}-${cIndex}`" class="border px-4 py-2">
               <!-- Binary type quesiton -->
-              <div class="flex flex-row justify-between" v-if="entrytype == 'select'">
+              <div class="flex flex-row justify-between" v-if="u.type === 'normal'">
                 <span
                   v-if="cIndex === 0"
                   class="font-mono text-sm text-green-900 break-words max-w-12"
                 >
                   <a :href="u.url" rel="noopener noreferrer" target="_blank">{{ u.name }}</a>
                 </span>
-                <AnswerInput v-if="cIndex === 0" mode="binary" v-model="u.selections.selected" />
                 <AnswerInput
-                  v-if="cIndex > 0 && u.selections.selected"
-                  :mode="c.type"
-                  v-model="u.selections[c.name]"
+                  v-if="cIndex > 0"
+                  mode="binary"
+                  v-model="u.selections[c.shortTitle]"
+                  @input="value => u.selections.selected = true"
                 />
               </div>
-              <!-- Text type question -->
-              <div class="flex flex-row items-center" v-if="entrytype == 'text'">
+              <!-- User-added question -->
+              <div class="flex flex-row items-center"  v-if="u.type === 'user'">
                 <AnswerInput v-if="cIndex === 0" mode="url" v-model="u.search" />
                 <AnswerInput
                   v-if="cIndex > 0"
                   placeholder="answer here.."
-                  :mode="c.type"
-                  v-model="u.selections[c.name]"
+                  mode="binary"
+                  v-model="u.selections[c.shortTitle]"
+                  @input="value => u.selections.selected = true"
                 />
                 <button v-if="cIndex === 0" class="btn-myls bg-red-400" @click="removeRow(uIndex)">X</button>
               </div>
@@ -57,18 +58,45 @@
         </tbody>
       </table>
     </div>
-    <button v-if="entrytype == 'text'" class="btn-myls mr-4 mt-4" @click="addRow()">+ Add URL</button>
+    <button class="btn-myls mr-4 mt-4" v-if="pageIndex === paginatedList.length - 1" @click="addRow()">{{ $t('addURL') }}</button>
     <div class="flex flex-row mt-8">
-      <button class="btn-myls mr-4" @click="previousDetail()">Back</button>
+      <button class="btn-myls mr-4" @click="previousDetail()">{{ $t('back') }}</button>
       <button
         class="btn-myls"
         :class="{ 'btn-disabled': !allTimeSpentSelected }"
         :disabled="!allTimeSpentSelected"
         @click="nextDetail()"
-      >{{ nextIsNone ? 'None' : 'Next'}}</button>
+      >{{ nextIsNone ? $t('none') : $t('next') }}</button>
     </div>
   </div>
 </template>
+
+<i18n>
+{
+  "en": {
+    "en": "English",
+    "back": "Back",
+    "addURL": "+ Add URL",
+    "part2Title": "Part II: Webpage Use",
+    "part2Comment": "Check ‘yes’ for all listed sites you use / have used when you have performed activities in part 1",
+    "part2Comment2": "Note: The sites are listed over seven pages, please go through all the pages.",
+    "side": "Page",
+    "none": "None",
+    "next": "Next"
+  },
+  "no": {
+    "no": "Norwegian",
+    "back": "Tilbake",
+    "addURL": "+ Legge til URL",
+    "part2Title": "Del II: Nettstedsbruk",
+    "part2Comment": "Kryss av for ‘ja’ for alle oppførte nettstedene du bruker/har brukt når du har utført aktiviteter i del 1.",
+    "part2Comment2": "Obs. Nettstedene står listet opp over syv sider, vennligst gå gjennom alle sidene.",
+    "side": "Side",
+    "none": "Ingen",
+    "next": "Neste"
+  }
+}
+</i18n>
 
 <script>
 import AnswerInput from './AnswerInput.vue'
@@ -78,18 +106,6 @@ export default {
     AnswerInput,
   },
   props: {
-    taskTitle: {
-      type: String,
-      default: '',
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    description: {
-      type: String,
-      default: '',
-    },
     urls: {
       type: Array,
       default: () => [],
@@ -107,7 +123,7 @@ export default {
     return {
       paginatedList: [], // Array of arrays - each internal array is a page of URLs
       pageIndex: 0,
-      pageLength: 20,
+      pageLength: 13,
     }
   },
   mounted() {
@@ -148,35 +164,34 @@ export default {
   },
   methods: {
     createNewEntry(selected) {
+      const selections = { selected: false }
+      this.columns.forEach(
+        p => (selections[p.shortTitle] = false)
+      )
       return {
         id: `url-${Math.random()}`,
         name: 'other',
+        type: 'user',
         url: '',
         search: '',
-        selections: {
-          selected,
-          URL: '',
-          Activity: '',
-          'Time Spent': '',
-        },
-        info: `${this.taskTitle} : ${this.title}`,
+        selections
       }
     },
     nextDetail() {
       if (this.pageIndex < this.paginatedList.length - 1) {
         this.pageIndex++
+        window.scrollTo(0, 0)
       } else {
         this.$emit('next-detail', this.paginatedList.flat())
       }
-      window.scrollTo(0, 0)
     },
     previousDetail() {
       if (this.pageIndex > 0) {
         this.pageIndex--
+        window.scrollTo(0, 0)
       } else {
         this.$emit('previous-detail', this.paginatedList.flat())
       }
-      window.scrollTo(0, 0)
     },
     removeRow(index) {
       this.paginatedList[this.pageIndex].splice(index, 1)

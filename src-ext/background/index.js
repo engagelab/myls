@@ -55,7 +55,8 @@ function scrapeDomains (data, callback) {
             email: data.email,
             id: data.id,
             consented: data.consented,
-            lottery: data.lottery
+            lottery: data.lottery,
+            other: data.other
           })
           sendToServer('POST', JSONString, resultRoute, response =>
             callback(response)
@@ -82,6 +83,10 @@ function scrapeDomains (data, callback) {
           historyItems.forEach((hi, index) => {
             chrome.history.getVisits({ url: hi.url }, function (visitItems) {
               hi.visitItems = visitItems
+              // Title and URL values can possibly contain private information
+              // We delete them here before sending the data
+              delete hi.title
+              delete hi.url
               if (index === historyItems.length - 1) {
                 nextItem()
               }

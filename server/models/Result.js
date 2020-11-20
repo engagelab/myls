@@ -16,9 +16,9 @@ const itemSchema = {
     {
       id: { type: String },
       lastVisitTime: { type: Number },
-      title: { type: String },
+      // title: { type: String },
       typedCount: { type: Number },
-      url: { type: String },
+      // url: { type: String },
       visitCount: { type: Number },
       visitItems: [
         {
@@ -33,12 +33,31 @@ const itemSchema = {
   ]
 }
 
+const practicesSchema = {
+  practice: { type: String },
+  actions: { type: Array, default: [], of: { type: String } }
+}
+
 const resultSchema = new mongoose.Schema(
   {
     installId: { type: String },
     consentEmail: { type: String },
     consented: { type: Boolean },
     lottery: { type: Boolean },
+    created: { type: Date, default: Date.now },
+    demographics: {
+      type: Array,
+      default: [],
+      of: {
+        title: { type: String },
+        selection: { type: mongoose.Schema.Types.Mixed }
+      }
+    },
+    practices: {
+      type: Array,
+      default: [],
+      of: practicesSchema
+    },
     items: {
       type: Array,
       default: [],
