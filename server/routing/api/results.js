@@ -94,6 +94,7 @@ const downloadCSV = function (results, response, mode) {
     }
     dataFiles.en.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
     dataFiles.no.practices.forEach(p => header.columns[p.shortTitle] = p.shortTitle)
+    header.columns['npa'] = 'npa'
     data = results.reduce((acc, r) => {
       const a = r.items.map(i => {
         return {

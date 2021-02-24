@@ -1,19 +1,19 @@
 <template>
   <div>
     <div v-if="$i18n.locale === 'no'">
-        <p class="m-4 font-bold">Velkommen til Online Learning Practices Survey!</p>
-        <p class="m-4">Denne undersøkelsen handler om hvordan studenter innen data- og programvare bruker internett til å lære programmering.
-          Studien er en del av et PhD-prosjekt ved Institutt for pedagogikk ved UiO.
+        <p class="m-4 font-bold">Velkommen til Online Learning Practices Survey!<br /><br />Ønsker du at IT-undervisningen i Norge skal bli enda bedre?</p>
+        <p class="m-4">Denne anonyme undersøkelsen handler om hvordan studenter innen data- og programvare bruker internett til å lære programvareutvikling.
+          Studien er en del av et PhD-prosjekt ved Institutt for pedagogikk ved UiO.Den anonyme dataen som blir samlet inn, vil bli brukt til å gi anbefalinger til forbedring
+          av undervisningen for studenter som studerer IKT-relaterte emner på universiteter i Norge.
         </p>
         <p class="m-4">
-          Undersøkelsen vil samler inn data fra din nettleserloggen, <u>men kun</u> på nettstedene som <u>du rapporterer å ha brukt</u> for aktiviteter du angir,
-          og <u>kun hvor ofte og lenge</u> du får tilgang til disse nettstedene.</p>
-        <p class="m-4">Dataene som samles inn om deg vil bli anonymisert og lagres trygt, i henhold til lovgivningen om personvern i Norge og Europa (GDPR).
-          Du vil ikke bli gjenkjent av andre eller av lærerne dine.</p>
-          <p class="m-4">
-            <span class="text-blue-600 cursor-pointer" @click="$emit('mode', 'anon')">Her</span>
-            kan du lese mer om hvordan vi anonymiserer dataene dine og om dataene vi samler inn fra nettleserloggen din..</p>
-        <p class="m-4">Hvis du har spørsmål eller ønsker å vite mer om prosjektet, kontakt meg på a.a.a.moya@iped.uio.no.</p>
+          I undersøkelsen vil du få spørsmål om hva du gjør og hvilke nettsteder du bruker når du lærer programvareutvikling eller jobber med programvareprosjekter/oppgaver. I tillegg benytter vi en Google Chrome Extension som teller hvor mange ganger du har besøkt/fått tilgang til nettstedene du krysset av for i undersøkelsen i løpet av de siste tre månedene.
+          <a href="https://bitbucket.usit.uio.no/projects/ENGAGELAB/repos/myls/browse" target="default" class="text-blue-600 cursor-pointer">Her</a> kan du sjekke kildekoden til Google Chrome Extension selv.
+          Undersøkelse ta ca. 10 minutter å svare.</p>
+        <p class="m-4">Undersøkelsen samler ingen annen type informasjon enn det som er oppgitt over. Som forsker ved UiO samler og behandler jeg dine data i henhold til lovgivning om personvern
+          i Norge og Europa (GDPR). Dataene som samles inn om deg vil bli anonymisert og lagres trygt på en sikret UiO-server.
+          Du vil ikke bli gjenkjent av andre eller av lærerne dine. Bare din personlige e-post vil bli brukt til å invitere deg til et intervju på Zoom.</p>
+        <p class="m-4">Hvis du har spørsmål eller ønsker å vite mer om prosjektet, kontakt meg på a.a.a.moya@iped.uio.no</p>
         <p class="m-4">Tusen takk for din deltakelse!</p>
         <p class="m-4">Andres Araos</p>
         <div class="flex flex-row m-4">
@@ -23,12 +23,17 @@
     </div>
 
     <div v-else-if="$i18n.locale === 'en'">
-        <p class="m-4">Welcome to the Online Learning Practices Survey!</p>
-        <p class="m-4">This survey is about how students in Computer Science and Software Engineering courses use the internet to learn programming. The study is part of a PhD project at the Department of Education at University of Oslo.</p>
+        <p class="m-4 font-bold">Welcome to the Online Learning Practices Survey!<br /><br />Do you want the software development teaching to be even better?</p>
+        <p class="m-4">This anonymous survey is about how students in Computer Science and Software Engineering courses use the internet to learn software development.
+          The anonymous data collected will be used to give recommendations for improving teaching for students studying ICT-related subjects at universities in Norway and Australia.
+          The study is part of a PhD project at the Department of Education at University of Oslo.</p>
         <p class="m-4">
-          The survey will collect data about what you do when you work on programming tasks. In addition, it will collect some data from your browser history, but <u>only</u> from those sites that you report having used for programming tasks. No personal data or other browsing history is collected.</p>
-        <p class="m-4">The data will be anonymised and stored securely, in accordance with the legislation on privacy in Norway and Europe (GDPR). You will not be recognized by others or by your teachers.</p>
-        <p class="m-4"><span class="text-blue-600 cursor-pointer" @click="$emit('mode', 'anon')">Here</span> you can read more about how your data will be anonymized and about the data we collect from the browser history.</p>
+          The survey asks you about what you do and what websites you use to learn new things about software development or work on software projects/tasks.
+          The survey uses a Google Chrome extension to count how many times you have accessed the websites for your selected activities in the last three months.
+          <a href="https://bitbucket.usit.uio.no/projects/ENGAGELAB/repos/myls/browse" target="default" class="text-blue-600 cursor-pointer">Here</a> you can check the source code of Chrome extension yourself. The survey takes approx. 10 min. to answer.</p>
+        <p class="m-4">The extension does not collect any other type of information than what you allow for through the survey.
+          As a researcher, I am respecting the legislation on data privacy in Norway and Europe (GDPR). The data will be anonymised, and analyzed and stored securely, on a secured UiO-server.
+          You will not be recognized by others or by your teachers. In case you agree to, only your personal email will be used to invite you to an interview on Zoom.</p>
         <p class="m-4">If you have questions or want to know more about the project, contact Andres Araos at a.a.a.moya@iped.uio.no.</p>
         <p class="m-4">Thank you very much for your participation!</p>
         <p class="m-4">Andres Araos</p>
@@ -57,7 +62,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 h1 {
   @apply font-bold text-2xl mb-4;
 }
