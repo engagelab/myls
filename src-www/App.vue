@@ -289,12 +289,10 @@ export default {
         switch (entry.type) {
           case 'binary':
             return entry.selection === true || entry.selection === false
-            break
           case 'multiChoice':
           case 'singleChoice':
           case 'text':
             return entry.selection && entry.selection.length > 0
-            break
           // Assumes conditional step 1 is 'single choice' and step 2 is a 'multichoice' type
           case 'conditional':
             return (
@@ -369,10 +367,10 @@ export default {
                   chrome.runtime.sendMessage(
                     editorExtensionId,
                     request,
-                    response => {
-                      if (response.success) {
-                        window.localStorage.setItem('id', response.data.id)
-                        this.id = response.data.id
+                    response2 => {
+                      if (response2.success) {
+                        window.localStorage.setItem('id', response2.data.id)
+                        this.id = response2.data.id
                       }
                     }
                   )
@@ -519,7 +517,7 @@ export default {
     },
     configureWebsites() {
       this.urls = this.data[this.$i18n.locale].urls.map((entry, index) => {
-        const selections = { selected: false }
+        const selections = { selected: false, npa: false } // npa == 'Non-Programming Activities'
         this.practiceColumns.forEach(p => (selections[p.shortTitle] = false))
         return {
           id: `url-${index}`,
@@ -564,8 +562,8 @@ export default {
           conditionals: entry.conditionals
             ? entry.conditionals.map((c, i) => {
                 c.options = c.options
-                  ? c.options.map((o, i) => {
-                      return { title: o, id: `demog-cond-option-${index}-${i}` }
+                  ? c.options.map((o, j) => {
+                      return { title: o, id: `demog-cond-option-${index}-${j}` }
                     })
                   : []
                 return { ...c, id: `demog-cond-${index}-${i}` }
@@ -624,7 +622,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
 .btn-myls {
   @apply bg-blue-500 text-white text-sm font-bold py-1 px-2 rounded;
 }

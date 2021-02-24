@@ -218,6 +218,7 @@ export default {
           break
         case 'email':
           this.selectedText = this.value
+          break
         case 'text':
           this.selectedText = this.value
           break
@@ -246,7 +247,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .inputQ {
   @apply mr-1 whitespace-no-wrap;
 }

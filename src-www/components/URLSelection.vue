@@ -13,10 +13,12 @@
           <tr>
             <th
               v-for="(c, cIndex) in columns"
+              :id="`CH${c.shortTitle}`"
               :key="`CH${c.shortTitle}`"
               :class="[cIndex === 0 ? 'w-1/4' : 'w-1/6']"
               class="px-4 py-2"
             >{{c.shortTitle}}</th>
+            <th id="nppa_col" v-if="showNPA">Non-programming Activities</th>
           </tr>
         </thead>
         <tbody>
@@ -38,7 +40,7 @@
                   v-if="cIndex > 0"
                   mode="binary"
                   v-model="u.selections[c.shortTitle]"
-                  @input="value => u.selections.selected = true"
+                  @input="value => u.selections.selected = value"
                 />
               </div>
               <!-- User-added question -->
@@ -49,10 +51,16 @@
                   placeholder="answer here.."
                   mode="binary"
                   v-model="u.selections[c.shortTitle]"
-                  @input="value => u.selections.selected = true"
+                  @input="value => u.selections.selected = value"
                 />
                 <button v-if="cIndex === 0" class="btn-myls bg-red-400" @click="removeRow(uIndex)">X</button>
               </div>
+            </td>
+            <td v-if="showNPA" class="border px-4 py-2">
+              <AnswerInput
+                  mode="binary"
+                  v-model="u.selections['npa']"
+                />
             </td>
           </tr>
         </tbody>
@@ -79,7 +87,7 @@
     "addURL": "+ Add URL",
     "part2Title": "Part II: Webpage Use",
     "part2Comment": "Check ‘yes’ for all listed sites you use / have used when you have performed activities in part 1",
-    "part2Comment2": "Note: The sites are listed over seven pages, please go through all the pages.",
+    "part2Comment2": "Note: The sites are listed over five pages, please go through all the pages and select the answers that apply. It will not take you too much time.",
     "side": "Page",
     "none": "None",
     "next": "Next"
@@ -90,7 +98,7 @@
     "addURL": "+ Legge til URL",
     "part2Title": "Del II: Nettstedsbruk",
     "part2Comment": "Kryss av for ‘ja’ for alle oppførte nettstedene du bruker/har brukt når du har utført aktiviteter i del 1.",
-    "part2Comment2": "Obs. Nettstedene står listet opp over syv sider, vennligst gå gjennom alle sidene.",
+    "part2Comment2": "Obs. Nettstedene står listet opp over syv fem sider, vennligst gå gjennom alle sidene.",
     "side": "Side",
     "none": "Ingen",
     "next": "Neste"
@@ -142,6 +150,13 @@ export default {
     })
   },
   computed: {
+    // Show the 'npa' column if one of the other columns was answered 'yes'
+    showNPA() {
+      return this.paginatedList.length > 0 && this.paginatedList[this.pageIndex].some((u) => {
+        const uEntries = Object.entries(u.selections)
+        return uEntries.some(([key, value]) => key !== 'npa' && value)
+      })
+    },
     nextIsNone() {
       return (
         !this.paginatedList.flat().some(u => u.selections.selected) &&

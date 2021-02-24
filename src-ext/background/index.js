@@ -11,8 +11,8 @@ function sendToServer (requestType, data, route, callback) {
   }
   // Event listener must be added before calling open()
   xhr.addEventListener('loadend', () => {
-    const data = xhr.response
-    callback({ data, success: true })
+    const xhrdata = xhr.response
+    callback({ xhrdata, success: true })
   })
   xhr.open(requestType, `${serverURL}${route}`)
   xhr.responseType = 'json'

@@ -14,7 +14,7 @@
           Jeg har fått mulighet til å stille spørsmål. Jeg gir samtykke til:
           <ul class="list-disc list-inside m-2">
             <li>å delta i en undersøkelse</li>
-            <li>å gi tilgang til nettleserloggen til nettstedene jeg erklærer å bruke under undersøkelsen</li>
+            <li>å gi tilgang til nettleserloggen til nettstedene jeg erklærer å bruke bare for hensikten med denne undersøkelsen.</li>
             <li>å delta i et intervju</li>
           </ul>
         </p>
@@ -37,7 +37,7 @@
         I have received and understood information about the project <i>exploring undergraduate students’ learning with non-curricular resources and digital tools</i> and have been given the opportunity to ask questions. I give consent:
         <ul class="list-disc list-inside m-2">
           <li>To participate in a survey</li>
-          <li>To provide access to the web browsing history of the websites I declare to use during the survey</li>
+          <li>To provide access to the web browsing history of the websites I declare to use only for the purpose of this survey.</li>
           <li>To participate in an interview</li>
         </ul>
       </p>
