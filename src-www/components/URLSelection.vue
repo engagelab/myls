@@ -18,7 +18,7 @@
               :class="[cIndex === 0 ? 'w-1/4' : 'w-1/6']"
               class="px-4 py-2"
             >{{c.shortTitle}}</th>
-            <th id="nppa_col">Non-programming Activities</th>
+            <th id="nppa_col">{{ $t('npa') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -91,7 +91,8 @@
     "part2Comment2": "Note: The sites are listed over five pages, please go through all the pages and select the answers that apply. It will not take you too much time.",
     "side": "Page",
     "none": "None",
-    "next": "Next"
+    "next": "Next",
+    "npa": "Non-programming Activities"
   },
   "no": {
     "no": "Norwegian",
@@ -102,7 +103,8 @@
     "part2Comment2": "Obs. Nettstedene står listet opp over syv fem sider, vennligst gå gjennom alle sidene.",
     "side": "Side",
     "none": "Ingen",
-    "next": "Neste"
+    "next": "Neste",
+    "npa": "Ikke-programmering"
   }
 }
 </i18n>
