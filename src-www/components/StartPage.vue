@@ -3,7 +3,7 @@
     <div v-if="$i18n.locale === 'no'">
         <p class="m-4 font-bold">Velkommen til Online Learning Practices Survey!<br /><br />Ønsker du at IT-undervisningen i Norge skal bli enda bedre?</p>
         <p class="m-4">Denne anonyme undersøkelsen handler om hvordan studenter innen data- og programvare bruker internett til å lære programvareutvikling.
-          Studien er en del av et PhD-prosjekt ved Institutt for pedagogikk ved UiO.Den anonyme dataen som blir samlet inn, vil bli brukt til å gi anbefalinger til forbedring
+          Studien er en del av et PhD-prosjekt ved Institutt for pedagogikk ved UiO. Den anonyme dataen som blir samlet inn, vil bli brukt til å gi anbefalinger til forbedring
           av undervisningen for studenter som studerer IKT-relaterte emner på universiteter i Norge.
         </p>
         <p class="m-4">

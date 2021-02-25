@@ -8,7 +8,7 @@
       class="mb-4"
     >{{ $t('side') + ` ${ pageIndex + 1} of ${paginatedList.length}`}}</p>
     <div class="flex flex-row content-start justify-between">
-      <table class="table-fixed">
+      <table class="table-auto">
         <thead>
           <tr>
             <th
@@ -18,7 +18,7 @@
               :class="[cIndex === 0 ? 'w-1/4' : 'w-1/6']"
               class="px-4 py-2"
             >{{c.shortTitle}}</th>
-            <th id="nppa_col" v-if="showNPA">Non-programming Activities</th>
+            <th id="nppa_col">Non-programming Activities</th>
           </tr>
         </thead>
         <tbody>
@@ -56,8 +56,9 @@
                 <button v-if="cIndex === 0" class="btn-myls bg-red-400" @click="removeRow(uIndex)">X</button>
               </div>
             </td>
-            <td v-if="showNPA" class="border px-4 py-2">
+            <td class="border px-4 py-2">
               <AnswerInput
+                  v-if="u.selections.selected"
                   mode="binary"
                   v-model="u.selections['npa']"
                 />

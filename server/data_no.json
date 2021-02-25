@@ -1,63 +1,204 @@
 {
   "practices": [
     {
-      "title": "Practice I: Problem solving activities and resources",
-      "shortTitle": "Problem solving",
-      "description": "From the listed activities, select all those you carry out on the Internet when you need to solve problems during a programming task:",
+      "title": "Seksjon 1: Finne, Lagre og Dele Ressurser",
+      "shortTitle": "Finne, Lagre, Dele",
+      "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett for å finne ressurser og kommunisere med andre når du jobber med programvareutvikling prosjekter eller oppgaver, eller når du lærer deg nye ting relatert til programvareutvikling:",
       "actions": [
         {
-          "title": "1) Ask questions to other developers"
+          "title": "1) Søke/spørre om løsninger på kodingsproblemer."
         },
         {
-          "title": "6) Other",
+          "title": "2) Søke/spørre om andres ideer eller synspunkter på temaer om programvareutvikling."
+        },
+        {
+          "title": "3) Søke/spørre om forklaring av begreper innen programvareutvikling."
+        },
+        {
+          "title": "4) Søke/spørre om kodekomponenter (f.eks kode snippets)."
+        },
+        {
+          "title": "5) Søke/spørre om kildekoden i prosjekter som utvikler programvare."
+        },
+        {
+          "title": "6) Søke/spørre om tutorials eller forklaringer av metoder for programvareutvikling."
+        },
+        {
+          "title": "7) Søke/spørre om dokumentasjon eller kodespesifikasjoner for programvare."
+        },
+        {
+          "title": "8) Lagre ideer eller synspunkter på temaer om programvareutvikling."
+        },
+        {
+          "title": "9) Lagre forklaring av begreper innen programvareutvikling."
+        },
+        {
+          "title": "10) Lagre kodekomponenter (f.eks kode snippets)."
+        },
+        {
+          "title": "11) Lagre kildekode i prosjekter som utvikler programvare."
+        },
+        {
+          "title": "12) Lagre tutorials eller forklaringer av metoder for programvareutvikling."
+        },
+        {
+          "title": "13) Lagre programvare dokumentasjon eller kodespesifikasjoner for programvare."
+        },
+        {
+          "title": "14) Dele ideer eller synspunkter på temaer om programvareutvikling med andre."
+        },
+        {
+          "title": "15) Dele forklaring av begreper innen programvareutvikling med andre."
+        },
+        {
+          "title": "16) Dele kodekomponenter (f.eks snippets) med andre."
+        },
+        {
+          "title": "17) Dele kildekode i prosjekter som utvikler programvare med andre."
+        },
+        {
+          "title": "18) Dele tutorials eller forklaringer av metoder for programvareutvikling med andre."
+        },
+        {
+          "title": "19) Dele programvare dokumentasjon eller kodespesifikasjoner for programvare med andre."
+        },
+        {
+          "title": "20) Dele prototypen av et prosjekt som utvikler programvare med andre."
+        },
+        {
+          "title": "21) Spore endringer i kildekode i prosjekter som utvikler programvare."
+        },
+        {
+          "title": "22) Annet",
           "entrytype": "text"
         }
       ]
     },
     {
-      "title": "Practice II: Staying up to date activities and resources",
-      "shortTitle": "Staying up to date",
-      "description": "From the listed activities, select all those you carry out on the Internet when you want to stay up to date with the latest trends in the software industry:",
+      "title": "Seksjon 2: Forstå konsepter og metoder",
+      "shortTitle": "Forstå",
+      "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett for å forstå konsepter og metoder når du jobber med programvareutvikling prosjekter eller oppgaver, eller når du lærer deg nye ting relatert til programvareutvikling:",
       "actions": [
         {
-          "title": "1) Track changes in ongoing open source projects"
+          "title": "1) Utvikle bidrag til kildekode i prosjekter som utvikler programvare."
         },
         {
-          "title": "7) Other",
+          "title": "2) Utvikle korte kodingsoppgaver."
+        },
+        {
+          "title": "3) Undersøke kildekoden i prosjekter som utvikler programvare."
+        },
+        {
+          "title": "4) Undersøke kodekomponenter (f.eks kode snippets)."
+        },
+        {
+          "title": "5) Undersøke prototypen av en prosjekt som utvikler programvare."
+        },
+        {
+          "title": "6) Se på forklaringer av begreper innen programvareutvikling."
+        },
+        {
+          "title": "7) Se på andres ideer eller synspunkter på temaer om programvareutvikling."
+        },
+        {
+          "title": "8) Se på tutorials eller forklaringer av metoder for programvareutvikling."
+        },
+        {
+          "title": "9) Se på andres løsninger av kodingsproblemer."
+        },
+        {
+          "title": "10) Se på dokumentasjon eller kodespesifikasjoner for programvare."
+        },
+        {
+          "title": "11) Dokumentere din egen aktivitet for programutvikling (f.eks. med Github Wiki)."
+        },
+        {
+          "title": "12) Annet",
           "entrytype": "text"
         }
       ]
     },
     {
-      "title": "Practice III: Deliberate learning activities and resources",
-      "shortTitle": "Deliberate learning",
-      "description": "From the listed activities, select all those you carry out on the Internet when you want to learn something new about software development:",
+      "title": "Seksjon 3: Gjenbruk av ressurser",
+      "shortTitle": "Gjenbruke",
+      "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett for å gjenbruk av ressurser når du jobber med programvareutvikling prosjekter eller oppgaver, eller når du lærer deg nye ting relatert til programvareutvikling:",
       "actions": [
         {
-          "title": "1) Track and assess changes in ongoing open source projects."
+          "title": "1) Gjenbruke andres ideer eller synspunkter på temaer om programvareutvikling i arbeidet ditt."
         },
         {
-          "title": "10) Check out tutorials, online courses, webinars or e-learning platforms."
+          "title": "2) Tilpasse og gjenbruk andres kildekode i arbeidet ditt."
         },
         {
-          "title": "11) Document your own coding activity and work in text, audio or video."
+          "title": "3) Tilpasse og integrere kodekomponenter i kode din."
         },
         {
-          "title": "12) Other",
+          "title": "4) Tilpasse kode for å slå den sammen med andres kode."
+        },
+        {
+          "title": "5) Gjenta trinn fra tutorials eller forklaringer av metoder for programvareutvikling i arbeidet ditt."
+        },
+        {
+          "title": "6) Gjenbruke retningslinjer i programvare dokumentasjon eller kode spesifikasjoner i arbeidet ditt."
+        },
+        {
+          "title": "7) Gjenbruke andres løsninger på kodingsproblemer i arbeidet ditt."
+        },
+        {
+          "title": "8) Vurdere endringer gjort av andre i programvareprosjekters kildekode."
+        },
+        {
+          "title": "9) Annet",
           "entrytype": "text"
         }
       ]
     },
     {
-      "title": "Practice IV: Career Management Activities and Resources",
-      "shortTitle": "Career Management",
-      "description": "From the listed activities, select all those you of the following activities you carry out on the Internet when you want to manage your career as a computer and software engineer:",
+      "title": "Seksjon 4: Samarbeid med andre",
+      "shortTitle": "Samarbeid",
+      "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett for å samarbeid med andre når du jobber med programvareutvikling prosjekter eller oppgaver, eller når du lærer deg nye ting relatert til programvareutvikling:",
       "actions": [
         {
-          "title": "1) Develop and submit contributions to software projects."
+          "title": "1) Sende inn bidrag til programvareprosjekters kildekode du jobber med sammen med andre."
         },
         {
-          "title": "6) Other",
+          "title": "2) Gi eller få tilbakemelding om programvareprosjekter kildekode."
+        },
+        {
+          "title": "3) Gi eller få tilbakemelding om deres ideer eller synspunkter på temaer om programvareutvikling."
+        },
+        {
+          "title": "4) Diskutere ideer eller synspunkter på temaer om programvareutvikling med andre."
+        },
+        {
+          "title": "5) Diskutere kildekoden i prosjekter som utvikler programvare med andre."
+        },
+        {
+          "title": "6) Diskutere kodekomponenter (f.eks snippets) med andre."
+        },
+        {
+          "title": "7) Diskutere tutorials eller forklaringer av metoder for programvareutvikling med andre."
+        },
+        {
+          "title": "8) Diskutere prototypen av et prosjekt som utvikler programvare med andre."
+        },
+        {
+          "title": "9) Forklar eller motta forklaringer til/fra andre om løsninger på kodingsproblemer."
+        },
+        {
+          "title": "10) Forklar eller motta forklaringer fra andre om begreper innen programvareutvikling."
+        },
+        {
+          "title": "11) Forklar eller motta forklaringer fra andre om programvareprosjekters prototypen."
+        },
+        {
+          "title": "12) Forklar eller motta forklaringer fra andre om metoder for programvareutvikling."
+        },
+        {
+          "title": "13) Planlegg aktiviteter i programvare utviklingsprosjekter med andre."
+        },
+        {
+          "title": "14) Annet",
           "entrytype": "text"
         }
       ]
@@ -65,124 +206,379 @@
   ],
   "urls": [
     {
-      "name": "GitHub",
-      "url": "https://github.com",
-      "search": "github.com"
-    },
-    {
       "name": "YouTube",
-      "url": "https://www.youtube.com",
+      "url": "https://www.youtube.com/",
       "search": "www.youtube.com"
     },
     {
-      "name": "Stack Overflow",
-      "url": "https://stackoverflow.com",
-      "search": "stackoverflow.com"
+      "name": "Google",
+      "url": "https://www.google.com/",
+      "search": "www.google.com"
     },
     {
-      "name": "Stack Exchange",
-      "url": "https://stackexchange.com",
-      "search": "stackexchange.com"
+      "name": "DuckDuckGo",
+      "url": "https://duckduckgo.com/",
+      "search": "duckduckgo.com"
     },
     {
-      "name": "codementor",
-      "url": "https://www.codementor.io",
-      "search": "www.codementor.io"
+      "name": "Pocket",
+      "url": "https://getpocket.com/",
+      "search": "getpocket.com"
     },
     {
-      "name": "devRant",
-      "url": "https://devrant.com",
-      "search": "devrant.com"
+      "name": "Evernote",
+      "url": "https://evernote.com/",
+      "search": "evernote.com"
     },
     {
-      "name": "Quora",
-      "url": "https://www.quora.com",
-      "search": "www.quora.com"
+      "name": "Notion",
+      "url": "https://www.notion.so/",
+      "search": "notion.so"
+    },
+    {
+      "name": "One Note",
+      "url": "https://www.onenote.com/",
+      "search": "onenote.com"
+    },
+    {
+      "name": "Start.me",
+      "url": "https://start.me/",
+      "search": "start.me"
+    },
+    {
+      "name": "Wikipedia",
+      "url": "https://www.wikipedia.org/",
+      "search": "wikipedia.org"
+    },
+    {
+      "name": "Twitch",
+      "url": "https://www.twitch.tv/",
+      "search": "www.twitch.tv"
+    },
+    {
+      "name": "Watch People Code",
+      "url": "http://www.watchpeoplecode.com/",
+      "search": "www.watchpeoplecode.com"
     },
     {
       "name": "Gmail",
-      "url": "https://mail.google.com",
+      "url": "mail.google.com",
       "search": "mail.google.com"
     },
     {
-      "name": "Skype",
-      "url": "https://web.skype.com",
-      "search": "skype.com"
-    },
-    {
-      "name": "Google Hangouts",
-      "url": "https://hangouts.google.com",
-      "search": "hangouts.google.com"
-    },
-    {
-      "name": "Mumble",
-      "url": "https://www.mumble.com",
-      "search": "www.mumble.com"
-    },
-    {
-      "name": "Jira",
-      "url": "https://www.atlassian.com/es/software/jira",
-      "search": "atlassian.net"
-    },
-    {
-      "name": "Basecamp",
-      "url": "https://basecamp.com",
-      "search": "basecamp.com"
-    },
-    {
-      "name": "Pivotal Tracker",
-      "url": "https://www.pivotaltracker.com",
-      "search": "www.pivotaltracker.com"
-    },
-    {
-      "name": "freenode",
-      "url": "https://freenode.net",
-      "search": "freenode.net"
-    },
-    {
       "name": "Slack",
-      "url": "slack.com",
+      "url": "https://slack.com/",
       "search": "slack.com"
     },
     {
-      "name": "Twitter",
-      "url": "https://twitter.com",
-      "search": "twitter.com"
+      "name": "Facebook Messenger",
+      "url": "https://www.messenger.com/",
+      "search": "www.messenger.com"
     },
     {
-      "name": "WhatsApp",
-      "url": "https://web.whatsapp.com",
-      "search": "web.whatsapp.com"
+      "name": "Google Hangout",
+      "url": "https://hangouts.google.com/",
+      "search": "hangouts.google.com"
+    },
+    {
+      "name": "Zoom",
+      "url": "https://zoom.us/",
+      "search": "zoom.us"
     },
     {
       "name": "Facebook",
-      "url": "https://www.facebook.com",
+      "url": "https://www.facebook.com/",
       "search": "www.facebook.com"
     },
     {
       "name": "Instagram",
-      "url": "https://www.instagram.com",
+      "url": "https://www.instagram.com/",
       "search": "www.instagram.com"
     },
     {
-      "name": "Dev",
-      "url": "https://dev.to",
+      "name": "Quora",
+      "url": "https://www.quora.com/",
+      "search": "www.quora.com"
+    },
+    {
+      "name": "Stack Overflow",
+      "url": "https://stackoverflow.com/",
+      "search": "stackoverflow.com"
+    },
+    {
+      "name": "Stack Exchange",
+      "url": "https://stackexchange.com/",
+      "search": "stackexchange.com"
+    },
+    {
+      "name": "Discord",
+      "url": "https://discord.com/",
+      "search": "discord.com"
+    },
+    {
+      "name": "DevRant",
+      "url": "https://devrant.com/",
+      "search": "devrant.com"
+    },
+    {
+      "name": "Dev.to",
+      "url": "https://dev.to/",
       "search": "dev.to"
     },
     {
-      "name": "Hashnode",
-      "url": "https://hashnode.com",
-      "search": "hashnode.com"
+      "name": "Github",
+      "url": "https://github.com/",
+      "search": "github.com"
+    },
+    {
+      "name": "UiO Github",
+      "url": "https://github.uio.no/",
+      "search": "github.uio.no"
+    },
+    {
+      "name": "Source Forge",
+      "url": "https://sourceforge.net/",
+      "search": "sourceforge.net"
+    },
+    {
+      "name": "GitLab",
+      "url": "https://gitlab.com/",
+      "search": "gitlab.com"
+    },
+    {
+      "name": "BitBucket",
+      "url": "https://bitbucket.org/",
+      "search": "bitbucket.org"
+    },
+    {
+      "name": "Dev Docs",
+      "url": "https://devdocs.io/",
+      "search": "devdocs.io"
+    },
+    {
+      "name": "Postgre SQL",
+      "url": "https://www.postgresql.org/",
+      "search": "www.postgresql.org"
+    },
+    {
+      "name": "Read the Docs",
+      "url": "https://readthedocs.org/",
+      "search": "readthedocs.org"
+    },
+    {
+      "name": "Git Official Documentation",
+      "url": "https://git-scm.com/",
+      "search": "git-scm.com"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/",
+      "search": "twitter.com"
+    },
+    {
+      "name": "Reddit programming",
+      "url": "https://www.reddit.com/r/programming",
+      "search": "www.reddit.com/r/programming"
+    },
+    {
+      "name": "Reddit learn programming",
+      "url": "https://www.reddit.com/r/learnprogramming",
+      "search": "www.reddit.com/r/learnprogramming"
+    },
+    {
+      "name": "Reddit Dailyprogrammer",
+      "url": "https://www.reddit.com/r/dailyprogrammer",
+      "search": "www.reddit.com/r/dailyprogrammer"
+    },
+    {
+      "name": "Reddit CS Career Questions",
+      "url": "https://www.reddit.com/r/cscareerquestions",
+      "search": "www.reddit.com/r/cscareerquestions"
+    },
+    {
+      "name": "Reddit Coding",
+      "url": "https://www.reddit.com/r/coding",
+      "search": "www.reddit.com/r/coding"
+    },
+    {
+      "name": "Reddit AskProgramming",
+      "url": "https://www.reddit.com/r/AskProgramming",
+      "search": "www.reddit.com/r/AskProgramming"
+    },
+    {
+      "name": "Towards Data Science",
+      "url": "www.towardsdatascience.com",
+      "search": "www.towardsdatascience.com"
+    },
+    {
+      "name": "Medium",
+      "url": "www.medium.com",
+      "search": "www.medium.com"
+    },
+    {
+      "name": "Hacker Noon",
+      "url": "https://hackernoon.com/",
+      "search": "hackernoon.com"
+    },
+    {
+      "name": "Tech Crunch",
+      "url": "https://techcrunch.com/",
+      "search": "techcrunch.com"
+    },
+    {
+      "name": "Hacker News",
+      "url": "https://news.ycombinator.com/",
+      "search": "news.ycombinator.com"
+    },
+    {
+      "name": "Geeks for Geeks",
+      "url": "https://www.geeksforgeeks.org/",
+      "search": "www.geeksforgeeks.org"
+    },
+    {
+      "name": "Udacity",
+      "url": "https://www.udacity.com/",
+      "search": "www.udacity.com"
+    },
+    {
+      "name": "Coursera",
+      "url": "https://coursera.org/",
+      "search": "coursera.org"
+    },
+    {
+      "name": "EdX",
+      "url": "https://www.edx.org/",
+      "search": "www.edx.org"
+    },
+    {
+      "name": "CodeCademy",
+      "url": "https://www.codecademy.com/",
+      "search": "www.codecademy.com"
+    },
+    {
+      "name": "FreeCodeCamp",
+      "url": "https://www.freecodecamp.org/",
+      "search": "www.freecodecamp.org"
+    },
+    {
+      "name": "Udemy",
+      "url": "https://www.udemy.com/",
+      "search": "www.udemy.com"
+    },
+    {
+      "name": "Khan Academy",
+      "url": "https://www.khanacademy.org/",
+      "search": "www.khanacademy.org"
+    },
+    {
+      "name": "Solo Learn",
+      "url": "https://www.sololearn.com",
+      "search": "www.sololearn.com"
+    },
+    {
+      "name": "MIT Open Course Ware",
+      "url": "https://ocw.mit.edu/",
+      "search": "ocw.mit.edu"
+    },
+    {
+      "name": "Oracle JAVA Tutorial",
+      "url": "https://docs.oracle.com/javase/tutorial/",
+      "search": "docs.oracle.com/javase/tutorial"
+    },
+    {
+      "name": "Mozilla Developer Network MDN",
+      "url": "https://developer.mozilla.org",
+      "search": "developer.mozilla.org"
+    },
+    {
+      "name": "Hackr.io",
+      "url": "https://hackr.io/",
+      "search": "hackr.io"
+    },
+    {
+      "name": "Microsoft Resources",
+      "url": "https://docs.microsoft.com/",
+      "search": "docs.microsoft.com"
+    },
+    {
+      "name": "W3Schools",
+      "url": "https://www.w3schools.com/",
+      "search": "www.w3schools.com"
+    },
+    {
+      "name": "Code Wars",
+      "url": "https://www.codewars.com/",
+      "search": "www.codewars.com"
+    },
+    {
+      "name": "Hacker Rank",
+      "url": "https://www.hackerrank.com/",
+      "search": "www.hackerrank.com"
+    },
+    {
+      "name": "Linkedin",
+      "url": "https://www.linkedin.com/",
+      "search": "www.linkedin.com"
     }
   ],
   "demographics": [
     {
-      "title": "a) Do you have any software development experience before entering your program?",
-      "shortTitle": "Experience",
-      "type": "binary"
+      "title": "1) Blant de oppførte typene av programvareutvikling prosjekter eller oppgaver, velg alle du jobber med ved hjelp av nettstedene du valgte:",
+      "shortTitle": "projects",
+      "type": "multiChoice",
+      "options": [
+        "i) Prosjekter eller oppgaver fra universitetskurs",
+        "ii) Andre personlige prosjekter eller oppgaver du jobber med for å lære nye ting",
+        "iii) Andre personlige prosjekter eller oppgaver du jobber med for å forbedre dine fremtidige karrieremuligheter som programvareutvikler",
+        "iv) Andre personlige prosjekter eller oppgaver du jobber med for fritid/moro",
+        "v) Andre personlige prosjekter eller oppgaver du jobber med som en del av et entreprenørskapsprosjekt eller lønnet jobb"
+      ]
     },
     {
-      "title": "1) Kjønn",
+      "title": "2) Hvis du jobber med typene av programvareutvikling prosjekter eller oppgaver som ikke var oppført, skriv dem ned her",
+      "required": false,
+      "shortTitle": "extra_projects",
+      "type": "text"
+    },
+    {
+      "title": "3) Blant de oppførte typer av programvareutvikling temaer, velg alle du lærer deg ved hjelp av nettstedene du valgte:",
+      "shortTitle": "topics",
+      "options": [
+        "i) Temaer fra dine universitetskurs",
+        "ii) Andre temaer som ikke er inkludert i dine universitetskurs du anser som interessante",
+        "iii) Andre temaer som ikke er inkludert i dine universitetskurs som kreves av potensielle arbeidsgivere innen programvareutvikling",
+        "iv) Andre temaer som ikke er inkludert i dine universitetskurs som er nødvendige for personlige prosjekter som du jobber på",
+        "v) Andre temaer som ikke er inkludert i dine universitetskurs som er anbefalt av andre"
+      ]
+    },
+    {
+      "title": "4) Hvis du lærer deg typer av programvareutvikling temaer som ikke var oppført, skriv dem ned her",
+      "required": false,
+      "shortTitle": "extra_topics",
+      "type": "text"
+    },
+    {
+      "title": "5) Velg alle du jobber med, lærer sammen med eller får hjelp av på nettstedene du valgte:",
+      "shortTitle": "people",
+      "options": [
+        "i) Lærere",
+        "ii) Lærerassistenter",
+        "iii) Studenter",
+        "iv) Venner",
+        "v) Familie",
+        "vi) Profesjonelle utviklere",
+        "vii) Ukjente mennesker",
+        "viii) Jobb kollega"
+      ]
+    },
+    {
+      "title": "6) Hvis du jobber med, lærer sammen med eller får hjelp av som ikke var oppført, skriv dem ned her",
+      "required": false,
+      "shortTitle": "extra_people",
+      "type": "text"
+    },    
+    {
+      "title": "7) Kjønn",
       "shortTitle": "gender",
       "type": "singleChoice",
       "options": [
@@ -192,56 +588,139 @@
       ]
     },
     {
-      "title": "2) Alder",
+      "title": "8) Alder",
       "shortTitle": "age",
       "type": "text"
     },
     {
-      "title": "d) What software development languages can you currently work with?",
-      "shortTitle": "Languages",
-      "type": "multiChoice",
-      "options": [
-        "i) Javascript",
-        "ii) Python",
-        "iii) C++",
-        "iv) C#",
-        "v) SQL"
-      ]
-    },
-    {
-      "title": "c) In what university are you currently taking your bachelor?",
+      "title": "9) På hvilket universitet tar du for tiden din bachelor og hvilke emne(r) tar du dette semesteret?",
       "shortTitle": "University",
       "type": "conditional",
       "options": [
-        "a) University of Oslo (UiO)",
-        "b) Oslo Metropolitan University (OsloMet)"
+        "a) Universitetet i Oslo (UiO)",
+        "b) Oslo Metropolitan University (OsloMet)",
+        "c) Universitetet i Sørøst-Norge (USN)",
+        "g) Universitetet i Agder",
+        "i) Norge Forsvaret",
+        "d) Monash University"
       ],
       "conditionals": [
         {
-          "title": "Which of these courses are you taking this semester?",
+          "title": "10) Hvilke emne(r) tar du dette semesteret?",
           "type": "multiChoice",
           "options": [
-            "i) IN2000 - Software development Lab",
-            "ii) IN3002 - Search Algorithms",
-            "iii) IN1001 - Introduction to programming"
+            "i) IN1010 - Objektorientert programmering",
+            "i) IN1030 - Systemer, krav og konsekvenser",
+            "ii) IN2000 – Software Engineering med prosjektarbeid",
+            "iii) IN1060 - Bruksorientert design",
+            "iv) IN2140 - Introduksjon til operativsystemer og datakommunikasjon",
+            "v) IN2080 - Beregninger og kompleksitet",
+            "vi) IN2080 - Beregninger og kompleksitet",
+            "vii) IN2110 - Språkteknologiske metoder",
+            "viii) IN2100 - Logikk for systemanalyse",
+            "ix) IN3200 - High-Performance Computing and Numerical Projects",
+            "x) IN2070 - Digital bildebehandling",
+            "xi) IN3160 - Digital systemkonstruksjon"
           ]
         },
         {
-          "title": "Which of these courses are you taking this semester?",
+          "title": "10) Hvilke emne(r) tar du dette semesteret?",
           "type": "multiChoice",
           "options": [
-            "i) DATA1000 - Introduction to programming",
-            "ii) DATA2001 - Web Programming",
-            "iii) DATA 3000 - DataBase queries"
+            "i) DATA1700 Webprogrammering",
+            "ii) DATA1500 Databaser",
+            "iii) DATA2410 Datanettverk og skytjenester",
+            "iv) ADSE1310 Internet of Things",
+            "v) ADTS2310 Testing av programvare",
+            "vi) DAVE3610 Nettverks- og systemadministrasjon",
+            "vii) DATA2500 Operativsystemer",
+            "viii) ADSE3200 Visualisering"
+          ]
+        },
+        {
+          "title": "10) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) PRO1000V - Praktisk prosjektarbeid",
+            "ii) DAT1000V - Database 1",
+            "iii) PRG1100V - Grunnleggende programmering 2",
+            "iv) ARB1000V - Arbeids- og organisasjonspsykologi",
+            "v) OBJ2100V - Objektorientert programmering 2",
+            "vi) OAD2000V - Objektorientert analyse og design",
+            "vii) SAM2000V - Samfunnsvitenskapelig metode",
+            "viii) ØA-STB3000 - Applikasjonsutvikling",
+            "ix) IOT3000V - Studentbedrift"
+          ]
+        },
+        {
+          "title": "10) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) MA180-G Diskret matematikk 1",
+            "ii) MA179-G Matematikk 2",
+            "iii) IKT103-G Videregående softwareutvikling",
+            "iv) IKT104-G Mikrokontrollere",
+            "v) IKT105-G Datamodellering og databaser",
+            "vi) IKT106-G Nettverksadministrasjon",
+            "vii) IKT204-G Datakommunikasjon",
+            "viii) MA-223-G Statistikk",
+            "ix) IKT205-G Applikasjonsutvikling",
+            "x) IKT206-G DevOps",
+            "xi) IKT209-G IT orkestrering",
+            "xii) FYS130-G Optikk og bølgefysikk",
+            "xiii) ING200-G Teknologi, bærekraft og samfunn i et systemperspektiv",
+            "xiv) ING201-G Økonomi og innovasjon"
+          ]
+        },
+        {
+          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) ING1504 Physics",
+            "ii) ING1505 Chemistry",
+            "iii) ING2502 Electronics",
+            "iv) ING3505 Statistics and economics",
+            "v) ING1506 Data communication",
+            "vi) ING1507 Computer architecture",
+            "vii) ING3506 Role and communication 2",
+            "viii) ING3507 Cyber context"
+          ]
+        },
+        {
+          "title": "4) Hvilke emne(r) tar du dette semesteret?",
+          "type": "multiChoice",
+          "options": [
+            "i) FIT5145 - Introduction to data science",
+            "ii) FIT2099 - Object oriented design and implementation"
           ]
         }
       ]
     },
     {
-      "title": "4) Hvis du tar emner dette semesteret som ikke var oppført, skriv dem ned her",
+      "title": "11) Hvis du tar emner dette semesteret som ikke var oppført, skriv dem ned her",
       "required": false,
       "shortTitle": "extra_courses",
       "type": "text"
+    },
+    {
+      "title": "12) Når startet du i denne studien?",
+      "shortTitle": "study_year",
+      "type": "text"
+    },
+    {
+      "title": "13) Hadde du noen erfaring med utvikling av programvare før du startet på dette studiet?",
+      "shortTitle": "Experience",
+      "type": "binary"
+    },
+    {
+      "title": "14) Har du hatt arbeid/jobb i programvareindustrien ved siden av studiene?",
+      "shortTitle": "past_job",
+      "type": "binary"
+    },
+    {
+      "title": "15) Har du for tiden arbeid/jobb i programvareindustrien ved siden av studiene?",
+      "shortTitle": "current_job",
+      "type": "binary"
     }
   ]
 }
