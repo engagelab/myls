@@ -3,7 +3,7 @@
     {
       "title": "Section 1: Searching, Saving and Sharing resources ",
       "shortTitle": "Search, find, share",
-      "description": "From the listed activities, select all of those you perform on the Internet to search or share resources when you want to learn new things about software development or work on software projects/tasks:",
+      "description": "From the listed activities, select all of those you perform on the Internet to search, share and save resources when you want to learn new things about software development or work on software projects/tasks:",
       "actions": [
         {
           "title": "1) Search/ask for solutions to coding problems"
@@ -543,6 +543,7 @@
     {
       "title": "3) Select the type of software development topics you usually learn about on the websites you selected:",
       "shortTitle": "topics",
+      "type": "multiChoice",
       "options": [
         "i) Topics from university courses",
         "ii) Topics not included in your university courses you consider interesting",
@@ -560,6 +561,7 @@
     {
       "title": "5) Select the people you usually work in projects with, learn together with or from using the websites you selected:",
       "shortTitle": "people",
+      "type": "multiChoice",
       "options": [
         "i) Teachers",
         "ii) Teacher assistants",

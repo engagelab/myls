@@ -3,7 +3,7 @@
     {
       "title": "Seksjon 1: Finne, Lagre og Dele Ressurser",
       "shortTitle": "Finne, Lagre, Dele",
-      "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett for å finne ressurser og kommunisere med andre når du jobber med programvareutvikling prosjekter eller oppgaver, eller når du lærer deg nye ting relatert til programvareutvikling:",
+      "description": "Blant de oppførte aktivitetene, velg alle aktivitetene du utfører på Internett for å finne, lagre og dele ressurser når du jobber med programvareutvikling prosjekter eller oppgaver, eller når du lærer deg nye ting relatert til programvareutvikling:",
       "actions": [
         {
           "title": "1) Søke/spørre om løsninger på kodingsproblemer."
@@ -543,6 +543,7 @@
     {
       "title": "3) Blant de oppførte typer av programvareutvikling temaer, velg alle du lærer deg ved hjelp av nettstedene du valgte:",
       "shortTitle": "topics",
+      "type": "multiChoice",
       "options": [
         "i) Temaer fra dine universitetskurs",
         "ii) Andre temaer som ikke er inkludert i dine universitetskurs du anser som interessante",
@@ -560,6 +561,7 @@
     {
       "title": "5) Velg alle du jobber med, lærer sammen med eller får hjelp av på nettstedene du valgte:",
       "shortTitle": "people",
+      "type": "multiChoice",
       "options": [
         "i) Lærere",
         "ii) Lærerassistenter",

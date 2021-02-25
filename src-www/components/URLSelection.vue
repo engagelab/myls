@@ -100,7 +100,7 @@
     "addURL": "+ Legge til URL",
     "part2Title": "Del II: Nettstedsbruk",
     "part2Comment": "Kryss av for ‘ja’ for alle oppførte nettstedene du bruker/har brukt når du har utført aktiviteter i del 1.",
-    "part2Comment2": "Obs. Nettstedene står listet opp over syv fem sider, vennligst gå gjennom alle sidene.",
+    "part2Comment2": "Obs. Nettstedene står listet opp over fem sider, vennligst gå gjennom alle sidene.",
     "side": "Side",
     "none": "Ingen",
     "next": "Neste",

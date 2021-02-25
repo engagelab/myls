@@ -53,9 +53,6 @@
       <!-- The second template displays general selection of category -->
       <template v-if="mode == 'activities'">
         <h1 class="font-bold">{{ $t('part1Title') }}</h1>
-        <p>
-          {{ $t('part1Comment') }}
-        </p>
         <div class="p-2">
           <h2 class="font-bold">{{ practices[pIndex].title }}</h2>
           <p class="mb-2">{{ practices[pIndex].description }}</p>
@@ -214,7 +211,6 @@
     "finished": "Finished",
     "addActivity": "+ Add Activity",
     "part1Title": "Part I: Activities",
-    "part1Comment": "Note: Choose all the activities you perform, even if they are repeated in different sections.",
     "part3Title": "Part III: Background"
   },
   "no": {
@@ -226,7 +222,6 @@
     "finished": "Ferdig",
     "addActivity": "+ Legge til Aktivitet",
     "part1Title": "Del I: Aktiviteter",
-    "part1Comment": "Obs: Velg alle aktivitetene du utfører, selv om de gjentas under forskjellige seksjoner.",
     "part3Title": "Del III: Bakgrunn"
   }
 }
