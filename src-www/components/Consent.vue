@@ -102,7 +102,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 h1 {
   @apply font-bold text-2xl mb-4;
 }
