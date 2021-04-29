@@ -37,12 +37,12 @@
         I have received and understood information about the project <i>exploring undergraduate students’ learning with non-curricular resources and digital tools</i> and have been given the opportunity to ask questions. I give consent:
         <ul class="list-disc list-inside m-2">
           <li>To participate in a survey</li>
-          <li>To provide access to the web browsing history of the websites I declare to use only for the purpose of this survey.</li>
+          <li>To provide access to the web browsing history of the websites I declare to use only for the purpose of this survey</li>
           <li>To participate in an interview</li>
         </ul>
       </p>
       <div class="flex flex-row mt-4">
-        <p>I give consent for my personal data to be processed until the end date of the project, approx. January 2021.</p>
+        <p>I give consent for my personal data to be processed until the end date of the project, approx. July 2021</p>
         <AnswerInput mode="binary" :value="consented" @input="value => $emit('consented', value)" />
       </div>
     </div>
