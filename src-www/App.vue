@@ -263,7 +263,7 @@ export default {
       id: '',
       email: '',
       mode: 'start',
-      langs: ['no', 'en'],
+      langs: ['en', 'no'],
     }
   },
   created() {

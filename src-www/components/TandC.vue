@@ -299,7 +299,7 @@
       </p>
       <h2>Storage of Data</h2>
       <p>
-        All data captured will be in electronic format and will be stored on cloud server located in Australia. All data will be kept for at least five years as per Monash University policy.
+        All data captured will be in electronic format and will be stored on a secure cloud server. All data will be kept for at least five years as per Monash University policy.
         After this time, the data will be destroyed. Findings from this study will be reported only as statements or suggestions in a way that prevents identification of any individual participant.
       </p>
       <h2>Use of data for other purposes</h2>

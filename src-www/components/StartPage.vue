@@ -41,7 +41,7 @@
         <p class="m-4">Thank you very much for your participation!</p>
         <p class="m-4">Andres Araos</p>
         <div class="flex flex-row m-4">
-          <p>I would like to participate in the lottery to win a gift card of 500 kr. from Elkjøp </p>
+          <p>I would like to participate in the lottery to win a gift card of AUD $50</p>
           <AnswerInput mode="binary" :value="lottery" @input="value => $emit('lottery', value)" />
         </div>
   </div>
