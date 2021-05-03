@@ -155,46 +155,87 @@
 
       <!-- Final template confirms submission of results -->
       <template v-if="mode == 'submit'">
-        <p>
-          Vi skanner nå nettleserloggen din for å telle nettadresser som bare
-          samsvarer med de du valgte i undersøkelsen.
-        </p>
-        <p class="pt-2">
-          Ved å klikke 'Send' samtykker du i å dele både undersøkelsessvar og
-          selektiv nettleserhistorikk for de valgte URL-ene med MyLS-prosjektet
-          ved Universitetet i Oslo: <i>“Learning with the Internet”</i>.
-        </p>
-        <p class="pt-2">
-          Dataene som samles inn fra deg vil bli anonymisert, og de vil bli
-          lagret trygt, i henhold til regelverket for databeskyttelse i Norge og
-          Europa (GDPR). Du vil ikke bli gjenkjent av andre, heller ikke av
-          lærerne dine.
-        </p>
+        <div v-if="$i18n.locale === 'en'">
+          <p>
+            We are scanning your browser log to gather only website addresses that match those chosen in the survery
+          </p>
+          <p class="pt-2">
+            By clicking 'Submit', you agree to share both survey responses and
+             selective browser history for the selected URLs with the MyLS project
+             at the University of Oslo <em>“Learning with the Internet”</em>.
+          </p>
+          <p class="pt-2">
+            The data collected from you will be anonymized and will remain
+             stored securely, in accordance with the regulations for data protection in both Australia and Norway (GDPR).
+             You will not be recognized by others, nor by your teachers.
+          </p>
+        </div>
+        <div v-else-if="$i18n.locale === 'no'">
+          <p>
+            Vi skanner nå nettleserloggen din for å telle nettadresser som bare
+            samsvarer med de du valgte i undersøkelsen.
+          </p>
+          <p class="pt-2">
+            Ved å klikke 'Send' samtykker du i å dele både undersøkelsessvar og
+            selektiv nettleserhistorikk for de valgte URL-ene med MyLS-prosjektet
+            ved Universitetet i Oslo: <em>“Learning with the Internet”</em>.
+          </p>
+          <p class="pt-2">
+            Dataene som samles inn fra deg vil bli anonymisert, og de vil bli
+            lagret trygt, i henhold til regelverket for databeskyttelse i Norge og
+            Europa (GDPR). Du vil ikke bli gjenkjent av andre, heller ikke av
+            lærerne dine.
+          </p>
+        </div>
         <button class="btn-myls mt-4" @click="submitChoices()">Send</button>
       </template>
 
       <!-- Error template -->
       <template v-if="mode == 'error'">
         <p>{{ errorMessage }}</p>
-        <p>
-          Du må har Chrome nettleser og 'Learning Practices Survey' Extension
-          installert.
-        </p>
-        <button class="btn-myls mt-4" @click="getExtension()">
-          Få Chrome extension...
-        </button>
+        <div v-if="$i18n.locale === 'en'">
+          <p>
+            You must have the Chrome browser and the 'Learning Practices Survey' Extension installed.
+          </p>
+          <button class="btn-myls mt-4" @click="getExtension()">
+            Get Chrome extension...
+          </button>
+        </div>
+        <div v-if="$i18n.locale === 'no'">
+          <p>
+            Du må har Chrome nettleser og 'Learning Practices Survey' Extension
+            installert.
+          </p>
+          <button class="btn-myls mt-4" @click="getExtension()">
+            Få Chrome extension...
+          </button>
+        </div>
       </template>
     </div>
     <div v-else class="p-2">
-      <p>Takk for ditt bidrag!</p>
-      <div v-if="id">
-        <p>Vil du avinstallere denne extension, trykk her:</p>
-        <button class="btn-myls m-4" @click="uninstall()">
-          Avinstallere Chrome extension
-        </button>
+      <div v-if="$i18n.locale === 'en'">
+        <p>Thank you for your contribution!</p>
+        <div v-if="id">
+          <p>If you want to uninstall the extension, click here:</p>
+          <button class="btn-myls m-4" @click="uninstall()">
+            Uninstall Chrome extension
+          </button>
+        </div>
+        <div v-else>
+          <p>Extension is not installed</p>
+        </div>
       </div>
-      <div v-else>
-        <p>Extension er ikke installert</p>
+      <div v-if="$i18n.locale === 'no'">
+        <p>Takk for ditt bidrag!</p>
+        <div v-if="id">
+          <p>Vil du avinstallere denne extension, trykk her:</p>
+          <button class="btn-myls m-4" @click="uninstall()">
+            Avinstallere Chrome extension
+          </button>
+        </div>
+        <div v-else>
+          <p>Extension er ikke installert</p>
+        </div>
       </div>
     </div>
   </div>
