@@ -9,7 +9,7 @@
         <p class="m-4">
           I undersøkelsen vil du få spørsmål om hva du gjør og hvilke nettsteder du bruker når du lærer programvareutvikling eller jobber med programvareprosjekter/oppgaver.
           I tillegg benytter vi en Google Chrome Extension som teller hvor mange ganger du har besøkt/fått tilgang til nettstedene du krysset av for i undersøkelsen i løpet av de siste tre månedene.
-          <a href="https://bitbucket.usit.uio.no/projects/ENGAGELAB/repos/myls/browse" target="default" class="text-blue-600 cursor-pointer">Her</a> kan du sjekke kildekoden til Google Chrome Extension selv.
+          <a href="https://github.com/engagelab/myls" target="default" class="text-blue-600 cursor-pointer">Her</a> kan du sjekke kildekoden til Google Chrome Extension selv.
           Undersøkelse ta ca. 10 minutter å svare på.</p>
         <p class="m-4">Undersøkelsen samler ingen annen type informasjon enn det som er oppgitt over.
           Som forsker ved UiO samler og behandler jeg dine data i henhold til lovgivning om personvern i Norge og Europa (GDPR). Data som samles inn om deg vil bli anonymisert,
@@ -32,7 +32,7 @@
         <p class="m-4">
           The survey asks you about what you do and what websites you use to learn new things about software development or work on software projects/tasks.
           The survey uses a Google Chrome extension to count how many times you have accessed the websites for your selected activities in the last three months.
-          <a href="https://bitbucket.usit.uio.no/projects/ENGAGELAB/repos/myls/browse" target="default" class="text-blue-600 cursor-pointer">Here</a> you can check the source code of Chrome extension yourself. The survey takes approx. 10 min. to answer.</p>
+          <a href="https://github.com/engagelab/myls" target="default" class="text-blue-600 cursor-pointer">Here</a> you can check the source code of Chrome extension yourself. The survey takes approx. 10 min. to answer.</p>
         <p class="m-4">The extension does not collect any other type of information than what you allow for through the survey.
           As a researcher, I am respecting the legislation on data privacy in Norway and Europe (GDPR).
           The data will be anonymised, and analyzed and stored securely, on a secured UiO-server. You will not be recognized by others or by your teachers.
